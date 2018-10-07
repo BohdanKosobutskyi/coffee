@@ -33,7 +33,8 @@ namespace Coffee.Controllers.Api
     }
 
 
-
+    [Produces("application/json")]
+    [Consumes("application/json")]
     public class AccountController : Controller
     {
         private CoffeeContext context;

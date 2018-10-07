@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Coffee.Models
 {
-    public class BaseEntity
+    public class CommentViewModel
     {
-        public long Id { get; set; }
+        public int comment_id { get; set; }
 
-        public DateTime AddedDate { get; set; }
+        public string comment { get; set; }
     }
 }

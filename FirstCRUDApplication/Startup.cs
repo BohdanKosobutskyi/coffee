@@ -14,6 +14,10 @@ using Coffee.Repositories.Interfaces;
 using Coffee.Repositories;
 using Coffee.Services;
 using Coffee.Services.Interfaces;
+using Coffee.Handler;
+using Coffee.Classes;
+using Coffee.Interface;
+using Microsoft.AspNetCore.Hosting.Internal;
 
 namespace FirstCRUDApplication
 {
@@ -31,8 +35,8 @@ namespace FirstCRUDApplication
         {
             services.AddMvc(options =>
             {
-                options.Filters.Add(new ProducesAttribute("application/json"));
-                options.Filters.Add(new ConsumesAttribute("application/json"));
+                //options.Filters.Add(new ProducesAttribute("application/json"));
+                //options.Filters.Add(new ConsumesAttribute("application/json"));
             });
 
             services.AddDbContext<CoffeeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -80,6 +84,8 @@ namespace FirstCRUDApplication
 
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ISecurityService, SecurityService>();
+            services.AddTransient<IImageHandler, ImageHandler>();
+            services.AddTransient<IImageWriter, ImageWriter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

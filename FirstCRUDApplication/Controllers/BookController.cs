@@ -19,15 +19,6 @@ namespace FirstCRUDApplication.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            //IEnumerable<BookViewModel> model = context.Set<Book>().ToList().Select(b => new BookViewModel
-            //{
-            //    Id = b.Id,
-            //    Name = b.Name,
-            //    ISBN = b.ISBN,
-            //    Author = b.Author,
-            //    Publisher = b.Publisher
-            //});
-
             IEnumerable<BookViewModel> model = new List<BookViewModel>
             {
                 {
@@ -76,8 +67,6 @@ namespace FirstCRUDApplication.Controllers
                     book.ISBN = model.ISBN;
                     book.Author = model.Author;
                     book.Publisher = model.Publisher;
-                    book.IPAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
-                    book.ModifiedDate = DateTime.UtcNow;
                     if (isNew)
                     {
                         context.Add(book);
