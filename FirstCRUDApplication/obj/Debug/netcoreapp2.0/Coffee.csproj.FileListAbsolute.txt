@@ -31,3 +31,14 @@ J:\FirstCRUDApplicationHomework\FirstCRUDApplication\FirstCRUDApplication\obj\De
 J:\FirstCRUDApplicationHomework\FirstCRUDApplication\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.AssemblyInfo.cs
 J:\FirstCRUDApplicationHomework\FirstCRUDApplication\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.dll
 J:\FirstCRUDApplicationHomework\FirstCRUDApplication\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.pdb
+D:\coffeeApi\coffeecore\FirstCRUDApplication\bin\Debug\netcoreapp2.0\Coffee.deps.json
+D:\coffeeApi\coffeecore\FirstCRUDApplication\bin\Debug\netcoreapp2.0\Coffee.runtimeconfig.json
+D:\coffeeApi\coffeecore\FirstCRUDApplication\bin\Debug\netcoreapp2.0\Coffee.runtimeconfig.dev.json
+D:\coffeeApi\coffeecore\FirstCRUDApplication\bin\Debug\netcoreapp2.0\Coffee.dll
+D:\coffeeApi\coffeecore\FirstCRUDApplication\bin\Debug\netcoreapp2.0\Coffee.pdb
+D:\coffeeApi\coffeecore\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.csprojAssemblyReference.cache
+D:\coffeeApi\coffeecore\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.csproj.CoreCompileInputs.cache
+D:\coffeeApi\coffeecore\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.AssemblyInfoInputs.cache
+D:\coffeeApi\coffeecore\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.AssemblyInfo.cs
+D:\coffeeApi\coffeecore\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.dll
+D:\coffeeApi\coffeecore\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.pdb
