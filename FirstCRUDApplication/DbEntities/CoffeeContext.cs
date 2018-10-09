@@ -1,4 +1,5 @@
 ﻿using Coffee.DbEntities;
+using Coffee.DbEntities.Mapping;
 using Coffee.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,8 @@ namespace FirstCRUDApplication.DbEntities
             base.OnModelCreating(modelBuilder);
             
             new UserMap(modelBuilder.Entity<User>());
+            new PostMap(modelBuilder.Entity<Post>());
+            new CommentMap(modelBuilder.Entity<Comment>());
         }
     }
 }

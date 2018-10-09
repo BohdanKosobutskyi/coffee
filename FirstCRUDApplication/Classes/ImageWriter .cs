@@ -3,6 +3,7 @@ using Coffee.Interface;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +14,14 @@ namespace Coffee.Classes
 {
     public class ImageWriter : IImageWriter
     {
-        private static IHostingEnvironment _hostingEnvironment = new HostingEnvironment();
+        public IConfiguration Configuration { get; }
+        public static string ImageStorage { get; set; }
+
+        public ImageWriter(IConfiguration configuration)
+        {
+            Configuration = configuration;
+            ImageStorage = Configuration.GetValue<string>("ImageStorage");
+        }
 
         public async Task<string> UploadImage(IFormFile file)
         {
@@ -53,23 +61,20 @@ namespace Coffee.Classes
             try
             {
                 var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
-                fileName = Guid.NewGuid().ToString() + extension; //Create a new Name 
-                                                                  //for the file due to security reasons.
+                fileName = Guid.NewGuid().ToString() + extension; 
                 var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", fileName);
 
                 using (var bits = new FileStream(path, FileMode.Create))
                 {
                     await file.CopyToAsync(bits);
                 }
-
-                var test = _hostingEnvironment.WebRootPath;
             }
             catch (Exception e)
             {
                 return e.Message;
             }
 
-            return fileName;
+            return ImageStorage + fileName;
         }
     }
 }

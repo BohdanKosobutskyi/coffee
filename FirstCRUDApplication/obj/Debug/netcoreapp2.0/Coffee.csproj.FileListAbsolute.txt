@@ -42,3 +42,14 @@ D:\coffeeApi\coffeecore\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.Asse
 D:\coffeeApi\coffeecore\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.AssemblyInfo.cs
 D:\coffeeApi\coffeecore\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.dll
 D:\coffeeApi\coffeecore\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.pdb
+J:\Projects\CoffeCore\coffeecore\FirstCRUDApplication\bin\Debug\netcoreapp2.0\Coffee.deps.json
+J:\Projects\CoffeCore\coffeecore\FirstCRUDApplication\bin\Debug\netcoreapp2.0\Coffee.runtimeconfig.json
+J:\Projects\CoffeCore\coffeecore\FirstCRUDApplication\bin\Debug\netcoreapp2.0\Coffee.runtimeconfig.dev.json
+J:\Projects\CoffeCore\coffeecore\FirstCRUDApplication\bin\Debug\netcoreapp2.0\Coffee.dll
+J:\Projects\CoffeCore\coffeecore\FirstCRUDApplication\bin\Debug\netcoreapp2.0\Coffee.pdb
+J:\Projects\CoffeCore\coffeecore\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.csprojResolveAssemblyReference.cache
+J:\Projects\CoffeCore\coffeecore\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.csproj.CoreCompileInputs.cache
+J:\Projects\CoffeCore\coffeecore\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.AssemblyInfoInputs.cache
+J:\Projects\CoffeCore\coffeecore\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.AssemblyInfo.cs
+J:\Projects\CoffeCore\coffeecore\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.dll
+J:\Projects\CoffeCore\coffeecore\FirstCRUDApplication\obj\Debug\netcoreapp2.0\Coffee.pdb
