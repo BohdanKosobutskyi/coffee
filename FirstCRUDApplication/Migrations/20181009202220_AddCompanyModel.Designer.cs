@@ -11,9 +11,10 @@ using System;
 namespace FirstCRUDApplication.Migrations
 {
     [DbContext(typeof(CoffeeContext))]
-    partial class CRUDContextModelSnapshot : ModelSnapshot
+    [Migration("20181009202220_AddCompanyModel")]
+    partial class AddCompanyModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,12 +51,6 @@ namespace FirstCRUDApplication.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("AddedDate");
-
-                    b.Property<string>("Description")
-                        .IsRequired();
-
-                    b.Property<string>("Image")
-                        .IsRequired();
 
                     b.Property<string>("Title")
                         .IsRequired();

@@ -41,10 +41,11 @@ namespace Coffee.Controllers.Api
         private IUserRepository _userRepository;
         private ISecurityService _securityService;
 
-        public AccountController(CoffeeContext context, IUserRepository userRepository)
+        public AccountController(CoffeeContext context, IUserRepository userRepository, ISecurityService securityService)
         {
             this.context = context;
             _userRepository = userRepository;
+            _securityService = securityService;
         }
 
         [HttpGet("/token/{refresh_token}/refresh")]
@@ -87,7 +88,7 @@ namespace Coffee.Controllers.Api
                 await Response.WriteAsync("Invalid phone or password.");
                 return;
             }
-            
+
             user.RefreshToken = Guid.NewGuid().ToString().Replace("-", "");
             _userRepository.Update(user);
 
@@ -125,27 +126,6 @@ namespace Coffee.Controllers.Api
             
             _userRepository.Create(user);
             
-            Response.StatusCode = 200;
-            return;
-        }
-
-        [HttpPost("/password")]
-        public async Task Password([FromBody] PasswordModel model)
-        {
-            var phone = model.Phone;
-
-            User user = _userRepository.Get(item => item.Phone == phone).FirstOrDefault();
-
-            if (user == null)
-            {
-                Response.StatusCode = 400;
-                await Response.WriteAsync("User with this phone not exist.");
-                return;
-            }
-
-            user.Password = "test";
-            _userRepository.Update(user);
-
             Response.StatusCode = 200;
             return;
         }

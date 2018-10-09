@@ -33,11 +33,7 @@ namespace FirstCRUDApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options =>
-            {
-                //options.Filters.Add(new ProducesAttribute("application/json"));
-                //options.Filters.Add(new ConsumesAttribute("application/json"));
-            });
+            services.AddMvc();
 
             services.AddDbContext<CoffeeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 

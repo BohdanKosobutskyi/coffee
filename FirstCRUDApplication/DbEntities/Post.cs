@@ -1,5 +1,4 @@
-﻿using Coffee.Models;
-using FirstCRUDApplication.DbEntities;
+﻿using FirstCRUDApplication.DbEntities;
 
 namespace Coffee.DbEntities
 {
@@ -10,5 +9,9 @@ namespace Coffee.DbEntities
         public string Title { get; set; }
 
         public int Likes { get; set; }
+
+        public Company Company { get; set; }
+
+        public long CompanyId { get; set; }
     }
 }

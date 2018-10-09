@@ -11,6 +11,7 @@ namespace Coffee.DbEntities.Mapping
             entityBuilder.Property(t => t.Image).IsRequired();
             entityBuilder.Property(t => t.Title).IsRequired();
             entityBuilder.Property(t => t.Likes).IsRequired();
+            entityBuilder.HasOne(x => x.Company).WithMany().HasForeignKey(x => x.CompanyId).IsRequired();
         }
     }
 }
