@@ -2,37 +2,24 @@
 using System.Threading.Tasks;
 using Coffee.Models;
 using Microsoft.AspNetCore.Mvc;
+using Coffee.Repositories.Interfaces;
+using Coffee.DbEntities;
 
 namespace Coffee.Controllers.Api
 {
     public class PostController : Controller
     {
-        [HttpGet("/post/all")]
-        public async Task<List<PostViewModel>> Posts(string refresh_token)
+        private IPostRepository _postRepository;
+
+        public PostController(IPostRepository postRepository)
         {
-            return await Task.Run(() => {
-                return posts;
-            });
+            _postRepository = postRepository;
         }
 
-        private static List<PostViewModel> posts = new List<PostViewModel>()
+        [HttpGet("/post/all")]
+        public IEnumerable<Post> Posts(string refresh_token)
         {
-            new PostViewModel
-            {
-                post_id = 1,
-                image = "test",
-                is_liked = true,
-                title = "test_post",
-                like_count = 10
-            },
-            new PostViewModel
-            {
-                post_id = 2,
-                image = "test2",
-                is_liked = true,
-                title = "test_post2",
-                like_count = 10
-            }
-        };
+            return _postRepository.Get();
+        }
     }
 }

@@ -86,6 +86,7 @@ namespace FirstCRUDApplication
             services.AddTransient<ISecurityService, SecurityService>();
             services.AddTransient<IImageHandler, ImageHandler>();
             services.AddTransient<IImageWriter, ImageWriter>();
+            services.AddTransient<IPostRepository,PostRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

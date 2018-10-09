@@ -25,7 +25,8 @@ namespace FirstCRUDApplication.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("AddedDate");
+                    b.Property<DateTime>("AddedDate")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<long>("PostId");
 

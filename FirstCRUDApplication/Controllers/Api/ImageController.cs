@@ -22,7 +22,7 @@ namespace Coffee.Controllers.Api
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        [HttpPost("api/image/upload")]
+        [HttpPost("/api/image/upload")]
         public async Task<IActionResult> UploadImage(IFormFile file)
         {
             return await _imageHandler.UploadImage(file);
