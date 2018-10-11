@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using FirstCRUDApplication.DbEntities;
 using Coffee.Repositories.Interfaces;
 using Coffee.Services.Interfaces;
+using Coffee.Filters;
 
 namespace Coffee.Controllers.Api
 {
@@ -97,7 +98,10 @@ namespace Coffee.Controllers.Api
                 access_token = _securityService.GenerateToken(user),
                 refresh_token = user.RefreshToken
             };
-            
+
+            var t = 0;
+            var test = 1 / t;
+
             Response.ContentType = "application/json";
             await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
         }

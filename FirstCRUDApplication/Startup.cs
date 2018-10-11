@@ -17,7 +17,9 @@ using Coffee.Services.Interfaces;
 using Coffee.Handler;
 using Coffee.Classes;
 using Coffee.Interface;
-using Microsoft.AspNetCore.Hosting.Internal;
+using Microsoft.Extensions.Logging;
+using Coffee.Filters;
+using Microsoft.Extensions.Logging.Console;
 
 namespace FirstCRUDApplication
 {
@@ -33,7 +35,10 @@ namespace FirstCRUDApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(CustomExceptionFilterAttribute));
+            });
 
             services.AddDbContext<CoffeeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -86,7 +91,7 @@ namespace FirstCRUDApplication
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -117,6 +122,9 @@ namespace FirstCRUDApplication
                 options.SwaggerEndpoint(
                   "/swagger/help/swagger.json", "Fiver.Api Help Endpoint");
             });
+
+            loggerFactory.AddConsole();
+            var logger = loggerFactory.CreateLogger<ConsoleLogger>();
         }
     }
 }
