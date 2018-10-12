@@ -99,9 +99,6 @@ namespace Coffee.Controllers.Api
                 refresh_token = user.RefreshToken
             };
 
-            var t = 0;
-            var test = 1 / t;
-
             Response.ContentType = "application/json";
             await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
         }

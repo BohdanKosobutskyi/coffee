@@ -25,6 +25,7 @@ namespace FirstCRUDApplication.DbEntities
             new PostMap(modelBuilder.Entity<Post>());
             new CommentMap(modelBuilder.Entity<Comment>());
             new CompanyMap(modelBuilder.Entity<Company>());
+            new UserCompanyMap(modelBuilder.Entity<UserCompany>());
         }
     }
 }

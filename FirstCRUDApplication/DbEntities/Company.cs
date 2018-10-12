@@ -1,4 +1,6 @@
-﻿using FirstCRUDApplication.DbEntities;
+﻿using Coffee.DbEntities.Mapping;
+using Coffee.Models;
+using FirstCRUDApplication.DbEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +15,7 @@ namespace Coffee.DbEntities
         public string Description { get; set; }
 
         public string Image { get; set; }
+
+        public IEnumerable<UserCompany> UserCompany { get; set; }
     }
 }

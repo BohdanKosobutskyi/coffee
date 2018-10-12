@@ -65,6 +65,19 @@ namespace FirstCRUDApplication.Migrations
                     b.ToTable("Company");
                 });
 
+            modelBuilder.Entity("Coffee.DbEntities.Mapping.UserCompany", b =>
+                {
+                    b.Property<long>("CompanyId");
+
+                    b.Property<long>("UserId");
+
+                    b.HasKey("CompanyId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserCompany");
+                });
+
             modelBuilder.Entity("Coffee.DbEntities.Post", b =>
                 {
                     b.Property<long>("Id")
@@ -121,6 +134,19 @@ namespace FirstCRUDApplication.Migrations
 
                     b.HasOne("Coffee.Models.User", "User")
                         .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Coffee.DbEntities.Mapping.UserCompany", b =>
+                {
+                    b.HasOne("Coffee.DbEntities.Company", "Company")
+                        .WithMany("UserCompany")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Coffee.Models.User", "User")
+                        .WithMany("UserCompany")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

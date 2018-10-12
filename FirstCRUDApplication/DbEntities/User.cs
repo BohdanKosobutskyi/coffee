@@ -1,4 +1,7 @@
-﻿using FirstCRUDApplication.DbEntities;
+﻿using Coffee.DbEntities;
+using Coffee.DbEntities.Mapping;
+using FirstCRUDApplication.DbEntities;
+using System.Collections.Generic;
 
 namespace Coffee.Models
 {
@@ -9,5 +12,7 @@ namespace Coffee.Models
         public string Password { get; set; }
         
         public string RefreshToken { get; set; }
+
+        public IEnumerable<UserCompany> UserCompany { get; set; }
     }
 }

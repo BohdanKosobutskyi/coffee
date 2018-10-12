@@ -10,7 +10,6 @@ namespace FirstCRUDApplication.Controllers.Api
     {
         // GET: api/values
         [HttpGet]
-        [Authorize(AuthenticationSchemes = "Bearer")]
         public IEnumerable<string> Get()
         {
             var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);

@@ -5,6 +5,10 @@ using Coffee.DbEntities;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 using Coffee.Models;
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace Coffee.Controllers.Api
 {
@@ -21,15 +25,36 @@ namespace Coffee.Controllers.Api
         }
 
         [HttpGet("api/post/all")]
-        public IEnumerable<PostViewModel> Posts()
+        [ProducesResponseType(200, Type = typeof(IEnumerable<PostViewModel>))]
+        public async Task Posts()
         {
-            return _postRepository.Get().Select(x => new PostViewModel {
+            var response = _postRepository.Get().Select(x => new PostViewModel {
                 post_id = x.Id,
                 image = x.Image,
                 is_liked = false,
                 likes = x.Likes,
                 title = x.Title
             });
+
+            Response.ContentType = "application/json";
+            await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
+        }
+
+        [HttpPost("api/post/create")]
+        public void Create([FromBody] PostCreateViewModel post)
+        {
+            var postDbEntity = new Post
+            {
+                CompanyId = post.company_id,
+                Image = post.image,
+                Title = post.title,
+                AddedDate = DateTime.Now
+            };
+
+            _postRepository.Create(postDbEntity);
+
+            Response.StatusCode = 200;
+            return;
         }
     }
 }
