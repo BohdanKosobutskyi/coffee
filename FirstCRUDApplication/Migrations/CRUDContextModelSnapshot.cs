@@ -71,6 +71,8 @@ namespace FirstCRUDApplication.Migrations
 
                     b.Property<long>("UserId");
 
+                    b.Property<double>("Points");
+
                     b.HasKey("CompanyId", "UserId");
 
                     b.HasIndex("UserId");
@@ -101,6 +103,26 @@ namespace FirstCRUDApplication.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("Post");
+                });
+
+            modelBuilder.Entity("Coffee.DbEntities.Seller", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("AddedDate");
+
+                    b.Property<long>("CompanyId");
+
+                    b.Property<bool>("IsAdmin");
+
+                    b.Property<bool>("IsSeller");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("Seller");
                 });
 
             modelBuilder.Entity("Coffee.Models.User", b =>
@@ -152,6 +174,14 @@ namespace FirstCRUDApplication.Migrations
                 });
 
             modelBuilder.Entity("Coffee.DbEntities.Post", b =>
+                {
+                    b.HasOne("Coffee.DbEntities.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Coffee.DbEntities.Seller", b =>
                 {
                     b.HasOne("Coffee.DbEntities.Company", "Company")
                         .WithMany()

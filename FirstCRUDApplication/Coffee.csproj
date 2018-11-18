@@ -1,7 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
+
+    <TypeScriptCompilerBlocked>true</TypeScriptCompilerBlocked>
   </PropertyGroup>
 
   <ItemGroup>
