@@ -1,39 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Coffee.Models;
 using Coffee.Security;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using FirstCRUDApplication.DbEntities;
 using Coffee.Repositories.Interfaces;
 using Coffee.Services.Interfaces;
-using Coffee.Filters;
+using Coffee.Contracts;
+using Coffee.Contracts.Authorization;
 
 namespace Coffee.Controllers.Api
-{
-    public class LoginModel
-    {
-        public string Phone { get; set; }
-        public string Password { get; set; }
-    }
-
-    public class RegisterModel
-    {
-        public string Phone { get; set; }
-    }
-
-    public class PasswordModel
-    {
-        public string Phone { get; set; }
-    }
-
-
+{   
     [Produces("application/json")]
     [Consumes("application/json")]
     public class AccountController : Controller
@@ -75,10 +55,11 @@ namespace Coffee.Controllers.Api
         }
 
         [HttpPost("/token")]
+        [ProducesResponseType(200, Type = typeof(TokenModelResponse))]
         public async Task Token([FromBody] LoginModel model)
         {
-            var phone = model.Phone;
-            var password = model.Password;
+            var phone = model.phone;
+            var password = model.password;
 
             User user = _userRepository.Get(x => x.Phone == phone && x.Password == password).FirstOrDefault();
 
@@ -93,10 +74,11 @@ namespace Coffee.Controllers.Api
             user.RefreshToken = Guid.NewGuid().ToString().Replace("-", "");
             _userRepository.Update(user);
 
-            var response = new
+            var response = new TokenModelResponse
             {
                 access_token = _securityService.GenerateToken(user),
-                refresh_token = user.RefreshToken
+                refresh_token = user.RefreshToken,
+                expire_time = DateTime.Now.AddSeconds(AuthOptions.LIFETIME)
             };
 
             Response.ContentType = "application/json";
@@ -106,7 +88,7 @@ namespace Coffee.Controllers.Api
         [HttpPost("/register")]
         public async Task Registration([FromBody] RegisterModel model)
         {
-            var phone = model.Phone;
+            var phone = model.phone;
 
             User user = _userRepository.Get(item => item.Phone == phone).FirstOrDefault();
 
