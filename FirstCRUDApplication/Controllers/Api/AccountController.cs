@@ -18,13 +18,11 @@ namespace Coffee.Controllers.Api
     [Consumes("application/json")]
     public class AccountController : Controller
     {
-        private CoffeeContext context;
         private IUserRepository _userRepository;
         private ISecurityService _securityService;
 
-        public AccountController(CoffeeContext context, IUserRepository userRepository, ISecurityService securityService)
+        public AccountController(IUserRepository userRepository, ISecurityService securityService)
         {
-            this.context = context;
             _userRepository = userRepository;
             _securityService = securityService;
         }
