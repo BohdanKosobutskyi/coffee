@@ -43273,7 +43273,7 @@ function templateRefExtractor(tNode, currentView) {
  */
 var BRAND = '__SANITIZER_TRUSTED_BRAND__';
 function allowSanitizationBypass(value, type) {
-    return (value instanceof String && value[BRAND] === type) ? true : false;
+    return (value instanceof String && valueBRAND === type) ? true : false;
 }
 /**
  * Mark `html` string as trusted.
@@ -43337,7 +43337,7 @@ function bypassSanitizationTrustResourceUrl(trustedResourceUrl) {
 }
 function bypassSanitizationTrustString(trustedString, mode) {
     var trusted = new String(trustedString);
-    trusted[BRAND] = mode;
+    trustedBRAND = mode;
     return trusted;
 }
 
