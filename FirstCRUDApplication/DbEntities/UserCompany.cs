@@ -1,5 +1,4 @@
-﻿using Coffee.Models;
-namespace Coffee.DbEntities.Mapping
+﻿namespace Coffee.DbEntities.Mapping
 {
     public class UserCompany
     {

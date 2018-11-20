@@ -1,4 +1,5 @@
-﻿using Coffee.Models;
+﻿using Coffee.DbEntities;
+using Coffee.Models;
 using System.Security.Claims;
 
 namespace Coffee.Services.Interfaces

@@ -1,4 +1,5 @@
-﻿using Coffee.Models;
+﻿using Coffee.DbEntities;
+using Coffee.Models;
 
 namespace Coffee.Repositories.Interfaces
 {

@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Coffee.Services.Interfaces;
 using System.Security.Claims;
 using System.Collections.Generic;
+using Coffee.DbEntities;
 
 namespace Coffee.Services
 {

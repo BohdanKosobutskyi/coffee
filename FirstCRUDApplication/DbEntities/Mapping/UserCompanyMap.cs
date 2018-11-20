@@ -23,5 +23,5 @@ namespace Coffee.DbEntities.Mapping
                     .HasForeignKey(sc => sc.CompanyId);
         }
         
-}
+    }
 }

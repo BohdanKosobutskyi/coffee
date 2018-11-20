@@ -11,6 +11,7 @@ using Coffee.Repositories.Interfaces;
 using Coffee.Services.Interfaces;
 using Coffee.Contracts;
 using Coffee.Contracts.Authorization;
+using Coffee.DbEntities;
 
 namespace Coffee.Controllers.Api
 {   
@@ -59,7 +60,7 @@ namespace Coffee.Controllers.Api
             var phone = model.phone;
             var password = model.password;
 
-            User user = _userRepository.Get(x => x.Phone == phone && x.Password == password).FirstOrDefault();
+            var user = _userRepository.Get(x => x.Phone == phone && x.Password == password).FirstOrDefault();
 
             var identity = _securityService.GetIdentity(user);
             if (identity == null)
@@ -88,7 +89,7 @@ namespace Coffee.Controllers.Api
         {
             var phone = model.phone;
 
-            User user = _userRepository.Get(item => item.Phone == phone).FirstOrDefault();
+            var user = _userRepository.Get(item => item.Phone == phone).FirstOrDefault();
 
             if(user != null)
             {

@@ -105,6 +105,22 @@ namespace FirstCRUDApplication.Migrations
                     b.ToTable("Post");
                 });
 
+            modelBuilder.Entity("Coffee.DbEntities.Role", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("AddedDate")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Title")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Role");
+                });
+
             modelBuilder.Entity("Coffee.DbEntities.Seller", b =>
                 {
                     b.Property<long>("Id")
@@ -125,7 +141,7 @@ namespace FirstCRUDApplication.Migrations
                     b.ToTable("Seller");
                 });
 
-            modelBuilder.Entity("Coffee.Models.User", b =>
+            modelBuilder.Entity("Coffee.DbEntities.User", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -147,6 +163,19 @@ namespace FirstCRUDApplication.Migrations
                     b.ToTable("User");
                 });
 
+            modelBuilder.Entity("Coffee.DbEntities.UserRole", b =>
+                {
+                    b.Property<long>("RoleId");
+
+                    b.Property<long>("UserId");
+
+                    b.HasKey("RoleId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRole");
+                });
+
             modelBuilder.Entity("Coffee.DbEntities.Comment", b =>
                 {
                     b.HasOne("Coffee.DbEntities.Post", "Post")
@@ -154,7 +183,7 @@ namespace FirstCRUDApplication.Migrations
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Coffee.Models.User", "User")
+                    b.HasOne("Coffee.DbEntities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -167,7 +196,7 @@ namespace FirstCRUDApplication.Migrations
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Coffee.Models.User", "User")
+                    b.HasOne("Coffee.DbEntities.User", "User")
                         .WithMany("UserCompany")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -186,6 +215,19 @@ namespace FirstCRUDApplication.Migrations
                     b.HasOne("Coffee.DbEntities.Company", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Coffee.DbEntities.UserRole", b =>
+                {
+                    b.HasOne("Coffee.DbEntities.Role", "Role")
+                        .WithMany("UserRole")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Coffee.DbEntities.User", "User")
+                        .WithMany("UserRole")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

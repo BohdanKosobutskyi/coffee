@@ -27,6 +27,8 @@ namespace FirstCRUDApplication.DbEntities
             new CompanyMap(modelBuilder.Entity<Company>());
             new UserCompanyMap(modelBuilder.Entity<UserCompany>());
             new SellerMap(modelBuilder.Entity<Seller>());
+            new RoleMap(modelBuilder.Entity<Role>());
+            new UserRoleMap(modelBuilder.Entity<UserRole>());
         }
     }
 }

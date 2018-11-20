@@ -1,4 +1,5 @@
-﻿using Coffee.Models;
+﻿using Coffee.DbEntities;
+using Coffee.Models;
 using Coffee.Repositories.Interfaces;
 using FirstCRUDApplication.DbEntities;
 

@@ -3,7 +3,7 @@ using Coffee.DbEntities.Mapping;
 using FirstCRUDApplication.DbEntities;
 using System.Collections.Generic;
 
-namespace Coffee.Models
+namespace Coffee.DbEntities
 {
     public class User : BaseEntity
     {
@@ -14,5 +14,7 @@ namespace Coffee.Models
         public string RefreshToken { get; set; }
 
         public IEnumerable<UserCompany> UserCompany { get; set; }
+
+        public IEnumerable<UserRole> UserRole { get; set; }
     }
 }
