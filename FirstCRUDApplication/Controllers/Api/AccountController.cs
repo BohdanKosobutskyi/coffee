@@ -77,7 +77,7 @@ namespace Coffee.Controllers.Api
             {
                 access_token = _securityService.GenerateToken(user),
                 refresh_token = user.RefreshToken,
-                expire_time = DateTime.Now.AddSeconds(AuthOptions.LIFETIME)
+                expire_time = DateTime.UtcNow.AddSeconds(AuthOptions.LIFETIME)
             };
 
             Response.ContentType = "application/json";
@@ -103,7 +103,7 @@ namespace Coffee.Controllers.Api
                 Phone = phone,
                 Password = "test",
                 RefreshToken = Guid.NewGuid().ToString().Replace("-", ""),
-                AddedDate = DateTime.Now
+                AddedDate = DateTime.UtcNow
             };
             
             _userRepository.Create(user);

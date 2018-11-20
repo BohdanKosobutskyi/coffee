@@ -51,14 +51,14 @@ namespace FirstCRUDApplication.Migrations
 
                     b.Property<DateTime>("AddedDate");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Email")
                         .IsRequired();
 
-                    b.Property<string>("Image")
-                        .IsRequired();
+                    b.Property<string>("Image");
 
-                    b.Property<string>("Title")
-                        .IsRequired();
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 

@@ -16,6 +16,8 @@ namespace Coffee.DbEntities
 
         public string Image { get; set; }
 
+        public string Email { get; set; }
+
         public IEnumerable<UserCompany> UserCompany { get; set; }
     }
 }

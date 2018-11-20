@@ -90,6 +90,7 @@ namespace FirstCRUDApplication
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddTransient<IUserCompanyRepository, UserCompanyRepository>();
             services.AddTransient<ISellerRepository, SellerRepository>();
+            services.AddTransient<ICompanyRepository, CompanyRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
