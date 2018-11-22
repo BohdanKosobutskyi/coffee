@@ -20,6 +20,8 @@ using Coffee.Interface;
 using Microsoft.Extensions.Logging;
 using Coffee.Filters;
 using Microsoft.Extensions.Logging.Console;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace FirstCRUDApplication
 {
@@ -108,12 +110,7 @@ namespace FirstCRUDApplication
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvc();
 
             app.UseDefaultFiles();
 
@@ -128,6 +125,12 @@ namespace FirstCRUDApplication
 
             loggerFactory.AddConsole();
             var logger = loggerFactory.CreateLogger<ConsoleLogger>();
+
+            app.Run(async (context) =>
+            {
+                context.Response.ContentType = "text/html";
+                await context.Response.SendFileAsync(Path.Combine(env.WebRootPath,"index.html"));
+            });
         }
     }
 }

@@ -47,8 +47,7 @@ namespace Coffee.Controllers.Api
             {
                 CompanyId = post.company_id,
                 Image = post.image,
-                Title = post.title,
-                AddedDate = DateTime.Now
+                Title = post.title
             };
 
             _postRepository.Create(postDbEntity);

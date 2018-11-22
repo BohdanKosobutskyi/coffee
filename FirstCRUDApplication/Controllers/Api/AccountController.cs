@@ -102,8 +102,7 @@ namespace Coffee.Controllers.Api
             {
                 Phone = phone,
                 Password = "test",
-                RefreshToken = Guid.NewGuid().ToString().Replace("-", ""),
-                AddedDate = DateTime.UtcNow
+                RefreshToken = Guid.NewGuid().ToString().Replace("-", "")
             };
             
             _userRepository.Create(user);

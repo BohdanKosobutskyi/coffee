@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -26,10 +27,15 @@ namespace Coffee.Controllers.Api
             var expresion = new RegexUtilities();
             if (expresion.IsValidEmail(company.Email))
             {
-                var companyDb = new Company
+                var companyDb = _companyRepository.Get(item => item.Email == company.Email).FirstOrDefault(); 
+                if(companyDb != null)
+                {
+                    throw new ArgumentException("Company with this email already exist");
+                }
+
+                companyDb = new Company
                 {
                     Email = company.Email,
-                    AddedDate = DateTime.UtcNow,
                     Title = company.Title
                 };
 

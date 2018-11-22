@@ -7,5 +7,10 @@ namespace FirstCRUDApplication.DbEntities
         public long Id { get; set; }
 
         public DateTime AddedDate { get; set; }
+
+        public BaseEntity()
+        {
+            AddedDate = DateTime.UtcNow;
+        }
     }
 }
