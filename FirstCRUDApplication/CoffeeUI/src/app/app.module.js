@@ -9,7 +9,10 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home.component';
+import { CompanyComponent } from './company/company.component';
 // определение маршрутов
 var appRoutes = [
     { path: 'hometest', component: HomeComponent }
@@ -21,8 +24,8 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     NgModule({
-        declarations: [AppComponent, HomeComponent],
-        imports: [BrowserModule, HttpModule, RouterModule.forRoot(appRoutes)],
+        declarations: [AppComponent, HomeComponent, CompanyComponent],
+        imports: [BrowserModule, HttpModule, RouterModule.forRoot(appRoutes), FormsModule, HttpClientModule],
         providers: [],
         bootstrap: [AppComponent]
     })

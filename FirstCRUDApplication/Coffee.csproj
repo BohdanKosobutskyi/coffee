@@ -9,10 +9,13 @@
 
   <ItemGroup>
     <None Remove=".gitignore" />
+    <None Remove="CoffeeUI\src\app\company\company.component.ts" />
+    <None Remove="CoffeeUI\src\app\company\company.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.5.0" />
@@ -25,6 +28,9 @@
 
   <ItemGroup>
     <TypeScriptCompile Include=".gitignore" />
+    <TypeScriptCompile Include="CoffeeUI\src\app\company\company.component.ts" />
+    <TypeScriptCompile Include="CoffeeUI\src\app\company\company.ts" />
+    <TypeScriptCompile Include="CoffeeUI\src\app\company\company.service.ts" />
   </ItemGroup>
 
 </Project>

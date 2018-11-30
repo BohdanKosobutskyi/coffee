@@ -9,7 +9,6 @@ using Microsoft.IdentityModel.Tokens;
 using Coffee.Security;
 using Microsoft.AspNetCore.Authorization;
 using Swashbuckle.AspNetCore.Swagger;
-using Microsoft.AspNetCore.Mvc;
 using Coffee.Repositories.Interfaces;
 using Coffee.Repositories;
 using Coffee.Services;
@@ -22,6 +21,7 @@ using Coffee.Filters;
 using Microsoft.Extensions.Logging.Console;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace FirstCRUDApplication
 {
@@ -37,10 +37,17 @@ namespace FirstCRUDApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options =>
-            {
-                options.Filters.Add(typeof(CustomExceptionFilterAttribute));
-            });
+            services.AddCors(options => options.AddPolicy("AllowAll",p => p.AllowAnyOrigin()
+                                                                   .AllowAnyMethod()
+                                                                    .AllowAnyHeader()));
+            services.AddMvc();
+
+            //services.AddMvc(options =>
+            //{
+            //    options.Filters.Add(typeof(CustomExceptionFilterAttribute));
+            //});
+
+            //services.AddCors();
 
             services.AddDbContext<CoffeeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -94,8 +101,7 @@ namespace FirstCRUDApplication
             services.AddTransient<ISellerRepository, SellerRepository>();
             services.AddTransient<ICompanyRepository, CompanyRepository>();
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
@@ -108,10 +114,17 @@ namespace FirstCRUDApplication
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
+            app.UseCors("AllowAll");
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                RequireHeaderSymmetry = false,
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
 
             app.UseMvc();
 
+            app.UseStaticFiles();
             app.UseDefaultFiles();
 
             app.UseAuthentication();
@@ -126,11 +139,21 @@ namespace FirstCRUDApplication
             loggerFactory.AddConsole();
             var logger = loggerFactory.CreateLogger<ConsoleLogger>();
 
+            InitializeDatabase(app);
+
             app.Run(async (context) =>
             {
                 context.Response.ContentType = "text/html";
                 await context.Response.SendFileAsync(Path.Combine(env.WebRootPath,"index.html"));
             });
+        }
+
+        private void InitializeDatabase(IApplicationBuilder app)
+        {
+            using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                scope.ServiceProvider.GetRequiredService<CoffeeContext>().Database.Migrate();
+            }
         }
     }
 }
