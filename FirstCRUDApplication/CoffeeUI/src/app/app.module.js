@@ -9,26 +9,40 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home.component';
 import { CompanyComponent } from './company/company.component';
+// MDB Angular Free
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MDBBootstrapModule, CheckboxModule, WavesModule, ButtonsModule, InputsModule, IconsModule, ChartsModule } from 'angular-bootstrap-md';
 // определение маршрутов
 var appRoutes = [
     { path: 'hometest', component: HomeComponent }
 ];
-var AppModule = (function () {
+var AppModule = /** @class */ (function () {
     function AppModule() {
     }
+    AppModule = __decorate([
+        NgModule({
+            declarations: [AppComponent, HomeComponent, CompanyComponent],
+            imports: [BrowserModule,
+                HttpModule,
+                RouterModule.forRoot(appRoutes),
+                FormsModule,
+                HttpClientModule,
+                ReactiveFormsModule,
+                CheckboxModule,
+                IconsModule,
+                MDBBootstrapModule.forRoot(),
+                ButtonsModule,
+                ChartsModule,
+                InputsModule.forRoot(),
+                WavesModule.forRoot()],
+            providers: [],
+            bootstrap: [AppComponent]
+        })
+    ], AppModule);
     return AppModule;
 }());
-AppModule = __decorate([
-    NgModule({
-        declarations: [AppComponent, HomeComponent, CompanyComponent],
-        imports: [BrowserModule, HttpModule, RouterModule.forRoot(appRoutes), FormsModule, HttpClientModule],
-        providers: [],
-        bootstrap: [AppComponent]
-    })
-], AppModule);
 export { AppModule };
 //# sourceMappingURL=app.module.js.map

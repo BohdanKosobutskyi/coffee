@@ -9,30 +9,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component, Input } from '@angular/core';
 import { CompanyService } from './company.service';
-var CompanyComponent = (function () {
-    function CompanyComponent(rest) {
+import { FormBuilder, Validators } from '@angular/forms';
+var CompanyComponent = /** @class */ (function () {
+    function CompanyComponent(rest, fb) {
         this.rest = rest;
+        this.fb = fb;
         this.companyData = { email: '', title: '' };
+        this.cardForm = fb.group({
+            materialFormCardNameEx: ['', Validators.required],
+            materialFormCardEmailEx: ['', [Validators.email, Validators.required]],
+            materialFormCardConfirmEx: ['', Validators.required],
+            materialFormCardPasswordEx: ['', Validators.required]
+        });
     }
     CompanyComponent.prototype.addCompany = function () {
         this.rest.addCompany(this.companyData).subscribe(function (result) { }, function (err) {
             console.log(err);
         });
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], CompanyComponent.prototype, "companyData", void 0);
+    CompanyComponent = __decorate([
+        Component({
+            selector: 'app-company',
+            templateUrl: './company.component.html',
+            styleUrls: ['./company.component.css'],
+            providers: [CompanyService]
+        }),
+        __metadata("design:paramtypes", [CompanyService, FormBuilder])
+    ], CompanyComponent);
     return CompanyComponent;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", Object)
-], CompanyComponent.prototype, "companyData", void 0);
-CompanyComponent = __decorate([
-    Component({
-        selector: 'app-company',
-        templateUrl: './company.component.html',
-        styleUrls: ['./company.component.css'],
-        providers: [CompanyService]
-    }),
-    __metadata("design:paramtypes", [CompanyService])
-], CompanyComponent);
 export { CompanyComponent };
 //# sourceMappingURL=company.component.js.map
