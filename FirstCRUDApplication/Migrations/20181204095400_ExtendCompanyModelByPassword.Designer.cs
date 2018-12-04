@@ -11,9 +11,10 @@ using System;
 namespace FirstCRUDApplication.Migrations
 {
     [DbContext(typeof(CoffeeContext))]
-    partial class CRUDContextModelSnapshot : ModelSnapshot
+    [Migration("20181204095400_ExtendCompanyModelByPassword")]
+    partial class ExtendCompanyModelByPassword
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

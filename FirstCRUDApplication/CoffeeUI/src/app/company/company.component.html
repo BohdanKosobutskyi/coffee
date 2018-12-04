@@ -35,7 +35,7 @@
       <!-- Material input password -->
       <div class="md-form">
         <mdb-icon icon="lock" class="prefix grey-text"></mdb-icon>
-        <input type="password" id="materialFormCardPasswordEx" formControlName="materialFormCardPasswordEx" class="form-control"
+        <input [(ngModel)]="companyData.password" type="password" id="materialFormCardPasswordEx" formControlName="materialFormCardPasswordEx" class="form-control"
                mdbInputDirective>
         <label for="materialFormCardPasswordEx" class="font-weight-light">Your password</label>
       </div>

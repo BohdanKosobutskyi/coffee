@@ -5,26 +5,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home.component';
 import { CompanyComponent } from './company/company.component';
+import { GlobalErrorComponent } from './global-error.component';
+import { UserListComponent } from './user/user-list.component';
 // MDB Angular Free
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MDBBootstrapModule, CheckboxModule, WavesModule, ButtonsModule, InputsModule, IconsModule, ChartsModule } from 'angular-bootstrap-md';
+import { GlobalErrorHandlerService } from './global-error-handler.service';
 // определение маршрутов
 var appRoutes = [
-    { path: 'hometest', component: HomeComponent }
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'home', component: CompanyComponent },
+    { path: 'error', component: GlobalErrorComponent },
+    { path: 'superadmin/users', component: UserListComponent }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         NgModule({
-            declarations: [AppComponent, HomeComponent, CompanyComponent],
+            declarations: [AppComponent, HomeComponent, CompanyComponent, GlobalErrorComponent, UserListComponent],
             imports: [BrowserModule,
                 HttpModule,
                 RouterModule.forRoot(appRoutes),
@@ -38,7 +44,10 @@ var AppModule = /** @class */ (function () {
                 ChartsModule,
                 InputsModule.forRoot(),
                 WavesModule.forRoot()],
-            providers: [],
+            providers: [
+                GlobalErrorHandlerService,
+                { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
+            ],
             bootstrap: [AppComponent]
         })
     ], AppModule);

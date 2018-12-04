@@ -30,5 +30,11 @@ namespace FirstCRUDApplication.DbEntities
             new RoleMap(modelBuilder.Entity<Role>());
             new UserRoleMap(modelBuilder.Entity<UserRole>());
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder builder)
+        {
+            builder.UseSqlServer("Data Source=.;Integrated Security=True;Initial Catalog=coffeApp");
+            base.OnConfiguring(builder);
+        }
     }
 }

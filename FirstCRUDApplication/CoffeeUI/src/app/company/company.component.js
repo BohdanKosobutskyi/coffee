@@ -10,11 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component, Input } from '@angular/core';
 import { CompanyService } from './company.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { GlobalErrorHandlerService } from '../global-error-handler.service';
 var CompanyComponent = /** @class */ (function () {
-    function CompanyComponent(rest, fb) {
+    function CompanyComponent(rest, fb, errorHandler) {
         this.rest = rest;
         this.fb = fb;
-        this.companyData = { email: '', title: '' };
+        this.errorHandler = errorHandler;
+        this.companyData = { email: '', title: '', password: '' };
         this.cardForm = fb.group({
             materialFormCardNameEx: ['', Validators.required],
             materialFormCardEmailEx: ['', [Validators.email, Validators.required]],
@@ -23,8 +25,9 @@ var CompanyComponent = /** @class */ (function () {
         });
     }
     CompanyComponent.prototype.addCompany = function () {
+        var _this = this;
         this.rest.addCompany(this.companyData).subscribe(function (result) { }, function (err) {
-            console.log(err);
+            _this.errorHandler.handleError(err);
         });
     };
     __decorate([
@@ -38,7 +41,7 @@ var CompanyComponent = /** @class */ (function () {
             styleUrls: ['./company.component.css'],
             providers: [CompanyService]
         }),
-        __metadata("design:paramtypes", [CompanyService, FormBuilder])
+        __metadata("design:paramtypes", [CompanyService, FormBuilder, GlobalErrorHandlerService])
     ], CompanyComponent);
     return CompanyComponent;
 }());

@@ -14,6 +14,8 @@ namespace Coffee.DbEntities.Mapping
             entityBuilder.HasKey(t => t.Id);
             entityBuilder.Property(x => x.AddedDate).IsRequired();
             entityBuilder.Property(t => t.Email).IsRequired();
+            entityBuilder.Property(x => x.Password).IsRequired();
+            entityBuilder.Property(x => x.IsAproved);
         }
     }
 }

@@ -14,12 +14,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 var CompanyService = /** @class */ (function () {
     function CompanyService(http) {
         this.http = http;
-        this.apiEndpoint = 'http://localhost:58114/company/register';
+        this.apiEndpoint = 'http://localhost:58114/api/company/register';
     }
     CompanyService.prototype.addCompany = function (company) {
         var postBody = {
             email: company.email,
-            title: company.title
+            title: company.title,
+            password: company.password
         };
         var httpHeaders = new HttpHeaders({
             'Content-Type': 'application/json'

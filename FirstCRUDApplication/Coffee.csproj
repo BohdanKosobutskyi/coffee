@@ -11,6 +11,11 @@
     <None Remove=".gitignore" />
     <None Remove="CoffeeUI\src\app\company\company.component.ts" />
     <None Remove="CoffeeUI\src\app\company\company.service.ts" />
+    <None Remove="CoffeeUI\src\app\global-error-handler.service.ts" />
+    <None Remove="CoffeeUI\src\app\global-error.component.ts" />
+    <None Remove="CoffeeUI\src\app\user\user-http.service.ts" />
+    <None Remove="CoffeeUI\src\app\user\user-list.component.ts" />
+    <None Remove="CoffeeUI\src\app\user\user.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +36,11 @@
     <TypeScriptCompile Include="CoffeeUI\src\app\company\company.component.ts" />
     <TypeScriptCompile Include="CoffeeUI\src\app\company\company.ts" />
     <TypeScriptCompile Include="CoffeeUI\src\app\company\company.service.ts" />
+    <TypeScriptCompile Include="CoffeeUI\src\app\global-error-handler.service.ts" />
+    <TypeScriptCompile Include="CoffeeUI\src\app\global-error.component.ts" />
+    <TypeScriptCompile Include="CoffeeUI\src\app\user\user-http.service.ts" />
+    <TypeScriptCompile Include="CoffeeUI\src\app\user\user-list.component.ts" />
+    <TypeScriptCompile Include="CoffeeUI\src\app\user\user.ts" />
   </ItemGroup>
 
 </Project>

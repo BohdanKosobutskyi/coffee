@@ -1,0 +1,15 @@
+<table mdbTable hover="true">
+  <thead>
+    <tr>
+      <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let el of users">
+      <th scope="row">{{el.user_id}}</th>
+      <td>{{el.phone}}</td>
+      <td>{{el.password}}</td>
+      <td>{{el.register_date}}</td>
+    </tr>
+  </tbody>
+</table>

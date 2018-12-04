@@ -22,6 +22,7 @@ using Microsoft.Extensions.Logging.Console;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
+using Coffee.Helper;
 
 namespace FirstCRUDApplication
 {
@@ -100,6 +101,8 @@ namespace FirstCRUDApplication
             services.AddTransient<IUserCompanyRepository, UserCompanyRepository>();
             services.AddTransient<ISellerRepository, SellerRepository>();
             services.AddTransient<ICompanyRepository, CompanyRepository>();
+            services.AddTransient<IDataValidator, DataValidator>();
+            
         }
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
