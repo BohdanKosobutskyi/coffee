@@ -16,6 +16,7 @@ namespace Coffee.DbEntities.Mapping
             entityBuilder.Property(t => t.Email).IsRequired();
             entityBuilder.Property(x => x.Password).IsRequired();
             entityBuilder.Property(x => x.IsAproved);
+            entityBuilder.Property(x => x.Phone).IsRequired();
         }
     }
 }

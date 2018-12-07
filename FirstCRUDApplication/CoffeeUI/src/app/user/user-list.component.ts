@@ -1,26 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { UserHttpService } from './user-http.service';
-import { User } from './user'
+import { User } from './user';
+import { GlobalErrorHandlerService } from '../global-error-handler.service';
+import { AppConfig } from './../configuration/config.component';
 
 @Component({
   selector: 'user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css'],
-  providers: [UserHttpService]
+  providers: [UserHttpService, AppConfig]
 })
 export class UserListComponent {
 
   users: User[] = [];
-  
-  constructor(public httpService: UserHttpService) {
-    this.httpService.getUsers().subscribe(data => this.users = <User[]>data);
-  }
+  userList: string;
 
-  elements: any = [
-    { id: 1, first: 'Mark', last: 'Otto', handle: '@mdo' },
-    { id: 2, first: 'Jacob', last: 'Thornton', handle: '@fat' },
-    { id: 3, first: 'Larry', last: 'the Bird', handle: '@twitter' },
-  ];
+  constructor(public httpService: UserHttpService, public errorHandler: GlobalErrorHandlerService, public config: AppConfig) {
+
+    this.config.getConfigs().subscribe(data => {
+      this.userList = data['userList'];
+
+      this.httpService.getUsers(this.userList).subscribe((data) => { this.users = <User[]>data }, (err) => {
+        this.errorHandler.handleError(err);
+      });
+    });
+  }
 
   headElements = ['ID', 'Phone', 'Password', 'Register Date'];
 

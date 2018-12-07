@@ -12,6 +12,7 @@ namespace Coffee.DbEntities
             entityBuilder.Property(t => t.Phone).IsRequired();
             entityBuilder.Property(t => t.Password).IsRequired();
             entityBuilder.Property(t => t.RefreshToken).IsRequired();
+            entityBuilder.Property(t => t.IsConfirm).IsRequired();
         }
     }
 }

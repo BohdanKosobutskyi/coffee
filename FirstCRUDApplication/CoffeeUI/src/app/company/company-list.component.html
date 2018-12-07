@@ -1,0 +1,16 @@
+<table mdbTable hover="true">
+  <thead>
+    <tr>
+      <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let el of companies">
+      <th scope="row">{{el.company_id}}</th>
+      <td>{{el.email}}</td>
+      <td>{{el.title}}</td>
+      <td><mdb-checkbox [checked]="el.is_approved" [disabled]="true"></mdb-checkbox></td>
+      <td><button (click)="approveCompany(el.company_id, el.is_approved)" mdbBtn class="approve-button" type="button" size="sm" color="default" mdbWavesEffect>Approve</button></td>
+    </tr>
+  </tbody>
+</table>

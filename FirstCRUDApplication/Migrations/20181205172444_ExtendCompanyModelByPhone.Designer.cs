@@ -11,9 +11,10 @@ using System;
 namespace FirstCRUDApplication.Migrations
 {
     [DbContext(typeof(CoffeeContext))]
-    partial class CRUDContextModelSnapshot : ModelSnapshot
+    [Migration("20181205172444_ExtendCompanyModelByPhone")]
+    partial class ExtendCompanyModelByPhone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -156,8 +157,6 @@ namespace FirstCRUDApplication.Migrations
 
                     b.Property<DateTime>("AddedDate")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("IsConfirm");
 
                     b.Property<string>("Password")
                         .IsRequired();

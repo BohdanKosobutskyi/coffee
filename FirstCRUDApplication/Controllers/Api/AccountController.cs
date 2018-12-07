@@ -31,7 +31,7 @@ namespace Coffee.Controllers.Api
         [HttpGet("/token/{refresh_token}/refresh")]
         public async Task RefreshToken(string refresh_token)
         {
-            var user = _userRepository.Get(x => x.RefreshToken == refresh_token).FirstOrDefault();
+            var user = _userRepository.Get(x => x.RefreshToken == refresh_token && x.IsConfirm).FirstOrDefault();
 
             if (user == null)
             {
@@ -60,7 +60,7 @@ namespace Coffee.Controllers.Api
             var phone = model.phone;
             var password = model.password;
 
-            var user = _userRepository.Get(x => x.Phone == phone && x.Password == password).FirstOrDefault();
+            var user = _userRepository.Get(x => x.Phone == phone && x.Password == password && x.IsConfirm).FirstOrDefault();
 
             var identity = _securityService.GetIdentity(user);
             if (identity == null)
@@ -89,7 +89,7 @@ namespace Coffee.Controllers.Api
         {
             var phone = model.phone;
 
-            var user = _userRepository.Get(item => item.Phone == phone).FirstOrDefault();
+            var user = _userRepository.Get(item => item.Phone == phone && item.IsConfirm).FirstOrDefault();
 
             if(user != null)
             {
@@ -98,15 +98,46 @@ namespace Coffee.Controllers.Api
                 return;
             }
 
+            user = _userRepository.Get(item => item.Phone == phone && item.IsConfirm == false).FirstOrDefault();
+
+            if(user != null)
+            {
+                _userRepository.Remove(user);
+            }
+
             user = new User
             {
                 Phone = phone,
                 Password = "test",
                 RefreshToken = Guid.NewGuid().ToString().Replace("-", "")
             };
+
+            // TO DO add sending sms
             
             _userRepository.Create(user);
             
+            Response.StatusCode = 200;
+            return;
+        }
+
+        [HttpPost("/confirm")]
+        public async Task ConfirmRegister([FromBody] ConfirmModel model)
+        {
+            var phone = model.phone;
+
+            var user = _userRepository.Get(item => item.Phone == phone && item.IsConfirm == false).FirstOrDefault();
+
+            if (user == null)
+            {
+                Response.StatusCode = 400;
+                await Response.WriteAsync("User with this phone already confirm or incorect confirm parameters.");
+                return;
+            }
+
+            user.IsConfirm = true;
+
+            _userRepository.Update(user);
+
             Response.StatusCode = 200;
             return;
         }

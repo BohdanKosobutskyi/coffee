@@ -11,22 +11,28 @@ import { Component, Input } from '@angular/core';
 import { CompanyService } from './company.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
+import { AppConfig } from './../configuration/config.component';
 var CompanyComponent = /** @class */ (function () {
-    function CompanyComponent(rest, fb, errorHandler) {
+    function CompanyComponent(rest, fb, errorHandler, config) {
+        var _this = this;
         this.rest = rest;
         this.fb = fb;
         this.errorHandler = errorHandler;
-        this.companyData = { email: '', title: '', password: '' };
+        this.config = config;
+        this.companyData = { email: '', title: '', password: '', phone: '' };
         this.cardForm = fb.group({
             materialFormCardNameEx: ['', Validators.required],
             materialFormCardEmailEx: ['', [Validators.email, Validators.required]],
             materialFormCardConfirmEx: ['', Validators.required],
             materialFormCardPasswordEx: ['', Validators.required]
         });
+        this.config.getConfigs().subscribe(function (data) {
+            _this.companyAddUrl = data['companyAdd'];
+        });
     }
     CompanyComponent.prototype.addCompany = function () {
         var _this = this;
-        this.rest.addCompany(this.companyData).subscribe(function (result) { }, function (err) {
+        this.rest.addCompany(this.companyData, this.companyAddUrl).subscribe(function (result) { }, function (err) {
             _this.errorHandler.handleError(err);
         });
     };
@@ -39,9 +45,9 @@ var CompanyComponent = /** @class */ (function () {
             selector: 'app-company',
             templateUrl: './company.component.html',
             styleUrls: ['./company.component.css'],
-            providers: [CompanyService]
+            providers: [CompanyService, AppConfig]
         }),
-        __metadata("design:paramtypes", [CompanyService, FormBuilder, GlobalErrorHandlerService])
+        __metadata("design:paramtypes", [CompanyService, FormBuilder, GlobalErrorHandlerService, AppConfig])
     ], CompanyComponent);
     return CompanyComponent;
 }());

@@ -8,11 +8,9 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 @Injectable()
 export class CompanyService {
 
-    public apiEndpoint = 'http://localhost:58114/api/company/register';
+  constructor(private http: HttpClient) { }
 
-    constructor(private http: HttpClient) { }
-
-    public addCompany(company: Company): Observable<HttpResponse<Company>> {
+  public addCompany(company: Company, companyAddUrl: string): Observable<HttpResponse<Company>> {
         const postBody = {
             email: company.email,
             title: company.title,
@@ -23,15 +21,15 @@ export class CompanyService {
             'Content-Type': 'application/json'
         });
 
-        return this.http.post<Company>(this.apiEndpoint, postBody,
-            {
-                headers: httpHeaders,
-                observe: 'response'
-            }
+        return this.http.post<Company>(companyAddUrl, postBody,
+          {
+            headers: httpHeaders,
+            observe: 'response'
+          }
         ).pipe(
-            catchError(error => {
-              return throwError(error);
-            })
+          catchError(error => {
+            return throwError(error);
+          })
         );
     }
 }

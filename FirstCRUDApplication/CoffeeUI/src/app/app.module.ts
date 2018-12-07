@@ -9,24 +9,27 @@ import { HomeComponent } from './home.component';
 import { CompanyComponent } from './company/company.component';
 import { GlobalErrorComponent } from './global-error.component';
 import { UserListComponent } from './user/user-list.component';
+import { CompanyListComponent } from './company/company-list.component'
 
 // MDB Angular Free
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MDBBootstrapModule , CheckboxModule, WavesModule, ButtonsModule, InputsModule, IconsModule, ChartsModule } from 'angular-bootstrap-md'
 
-import { GlobalErrorHandlerService } from './global-error-handler.service'
+import { GlobalErrorHandlerService } from './global-error-handler.service';
+import { AppConfig } from './configuration/config.component';
 
 // определение маршрутов
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: CompanyComponent },
   { path: 'error', component: GlobalErrorComponent },
-  { path: 'superadmin/users', component: UserListComponent }
+  { path: 'superadmin/users', component: UserListComponent },
+  { path: 'superadmin/companies', component: CompanyListComponent }
 ];
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, CompanyComponent, GlobalErrorComponent, UserListComponent],
+  declarations: [AppComponent, HomeComponent, CompanyComponent, GlobalErrorComponent, UserListComponent, CompanyListComponent],
   imports: [BrowserModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),

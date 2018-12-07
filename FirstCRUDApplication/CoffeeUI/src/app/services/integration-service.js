@@ -7,35 +7,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-var CompanyService = /** @class */ (function () {
-    function CompanyService(http) {
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+var IntegrationService = /** @class */ (function () {
+    function IntegrationService(http) {
         this.http = http;
     }
-    CompanyService.prototype.addCompany = function (company, companyAddUrl) {
-        var postBody = {
-            email: company.email,
-            title: company.title,
-            password: company.password
-        };
+    IntegrationService.prototype.getAll = function (apiEndpoint) {
+        return this.http.get(apiEndpoint);
+    };
+    IntegrationService.prototype.sendData = function (postBody, url) {
         var httpHeaders = new HttpHeaders({
             'Content-Type': 'application/json'
         });
-        return this.http.post(companyAddUrl, postBody, {
+        return this.http.post(url, postBody, {
             headers: httpHeaders,
             observe: 'response'
         }).pipe(catchError(function (error) {
             return throwError(error);
         }));
     };
-    CompanyService = __decorate([
+    IntegrationService = __decorate([
         Injectable(),
         __metadata("design:paramtypes", [HttpClient])
-    ], CompanyService);
-    return CompanyService;
+    ], IntegrationService);
+    return IntegrationService;
 }());
-export { CompanyService };
-//# sourceMappingURL=company.service.js.map
+export { IntegrationService };
+//# sourceMappingURL=integration-service.js.map

@@ -25,13 +25,19 @@
         <label for="materialFormCardNameEx" class="font-weight-light">Your title of company</label>
       </div>
 
+      <div class="md-form">
+        <mdb-icon icon="phone" class="prefix grey-text"></mdb-icon>
+        <input [(ngModel)]="companyData.phone" type="text" id="materialFormCardNameEx" formControlName="materialFormCardNameEx" class="form-control" mdbInputDirective>
+        <label for="materialFormCardNameEx" class="font-weight-light">Your number of phone</label>
+      </div>
+
       <!-- Material input email -->
       <div class="md-form">
         <mdb-icon icon="envelope" class="prefix grey-text"></mdb-icon>
         <input [(ngModel)]="companyData.email" type="email" id="materialFormCardEmailEx" formControlName="materialFormCardEmailEx" class="form-control" mdbInputDirective>
         <label for="materialFormCardEmailEx" class="font-weight-light">Your email</label>
       </div>
-      
+
       <!-- Material input password -->
       <div class="md-form">
         <mdb-icon icon="lock" class="prefix grey-text"></mdb-icon>

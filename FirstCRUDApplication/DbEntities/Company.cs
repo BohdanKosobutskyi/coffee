@@ -22,6 +22,8 @@ namespace Coffee.DbEntities
 
         public bool IsAproved { get; set; }
 
+        public string Phone { get; set; }
+
         public IEnumerable<UserCompany> UserCompany { get; set; }
     }
 }

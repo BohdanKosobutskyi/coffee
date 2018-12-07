@@ -391,15 +391,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _company_company_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./company/company.component */ "./src/app/company/company.component.ts");
 /* harmony import */ var _global_error_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./global-error.component */ "./src/app/global-error.component.ts");
 /* harmony import */ var _user_user_list_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./user/user-list.component */ "./src/app/user/user-list.component.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! angular-bootstrap-md */ "./node_modules/angular-bootstrap-md/esm5/angular-bootstrap-md.es5.js");
-/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _company_company_list_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./company/company-list.component */ "./src/app/company/company-list.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! angular-bootstrap-md */ "./node_modules/angular-bootstrap-md/esm5/angular-bootstrap-md.es5.js");
+/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -419,35 +421,133 @@ var appRoutes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: _company_company_component__WEBPACK_IMPORTED_MODULE_7__["CompanyComponent"] },
     { path: 'error', component: _global_error_component__WEBPACK_IMPORTED_MODULE_8__["GlobalErrorComponent"] },
-    { path: 'superadmin/users', component: _user_user_list_component__WEBPACK_IMPORTED_MODULE_9__["UserListComponent"] }
+    { path: 'superadmin/users', component: _user_user_list_component__WEBPACK_IMPORTED_MODULE_9__["UserListComponent"] },
+    { path: 'superadmin/companies', component: _company_company_list_component__WEBPACK_IMPORTED_MODULE_10__["CompanyListComponent"] }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"], _company_company_component__WEBPACK_IMPORTED_MODULE_7__["CompanyComponent"], _global_error_component__WEBPACK_IMPORTED_MODULE_8__["GlobalErrorComponent"], _user_user_list_component__WEBPACK_IMPORTED_MODULE_9__["UserListComponent"]],
+            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"], _company_company_component__WEBPACK_IMPORTED_MODULE_7__["CompanyComponent"], _global_error_component__WEBPACK_IMPORTED_MODULE_8__["GlobalErrorComponent"], _user_user_list_component__WEBPACK_IMPORTED_MODULE_9__["UserListComponent"], _company_company_list_component__WEBPACK_IMPORTED_MODULE_10__["CompanyListComponent"]],
             imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
                 _angular_http__WEBPACK_IMPORTED_MODULE_2__["HttpModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forRoot(appRoutes),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_11__["FormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_10__["ReactiveFormsModule"],
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_11__["CheckboxModule"],
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_11__["IconsModule"],
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_11__["MDBBootstrapModule"].forRoot(),
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_11__["ButtonsModule"],
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_11__["ChartsModule"],
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_11__["InputsModule"].forRoot(),
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_11__["WavesModule"].forRoot()],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_11__["ReactiveFormsModule"],
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_12__["CheckboxModule"],
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_12__["IconsModule"],
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_12__["MDBBootstrapModule"].forRoot(),
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_12__["ButtonsModule"],
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_12__["ChartsModule"],
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_12__["InputsModule"].forRoot(),
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_12__["WavesModule"].forRoot()],
             providers: [
-                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_12__["GlobalErrorHandlerService"],
-                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_12__["GlobalErrorHandlerService"] },
+                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_13__["GlobalErrorHandlerService"],
+                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_13__["GlobalErrorHandlerService"] },
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/company/company-list.component.css":
+/*!****************************************************!*\
+  !*** ./src/app/company/company-list.component.css ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "body {\r\n}\r\n\r\n.approve-button {\r\n  margin-left: 0em;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcGFueS9jb21wYW55LWxpc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtDQUNDOztBQUVEO0VBQ0UsaUJBQWlCO0NBQ2xCIiwiZmlsZSI6InNyYy9hcHAvY29tcGFueS9jb21wYW55LWxpc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xyXG59XHJcblxyXG4uYXBwcm92ZS1idXR0b24ge1xyXG4gIG1hcmdpbi1sZWZ0OiAwZW07XHJcbn1cclxuIl19 */"
+
+/***/ }),
+
+/***/ "./src/app/company/company-list.component.html":
+/*!*****************************************************!*\
+  !*** ./src/app/company/company-list.component.html ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<table mdbTable hover=\"true\">\r\n  <thead>\r\n    <tr>\r\n      <th *ngFor=\"let head of headElements\" scope=\"col\">{{head}} </th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr mdbTableCol *ngFor=\"let el of companies\">\r\n      <th scope=\"row\">{{el.company_id}}</th>\r\n      <td>{{el.email}}</td>\r\n      <td>{{el.title}}</td>\r\n      <td><mdb-checkbox [checked]=\"el.is_approved\" [disabled]=\"true\"></mdb-checkbox></td>\r\n      <td><button (click)=\"approveCompany(el.company_id, el.is_approved)\" mdbBtn class=\"approve-button\" type=\"button\" size=\"sm\" color=\"default\" mdbWavesEffect>Approve</button></td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n"
+
+/***/ }),
+
+/***/ "./src/app/company/company-list.component.ts":
+/*!***************************************************!*\
+  !*** ./src/app/company/company-list.component.ts ***!
+  \***************************************************/
+/*! exports provided: CompanyListComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CompanyListComponent", function() { return CompanyListComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_integration_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../services/integration-service */ "./src/app/services/integration-service.ts");
+/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _configuration_config_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../configuration/config.component */ "./src/app/configuration/config.component.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var CompanyListComponent = /** @class */ (function () {
+    function CompanyListComponent(router, integrationService, errorHandler, config) {
+        var _this = this;
+        this.router = router;
+        this.integrationService = integrationService;
+        this.errorHandler = errorHandler;
+        this.config = config;
+        this.companies = [];
+        this.headElements = ['ID', 'Email', 'Title', 'Is Approved', 'Action'];
+        this.config.getConfigs().subscribe(function (data) {
+            _this.companyGetAllUrl = data['companyList'];
+            _this.companyApproveUrl = data['approveCompany'];
+            _this.integrationService.getAll(_this.companyGetAllUrl).subscribe(function (data) { _this.companies = data; }, function (err) {
+                _this.errorHandler.handleError(err);
+            });
+        });
+    }
+    CompanyListComponent.prototype.approveCompany = function (company_id, is_approved) {
+        var _this = this;
+        if (is_approved === true)
+            return;
+        var postBody = {
+            company_id: company_id,
+            is_approved: is_approved
+        };
+        this.integrationService.sendData(postBody, this.companyApproveUrl).subscribe(function (result) { }, function (err) {
+            _this.errorHandler.handleError(err);
+            window.location.reload();
+        });
+    };
+    CompanyListComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'company-list',
+            template: __webpack_require__(/*! ./company-list.component.html */ "./src/app/company/company-list.component.html"),
+            styles: [__webpack_require__(/*! ./company-list.component.css */ "./src/app/company/company-list.component.css")],
+            providers: [_services_integration_service__WEBPACK_IMPORTED_MODULE_1__["IntegrationService"], _configuration_config_component__WEBPACK_IMPORTED_MODULE_3__["AppConfig"]]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"], _services_integration_service__WEBPACK_IMPORTED_MODULE_1__["IntegrationService"], _global_error_handler_service__WEBPACK_IMPORTED_MODULE_2__["GlobalErrorHandlerService"], _configuration_config_component__WEBPACK_IMPORTED_MODULE_3__["AppConfig"]])
+    ], CompanyListComponent);
+    return CompanyListComponent;
 }());
 
 
@@ -472,7 +572,7 @@ module.exports = "body {\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div>\r\n  <div>\r\n    <label>\r\n      Company email:\r\n      <input [(ngModel)]=\"companyData.email\" placeholder=\"Company email\" />\r\n    </label><br>\r\n    <label>\r\n      Company title:\r\n      <input [(ngModel)]=\"companyData.title\" placeholder=\"Company title\" />\r\n    </label><br>\r\n  </div>\r\n  <button (click)=\"addCompany()\">Save</button>\r\n</div>-->\r\n\r\n<mdb-card>\r\n  <mdb-card-body>\r\n    <!-- Material form register -->\r\n    <form [formGroup]=\"cardForm\">\r\n      <p class=\"h4 text-center py-4\">Register your business</p>\r\n\r\n      <!-- Material input text -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"user\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.title\" type=\"text\" id=\"materialFormCardNameEx\" formControlName=\"materialFormCardNameEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardNameEx\" class=\"font-weight-light\">Your title of company</label>\r\n      </div>\r\n\r\n      <!-- Material input email -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"envelope\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.email\" type=\"email\" id=\"materialFormCardEmailEx\" formControlName=\"materialFormCardEmailEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardEmailEx\" class=\"font-weight-light\">Your email</label>\r\n      </div>\r\n      \r\n      <!-- Material input password -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"lock\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.password\" type=\"password\" id=\"materialFormCardPasswordEx\" formControlName=\"materialFormCardPasswordEx\" class=\"form-control\"\r\n               mdbInputDirective>\r\n        <label for=\"materialFormCardPasswordEx\" class=\"font-weight-light\">Your password</label>\r\n      </div>\r\n\r\n      <div class=\"text-center py-4 mt-3\">\r\n        <button (click)=\"addCompany()\" mdbBtn color=\"cyan\" class=\"waves-light\" type=\"submit\" mdbWavesEffect>Register company</button>\r\n      </div>\r\n    </form>\r\n    <!-- Material form register -->\r\n  </mdb-card-body>\r\n</mdb-card>\r\n"
+module.exports = "<!--<div>\r\n  <div>\r\n    <label>\r\n      Company email:\r\n      <input [(ngModel)]=\"companyData.email\" placeholder=\"Company email\" />\r\n    </label><br>\r\n    <label>\r\n      Company title:\r\n      <input [(ngModel)]=\"companyData.title\" placeholder=\"Company title\" />\r\n    </label><br>\r\n  </div>\r\n  <button (click)=\"addCompany()\">Save</button>\r\n</div>-->\r\n\r\n<mdb-card>\r\n  <mdb-card-body>\r\n    <!-- Material form register -->\r\n    <form [formGroup]=\"cardForm\">\r\n      <p class=\"h4 text-center py-4\">Register your business</p>\r\n\r\n      <!-- Material input text -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"user\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.title\" type=\"text\" id=\"materialFormCardNameEx\" formControlName=\"materialFormCardNameEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardNameEx\" class=\"font-weight-light\">Your title of company</label>\r\n      </div>\r\n\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"phone\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.phone\" type=\"text\" id=\"materialFormCardNameEx\" formControlName=\"materialFormCardNameEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardNameEx\" class=\"font-weight-light\">Your number of phone</label>\r\n      </div>\r\n\r\n      <!-- Material input email -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"envelope\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.email\" type=\"email\" id=\"materialFormCardEmailEx\" formControlName=\"materialFormCardEmailEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardEmailEx\" class=\"font-weight-light\">Your email</label>\r\n      </div>\r\n\r\n      <!-- Material input password -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"lock\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.password\" type=\"password\" id=\"materialFormCardPasswordEx\" formControlName=\"materialFormCardPasswordEx\" class=\"form-control\"\r\n               mdbInputDirective>\r\n        <label for=\"materialFormCardPasswordEx\" class=\"font-weight-light\">Your password</label>\r\n      </div>\r\n\r\n      <div class=\"text-center py-4 mt-3\">\r\n        <button (click)=\"addCompany()\" mdbBtn color=\"cyan\" class=\"waves-light\" type=\"submit\" mdbWavesEffect>Register company</button>\r\n      </div>\r\n    </form>\r\n    <!-- Material form register -->\r\n  </mdb-card-body>\r\n</mdb-card>\r\n"
 
 /***/ }),
 
@@ -490,6 +590,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _company_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./company.service */ "./src/app/company/company.service.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _configuration_config_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../configuration/config.component */ "./src/app/configuration/config.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -503,22 +604,28 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var CompanyComponent = /** @class */ (function () {
-    function CompanyComponent(rest, fb, errorHandler) {
+    function CompanyComponent(rest, fb, errorHandler, config) {
+        var _this = this;
         this.rest = rest;
         this.fb = fb;
         this.errorHandler = errorHandler;
-        this.companyData = { email: '', title: '', password: '' };
+        this.config = config;
+        this.companyData = { email: '', title: '', password: '', phone: '' };
         this.cardForm = fb.group({
             materialFormCardNameEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
             materialFormCardEmailEx: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
             materialFormCardConfirmEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
             materialFormCardPasswordEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
         });
+        this.config.getConfigs().subscribe(function (data) {
+            _this.companyAddUrl = data['companyAdd'];
+        });
     }
     CompanyComponent.prototype.addCompany = function () {
         var _this = this;
-        this.rest.addCompany(this.companyData).subscribe(function (result) { }, function (err) {
+        this.rest.addCompany(this.companyData, this.companyAddUrl).subscribe(function (result) { }, function (err) {
             _this.errorHandler.handleError(err);
         });
     };
@@ -531,9 +638,9 @@ var CompanyComponent = /** @class */ (function () {
             selector: 'app-company',
             template: __webpack_require__(/*! ./company.component.html */ "./src/app/company/company.component.html"),
             styles: [__webpack_require__(/*! ./company.component.css */ "./src/app/company/company.component.css")],
-            providers: [_company_service__WEBPACK_IMPORTED_MODULE_1__["CompanyService"]]
+            providers: [_company_service__WEBPACK_IMPORTED_MODULE_1__["CompanyService"], _configuration_config_component__WEBPACK_IMPORTED_MODULE_4__["AppConfig"]]
         }),
-        __metadata("design:paramtypes", [_company_service__WEBPACK_IMPORTED_MODULE_1__["CompanyService"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], _global_error_handler_service__WEBPACK_IMPORTED_MODULE_3__["GlobalErrorHandlerService"]])
+        __metadata("design:paramtypes", [_company_service__WEBPACK_IMPORTED_MODULE_1__["CompanyService"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], _global_error_handler_service__WEBPACK_IMPORTED_MODULE_3__["GlobalErrorHandlerService"], _configuration_config_component__WEBPACK_IMPORTED_MODULE_4__["AppConfig"]])
     ], CompanyComponent);
     return CompanyComponent;
 }());
@@ -572,9 +679,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var CompanyService = /** @class */ (function () {
     function CompanyService(http) {
         this.http = http;
-        this.apiEndpoint = 'http://localhost:58114/api/company/register';
     }
-    CompanyService.prototype.addCompany = function (company) {
+    CompanyService.prototype.addCompany = function (company, companyAddUrl) {
         var postBody = {
             email: company.email,
             title: company.title,
@@ -583,7 +689,7 @@ var CompanyService = /** @class */ (function () {
         var httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
             'Content-Type': 'application/json'
         });
-        return this.http.post(this.apiEndpoint, postBody, {
+        return this.http.post(companyAddUrl, postBody, {
             headers: httpHeaders,
             observe: 'response'
         }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(function (error) {
@@ -595,6 +701,47 @@ var CompanyService = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
     ], CompanyService);
     return CompanyService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/configuration/config.component.ts":
+/*!***************************************************!*\
+  !*** ./src/app/configuration/config.component.ts ***!
+  \***************************************************/
+/*! exports provided: AppConfig */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppConfig", function() { return AppConfig; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var AppConfig = /** @class */ (function () {
+    function AppConfig(http) {
+        this.http = http;
+    }
+    AppConfig.prototype.getConfigs = function () {
+        return this.http.get('assets/appsettingsUI.json');
+    };
+    AppConfig = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], AppConfig);
+    return AppConfig;
 }());
 
 
@@ -745,6 +892,62 @@ var HomeComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/services/integration-service.ts":
+/*!*************************************************!*\
+  !*** ./src/app/services/integration-service.ts ***!
+  \*************************************************/
+/*! exports provided: IntegrationService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IntegrationService", function() { return IntegrationService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var IntegrationService = /** @class */ (function () {
+    function IntegrationService(http) {
+        this.http = http;
+    }
+    IntegrationService.prototype.getAll = function (apiEndpoint) {
+        return this.http.get(apiEndpoint);
+    };
+    IntegrationService.prototype.sendData = function (postBody, url) {
+        var httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
+            'Content-Type': 'application/json'
+        });
+        return this.http.post(url, postBody, {
+            headers: httpHeaders,
+            observe: 'response'
+        }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (error) {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(error);
+        }));
+    };
+    IntegrationService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], IntegrationService);
+    return IntegrationService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/user/user-http.service.ts":
 /*!*******************************************!*\
   !*** ./src/app/user/user-http.service.ts ***!
@@ -771,10 +974,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var UserHttpService = /** @class */ (function () {
     function UserHttpService(http) {
         this.http = http;
-        this.apiEndpoint = 'http://localhost:58114/api/users/all';
     }
-    UserHttpService.prototype.getUsers = function () {
-        return this.http.get(this.apiEndpoint);
+    UserHttpService.prototype.getUsers = function (apiEndpoint) {
+        return this.http.get(apiEndpoint);
     };
     UserHttpService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
@@ -821,6 +1023,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserListComponent", function() { return UserListComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _user_http_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user-http.service */ "./src/app/user/user-http.service.ts");
+/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _configuration_config_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../configuration/config.component */ "./src/app/configuration/config.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -832,27 +1036,31 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
 var UserListComponent = /** @class */ (function () {
-    function UserListComponent(httpService) {
+    function UserListComponent(httpService, errorHandler, config) {
         var _this = this;
         this.httpService = httpService;
+        this.errorHandler = errorHandler;
+        this.config = config;
         this.users = [];
-        this.elements = [
-            { id: 1, first: 'Mark', last: 'Otto', handle: '@mdo' },
-            { id: 2, first: 'Jacob', last: 'Thornton', handle: '@fat' },
-            { id: 3, first: 'Larry', last: 'the Bird', handle: '@twitter' },
-        ];
         this.headElements = ['ID', 'Phone', 'Password', 'Register Date'];
-        this.httpService.getUsers().subscribe(function (data) { return _this.users = data; });
+        this.config.getConfigs().subscribe(function (data) {
+            _this.userList = data['userList'];
+            _this.httpService.getUsers(_this.userList).subscribe(function (data) { _this.users = data; }, function (err) {
+                _this.errorHandler.handleError(err);
+            });
+        });
     }
     UserListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'user-list',
             template: __webpack_require__(/*! ./user-list.component.html */ "./src/app/user/user-list.component.html"),
             styles: [__webpack_require__(/*! ./user-list.component.css */ "./src/app/user/user-list.component.css")],
-            providers: [_user_http_service__WEBPACK_IMPORTED_MODULE_1__["UserHttpService"]]
+            providers: [_user_http_service__WEBPACK_IMPORTED_MODULE_1__["UserHttpService"], _configuration_config_component__WEBPACK_IMPORTED_MODULE_3__["AppConfig"]]
         }),
-        __metadata("design:paramtypes", [_user_http_service__WEBPACK_IMPORTED_MODULE_1__["UserHttpService"]])
+        __metadata("design:paramtypes", [_user_http_service__WEBPACK_IMPORTED_MODULE_1__["UserHttpService"], _global_error_handler_service__WEBPACK_IMPORTED_MODULE_2__["GlobalErrorHandlerService"], _configuration_config_component__WEBPACK_IMPORTED_MODULE_3__["AppConfig"]])
     ], UserListComponent);
     return UserListComponent;
 }());

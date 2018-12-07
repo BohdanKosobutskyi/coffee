@@ -13,6 +13,8 @@ namespace Coffee.DbEntities
         
         public string RefreshToken { get; set; }
 
+        public bool IsConfirm { get; set; }
+
         public IEnumerable<UserCompany> UserCompany { get; set; }
 
         public IEnumerable<UserRole> UserRole { get; set; }
