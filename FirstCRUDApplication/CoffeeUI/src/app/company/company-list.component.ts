@@ -16,13 +16,15 @@ export class CompanyListComponent {
   companies: CompanyListView[] = [];
   companyGetAllUrl: string;
   companyApproveUrl: string;
+  companyDeleteUrl: string;
 
   constructor(public router: Router, public integrationService: IntegrationService, public errorHandler: GlobalErrorHandlerService, public config: AppConfig) {
 
     this.config.getConfigs().subscribe(data => {
       this.companyGetAllUrl = data['companyList'];
       this.companyApproveUrl = data['approveCompany'];
-
+      this.companyDeleteUrl = data['deleteCompany'];
+      
       this.integrationService.getAll(this.companyGetAllUrl).subscribe((data) => { this.companies = <CompanyListView[]>data }, (err) => {
         this.errorHandler.handleError(err);
       });
@@ -37,13 +39,33 @@ export class CompanyListComponent {
       is_approved: is_approved
     };
 
-    this.integrationService.sendData(postBody, this.companyApproveUrl).subscribe((result) => { }, (err) => {
+    this.integrationService.sendData(postBody, this.companyApproveUrl).subscribe((result) =>
+    {
+      this.integrationService.getAll(this.companyGetAllUrl).subscribe((data) => { this.companies = <CompanyListView[]>data }, (err) => {
+        this.errorHandler.handleError(err);
+      });
+    },
+    (err) => {
       this.errorHandler.handleError(err);
-
-      window.location.reload();
     });
   }
 
-  headElements = ['ID', 'Email', 'Title', 'Is Approved', 'Action'];
+  deleteCompany(company_id: number) {
+    const postBody = {
+      company_id: company_id
+    };
+
+    this.integrationService.sendData(postBody, this.companyDeleteUrl).subscribe((result) => {
+      this.integrationService.getAll(this.companyGetAllUrl).subscribe((data) => { this.companies = <CompanyListView[]>data }, (err) => {
+        this.errorHandler.handleError(err);
+      });
+    },
+      (err) => {
+        this.errorHandler.handleError(err);
+      });
+  }
+  
+
+  headElements = ['ID', 'Email', 'Title', 'Is Approved', 'Actions'];
 
 }

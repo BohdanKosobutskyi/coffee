@@ -1,17 +1,3 @@
-<!--<div>
-  <div>
-    <label>
-      Company email:
-      <input [(ngModel)]="companyData.email" placeholder="Company email" />
-    </label><br>
-    <label>
-      Company title:
-      <input [(ngModel)]="companyData.title" placeholder="Company title" />
-    </label><br>
-  </div>
-  <button (click)="addCompany()">Save</button>
-</div>-->
-
 <mdb-card>
   <mdb-card-body>
     <!-- Material form register -->
@@ -27,8 +13,8 @@
 
       <div class="md-form">
         <mdb-icon icon="phone" class="prefix grey-text"></mdb-icon>
-        <input [(ngModel)]="companyData.phone" type="text" id="materialFormCardNameEx" formControlName="materialFormCardNameEx" class="form-control" mdbInputDirective>
-        <label for="materialFormCardNameEx" class="font-weight-light">Your number of phone</label>
+        <input [(ngModel)]="companyData.phone" type="text" id="materialFormCardPhoneEx" formControlName="materialFormCardPhoneEx" class="form-control" mdbInputDirective>
+        <label for="materialFormCardPhoneEx" class="font-weight-light">Your number of phone</label>
       </div>
 
       <!-- Material input email -->
@@ -49,6 +35,8 @@
       <div class="text-center py-4 mt-3">
         <button (click)="addCompany()" mdbBtn color="cyan" class="waves-light" type="submit" mdbWavesEffect>Register company</button>
       </div>
+
+      <p class="h4 text-center py-4">{{resultRegister}}</p>
     </form>
     <!-- Material form register -->
   </mdb-card-body>

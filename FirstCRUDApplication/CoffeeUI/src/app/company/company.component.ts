@@ -1,28 +1,35 @@
-import { Component, Input } from '@angular/core';
-import { CompanyService } from './company.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, Input, ElementRef, ViewChild  } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { AppConfig } from './../configuration/config.component';
+import { IntegrationService } from './../services/integration-service';
+
 
 @Component({
     selector: 'app-company',
     templateUrl: './company.component.html',
     styleUrls: ['./company.component.css'],
-    providers: [CompanyService, AppConfig]
+    providers: [AppConfig, IntegrationService]
 })
 
 export class CompanyComponent {
   private cardForm: FormGroup;
   private companyAddUrl: string;
+  private resultRegister: string;
   
     @Input() companyData = { email: '', title: '', password: '', phone: ''};
 
-  constructor(public rest: CompanyService, public fb: FormBuilder, public errorHandler: GlobalErrorHandlerService, private config: AppConfig) {
+  constructor(public integrationService: IntegrationService,
+    public fb: FormBuilder,
+    public errorHandler: GlobalErrorHandlerService,
+    private config: AppConfig,
+    private elem: ElementRef) {
       this.cardForm = fb.group({
         materialFormCardNameEx: ['', Validators.required],
         materialFormCardEmailEx: ['', [Validators.email, Validators.required]],
         materialFormCardConfirmEx: ['', Validators.required],
-        materialFormCardPasswordEx: ['', Validators.required]
+        materialFormCardPasswordEx: ['', Validators.required],
+        materialFormCardPhoneEx: ['', Validators.required]
     });
 
       this.config.getConfigs().subscribe(data => {
@@ -31,7 +38,9 @@ export class CompanyComponent {
     }
 
   addCompany() {
-      this.rest.addCompany(this.companyData, this.companyAddUrl).subscribe((result) => { }, (err) => {
+    this.integrationService.sendData(this.companyData, this.companyAddUrl).subscribe((result) => {
+      this.resultRegister = "Your company was succesffuly registered, please wait for approving";
+    }, (err) => {
         this.errorHandler.handleError(err);
       });
     }

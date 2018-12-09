@@ -475,7 +475,7 @@ module.exports = "body {\r\n}\r\n\r\n.approve-button {\r\n  margin-left: 0em;\r\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<table mdbTable hover=\"true\">\r\n  <thead>\r\n    <tr>\r\n      <th *ngFor=\"let head of headElements\" scope=\"col\">{{head}} </th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr mdbTableCol *ngFor=\"let el of companies\">\r\n      <th scope=\"row\">{{el.company_id}}</th>\r\n      <td>{{el.email}}</td>\r\n      <td>{{el.title}}</td>\r\n      <td><mdb-checkbox [checked]=\"el.is_approved\" [disabled]=\"true\"></mdb-checkbox></td>\r\n      <td><button (click)=\"approveCompany(el.company_id, el.is_approved)\" mdbBtn class=\"approve-button\" type=\"button\" size=\"sm\" color=\"default\" mdbWavesEffect>Approve</button></td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n"
+module.exports = "<table mdbTable hover=\"true\">\r\n  <thead>\r\n    <tr>\r\n      <th *ngFor=\"let head of headElements\" scope=\"col\">{{head}} </th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr mdbTableCol *ngFor=\"let el of companies\">\r\n      <th scope=\"row\">{{el.company_id}}</th>\r\n      <td>{{el.email}}</td>\r\n      <td>{{el.title}}</td>\r\n      <td><mdb-checkbox [checked]=\"el.is_approved\" [disabled]=\"true\"></mdb-checkbox></td>\r\n      <td>\r\n        <button (click)=\"approveCompany(el.company_id, el.is_approved)\" mdbBtn class=\"approve-button\" type=\"button\" size=\"sm\" color=\"default\" mdbWavesEffect>Approve</button>\r\n        <button (click)=\"deleteCompany(el.company_id)\" mdbBtn type=\"button\" size=\"sm\" color=\"danger\" mdbWavesEffect>Delete</button>\r\n      </td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n"
 
 /***/ }),
 
@@ -516,10 +516,11 @@ var CompanyListComponent = /** @class */ (function () {
         this.errorHandler = errorHandler;
         this.config = config;
         this.companies = [];
-        this.headElements = ['ID', 'Email', 'Title', 'Is Approved', 'Action'];
+        this.headElements = ['ID', 'Email', 'Title', 'Is Approved', 'Actions'];
         this.config.getConfigs().subscribe(function (data) {
             _this.companyGetAllUrl = data['companyList'];
             _this.companyApproveUrl = data['approveCompany'];
+            _this.companyDeleteUrl = data['deleteCompany'];
             _this.integrationService.getAll(_this.companyGetAllUrl).subscribe(function (data) { _this.companies = data; }, function (err) {
                 _this.errorHandler.handleError(err);
             });
@@ -533,9 +534,25 @@ var CompanyListComponent = /** @class */ (function () {
             company_id: company_id,
             is_approved: is_approved
         };
-        this.integrationService.sendData(postBody, this.companyApproveUrl).subscribe(function (result) { }, function (err) {
+        this.integrationService.sendData(postBody, this.companyApproveUrl).subscribe(function (result) {
+            _this.integrationService.getAll(_this.companyGetAllUrl).subscribe(function (data) { _this.companies = data; }, function (err) {
+                _this.errorHandler.handleError(err);
+            });
+        }, function (err) {
             _this.errorHandler.handleError(err);
-            window.location.reload();
+        });
+    };
+    CompanyListComponent.prototype.deleteCompany = function (company_id) {
+        var _this = this;
+        var postBody = {
+            company_id: company_id
+        };
+        this.integrationService.sendData(postBody, this.companyDeleteUrl).subscribe(function (result) {
+            _this.integrationService.getAll(_this.companyGetAllUrl).subscribe(function (data) { _this.companies = data; }, function (err) {
+                _this.errorHandler.handleError(err);
+            });
+        }, function (err) {
+            _this.errorHandler.handleError(err);
         });
     };
     CompanyListComponent = __decorate([
@@ -572,7 +589,7 @@ module.exports = "body {\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div>\r\n  <div>\r\n    <label>\r\n      Company email:\r\n      <input [(ngModel)]=\"companyData.email\" placeholder=\"Company email\" />\r\n    </label><br>\r\n    <label>\r\n      Company title:\r\n      <input [(ngModel)]=\"companyData.title\" placeholder=\"Company title\" />\r\n    </label><br>\r\n  </div>\r\n  <button (click)=\"addCompany()\">Save</button>\r\n</div>-->\r\n\r\n<mdb-card>\r\n  <mdb-card-body>\r\n    <!-- Material form register -->\r\n    <form [formGroup]=\"cardForm\">\r\n      <p class=\"h4 text-center py-4\">Register your business</p>\r\n\r\n      <!-- Material input text -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"user\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.title\" type=\"text\" id=\"materialFormCardNameEx\" formControlName=\"materialFormCardNameEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardNameEx\" class=\"font-weight-light\">Your title of company</label>\r\n      </div>\r\n\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"phone\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.phone\" type=\"text\" id=\"materialFormCardNameEx\" formControlName=\"materialFormCardNameEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardNameEx\" class=\"font-weight-light\">Your number of phone</label>\r\n      </div>\r\n\r\n      <!-- Material input email -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"envelope\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.email\" type=\"email\" id=\"materialFormCardEmailEx\" formControlName=\"materialFormCardEmailEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardEmailEx\" class=\"font-weight-light\">Your email</label>\r\n      </div>\r\n\r\n      <!-- Material input password -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"lock\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.password\" type=\"password\" id=\"materialFormCardPasswordEx\" formControlName=\"materialFormCardPasswordEx\" class=\"form-control\"\r\n               mdbInputDirective>\r\n        <label for=\"materialFormCardPasswordEx\" class=\"font-weight-light\">Your password</label>\r\n      </div>\r\n\r\n      <div class=\"text-center py-4 mt-3\">\r\n        <button (click)=\"addCompany()\" mdbBtn color=\"cyan\" class=\"waves-light\" type=\"submit\" mdbWavesEffect>Register company</button>\r\n      </div>\r\n    </form>\r\n    <!-- Material form register -->\r\n  </mdb-card-body>\r\n</mdb-card>\r\n"
+module.exports = "<mdb-card>\r\n  <mdb-card-body>\r\n    <!-- Material form register -->\r\n    <form [formGroup]=\"cardForm\">\r\n      <p class=\"h4 text-center py-4\">Register your business</p>\r\n\r\n      <!-- Material input text -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"user\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.title\" type=\"text\" id=\"materialFormCardNameEx\" formControlName=\"materialFormCardNameEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardNameEx\" class=\"font-weight-light\">Your title of company</label>\r\n      </div>\r\n\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"phone\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.phone\" type=\"text\" id=\"materialFormCardPhoneEx\" formControlName=\"materialFormCardPhoneEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardPhoneEx\" class=\"font-weight-light\">Your number of phone</label>\r\n      </div>\r\n\r\n      <!-- Material input email -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"envelope\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.email\" type=\"email\" id=\"materialFormCardEmailEx\" formControlName=\"materialFormCardEmailEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardEmailEx\" class=\"font-weight-light\">Your email</label>\r\n      </div>\r\n\r\n      <!-- Material input password -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"lock\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.password\" type=\"password\" id=\"materialFormCardPasswordEx\" formControlName=\"materialFormCardPasswordEx\" class=\"form-control\"\r\n               mdbInputDirective>\r\n        <label for=\"materialFormCardPasswordEx\" class=\"font-weight-light\">Your password</label>\r\n      </div>\r\n\r\n      <div class=\"text-center py-4 mt-3\">\r\n        <button (click)=\"addCompany()\" mdbBtn color=\"cyan\" class=\"waves-light\" type=\"submit\" mdbWavesEffect>Register company</button>\r\n      </div>\r\n\r\n      <p class=\"h4 text-center py-4\">{{resultRegister}}</p>\r\n    </form>\r\n    <!-- Material form register -->\r\n  </mdb-card-body>\r\n</mdb-card>\r\n\r\n\r\n<button type=\"button\" mdbBtn color=\"default\" rounded=\"true\" data-toggle=\"modal\" data-target=\"#basicExample\" (click)=\"frame.show()\"\r\n        mdbWavesEffect>\r\n  Launch Modal\r\n</button>\r\n\r\n<div mdbModal #frame=\"mdbModal\" class=\"modal fade left\" id=\"frameModalTop\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\r\n     aria-hidden=\"true\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header text-center\">\r\n        <h4 class=\"modal-title w-100 font-weight-bold\">Sign in</h4>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"frame.hide()\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body mx-3\">\r\n        <div class=\"md-form mb-5\">\r\n          <i class=\"fa fa-envelope prefix grey-text\"></i>\r\n          <input type=\"email\" id=\"defaultForm-email\" [formControl]=\"loginFormModalEmail\" class=\"form-control validate\" mdbInputDirective>\r\n          <label data-error=\"wrong\" data-success=\"right\" for=\"defaultForm-email\">Your email</label>\r\n        </div>\r\n\r\n        <div class=\"md-form mb-4\">\r\n          <i class=\"fa fa-lock prefix grey-text\"></i>\r\n          <input type=\"password\" id=\"defaultForm-pass\" [formControl]=\"loginFormModalPassword\" class=\"form-control validate\" mdbInputDirective>\r\n          <label data-error=\"wrong\" data-success=\"right\" for=\"defaultForm-pass\">Your password</label>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"modal-footer d-flex justify-content-center\">\r\n        <button mdbBtn color=\"default\" class=\"waves-light\" mdbWavesEffect>Login</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -587,10 +604,10 @@ module.exports = "<!--<div>\r\n  <div>\r\n    <label>\r\n      Company email:\r\
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CompanyComponent", function() { return CompanyComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _company_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./company.service */ "./src/app/company/company.service.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../global-error-handler.service */ "./src/app/global-error-handler.service.ts");
-/* harmony import */ var _configuration_config_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../configuration/config.component */ "./src/app/configuration/config.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _configuration_config_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../configuration/config.component */ "./src/app/configuration/config.component.ts");
+/* harmony import */ var _services_integration_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../services/integration-service */ "./src/app/services/integration-service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -606,18 +623,22 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var CompanyComponent = /** @class */ (function () {
-    function CompanyComponent(rest, fb, errorHandler, config) {
+    function CompanyComponent(integrationService, fb, errorHandler, config, elem) {
         var _this = this;
-        this.rest = rest;
+        this.integrationService = integrationService;
         this.fb = fb;
         this.errorHandler = errorHandler;
         this.config = config;
+        this.elem = elem;
+        this.loginFormModalEmail = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].email);
+        this.loginFormModalPassword = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required);
         this.companyData = { email: '', title: '', password: '', phone: '' };
         this.cardForm = fb.group({
-            materialFormCardNameEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            materialFormCardEmailEx: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
-            materialFormCardConfirmEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            materialFormCardPasswordEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+            materialFormCardNameEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            materialFormCardEmailEx: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].email, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
+            materialFormCardConfirmEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            materialFormCardPasswordEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            materialFormCardPhoneEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
         this.config.getConfigs().subscribe(function (data) {
             _this.companyAddUrl = data['companyAdd'];
@@ -625,7 +646,12 @@ var CompanyComponent = /** @class */ (function () {
     }
     CompanyComponent.prototype.addCompany = function () {
         var _this = this;
-        this.rest.addCompany(this.companyData, this.companyAddUrl).subscribe(function (result) { }, function (err) {
+        this.integrationService.sendData(this.companyData, this.companyAddUrl).subscribe(function (result) {
+            _this.resultRegister = "Your company was succesffuly registered, please wait for approving";
+            var elements = _this.elem.nativeElement.querySelectorAll('#frameModalTop');
+            var elements2 = _this.elem.nativeElement.querySelectorAll('#mdbModal');
+            elements[0].show();
+        }, function (err) {
             _this.errorHandler.handleError(err);
         });
     };
@@ -638,69 +664,15 @@ var CompanyComponent = /** @class */ (function () {
             selector: 'app-company',
             template: __webpack_require__(/*! ./company.component.html */ "./src/app/company/company.component.html"),
             styles: [__webpack_require__(/*! ./company.component.css */ "./src/app/company/company.component.css")],
-            providers: [_company_service__WEBPACK_IMPORTED_MODULE_1__["CompanyService"], _configuration_config_component__WEBPACK_IMPORTED_MODULE_4__["AppConfig"]]
+            providers: [_configuration_config_component__WEBPACK_IMPORTED_MODULE_3__["AppConfig"], _services_integration_service__WEBPACK_IMPORTED_MODULE_4__["IntegrationService"]]
         }),
-        __metadata("design:paramtypes", [_company_service__WEBPACK_IMPORTED_MODULE_1__["CompanyService"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], _global_error_handler_service__WEBPACK_IMPORTED_MODULE_3__["GlobalErrorHandlerService"], _configuration_config_component__WEBPACK_IMPORTED_MODULE_4__["AppConfig"]])
+        __metadata("design:paramtypes", [_services_integration_service__WEBPACK_IMPORTED_MODULE_4__["IntegrationService"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"],
+            _global_error_handler_service__WEBPACK_IMPORTED_MODULE_2__["GlobalErrorHandlerService"],
+            _configuration_config_component__WEBPACK_IMPORTED_MODULE_3__["AppConfig"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]])
     ], CompanyComponent);
     return CompanyComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/company/company.service.ts":
-/*!********************************************!*\
-  !*** ./src/app/company/company.service.ts ***!
-  \********************************************/
-/*! exports provided: CompanyService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CompanyService", function() { return CompanyService; });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var CompanyService = /** @class */ (function () {
-    function CompanyService(http) {
-        this.http = http;
-    }
-    CompanyService.prototype.addCompany = function (company, companyAddUrl) {
-        var postBody = {
-            email: company.email,
-            title: company.title,
-            password: company.password
-        };
-        var httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
-            'Content-Type': 'application/json'
-        });
-        return this.http.post(companyAddUrl, postBody, {
-            headers: httpHeaders,
-            observe: 'response'
-        }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(function (error) {
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["throwError"])(error);
-        }));
-    };
-    CompanyService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
-    ], CompanyService);
-    return CompanyService;
 }());
 
 
@@ -779,17 +751,23 @@ var GlobalErrorHandlerService = /** @class */ (function () {
     }
     GlobalErrorHandlerService.prototype.handleError = function (error) {
         var router = this.injector.get(_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]);
-        console.log('URL: ' + router.url);
+        //console.log('URL: ' + router.url);
         if (error instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpErrorResponse"]) {
             //Backend returns unsuccessful response codes such as 404, 500 etc.				  
-            console.error('Backend returned status code: ', error.status);
-            console.error('Response body:', error.message);
+            console.error('Backend returned status code: ', error.statusText);
+            console.error('Response body:', error.error);
         }
         else {
-            //A client-side or network error occurred.	          
+            //A client-side or network error occurred.
+            console.error('Backend returned status code: ', error.statusText);
             console.error('An error occurred:', error.message);
         }
-        router.navigate(['/error']);
+        router.navigate(['/error'], {
+            queryParams: {
+                'statusText': error.statusText,
+                'error': error.error
+            }
+        });
     };
     GlobalErrorHandlerService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
@@ -813,20 +791,32 @@ var GlobalErrorHandlerService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GlobalErrorComponent", function() { return GlobalErrorComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 
 var GlobalErrorComponent = /** @class */ (function () {
-    function GlobalErrorComponent() {
+    function GlobalErrorComponent(route) {
+        var _this = this;
+        this.route = route;
+        this.route.queryParams.subscribe(function (queryParam) {
+            _this.statusText = queryParam['statusText'];
+            _this.message = queryParam['error'];
+        });
     }
     GlobalErrorComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            template: "\n        <h2>An error occurred.</h2>\n    "
-        })
+            template: "\n        <h2>{{statusText}}</h2>\n        <h2>Error message : {{message}}</h2>"
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]])
     ], GlobalErrorComponent);
     return GlobalErrorComponent;
 }());

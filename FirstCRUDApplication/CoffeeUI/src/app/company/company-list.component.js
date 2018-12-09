@@ -20,10 +20,11 @@ var CompanyListComponent = /** @class */ (function () {
         this.errorHandler = errorHandler;
         this.config = config;
         this.companies = [];
-        this.headElements = ['ID', 'Email', 'Title', 'Is Approved', 'Action'];
+        this.headElements = ['ID', 'Email', 'Title', 'Is Approved', 'Actions'];
         this.config.getConfigs().subscribe(function (data) {
             _this.companyGetAllUrl = data['companyList'];
             _this.companyApproveUrl = data['approveCompany'];
+            _this.companyDeleteUrl = data['deleteCompany'];
             _this.integrationService.getAll(_this.companyGetAllUrl).subscribe(function (data) { _this.companies = data; }, function (err) {
                 _this.errorHandler.handleError(err);
             });
@@ -37,10 +38,26 @@ var CompanyListComponent = /** @class */ (function () {
             company_id: company_id,
             is_approved: is_approved
         };
-        this.integrationService.sendData(postBody, this.companyApproveUrl).subscribe(function (result) { }, function (err) {
+        this.integrationService.sendData(postBody, this.companyApproveUrl).subscribe(function (result) {
+            _this.integrationService.getAll(_this.companyGetAllUrl).subscribe(function (data) { _this.companies = data; }, function (err) {
+                _this.errorHandler.handleError(err);
+            });
+        }, function (err) {
             _this.errorHandler.handleError(err);
         });
-        this.router.navigate(['/superadmin/companies']);
+    };
+    CompanyListComponent.prototype.deleteCompany = function (company_id) {
+        var _this = this;
+        var postBody = {
+            company_id: company_id
+        };
+        this.integrationService.sendData(postBody, this.companyDeleteUrl).subscribe(function (result) {
+            _this.integrationService.getAll(_this.companyGetAllUrl).subscribe(function (data) { _this.companies = data; }, function (err) {
+                _this.errorHandler.handleError(err);
+            });
+        }, function (err) {
+            _this.errorHandler.handleError(err);
+        });
     };
     CompanyListComponent = __decorate([
         Component({

@@ -16,7 +16,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MDBBootstrapModule , CheckboxModule, WavesModule, ButtonsModule, InputsModule, IconsModule, ChartsModule } from 'angular-bootstrap-md'
 
 import { GlobalErrorHandlerService } from './global-error-handler.service';
-import { AppConfig } from './configuration/config.component';
 
 // определение маршрутов
 const appRoutes: Routes = [

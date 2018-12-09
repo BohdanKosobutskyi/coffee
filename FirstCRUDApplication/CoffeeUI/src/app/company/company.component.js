@@ -8,14 +8,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, Input } from '@angular/core';
-import { CompanyService } from './company.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { AppConfig } from './../configuration/config.component';
+import { IntegrationService } from './../services/integration-service';
 var CompanyComponent = /** @class */ (function () {
-    function CompanyComponent(rest, fb, errorHandler, config) {
+    function CompanyComponent(integrationService, fb, errorHandler, config) {
         var _this = this;
-        this.rest = rest;
+        this.integrationService = integrationService;
         this.fb = fb;
         this.errorHandler = errorHandler;
         this.config = config;
@@ -24,7 +24,8 @@ var CompanyComponent = /** @class */ (function () {
             materialFormCardNameEx: ['', Validators.required],
             materialFormCardEmailEx: ['', [Validators.email, Validators.required]],
             materialFormCardConfirmEx: ['', Validators.required],
-            materialFormCardPasswordEx: ['', Validators.required]
+            materialFormCardPasswordEx: ['', Validators.required],
+            materialFormCardPhoneEx: ['', Validators.required]
         });
         this.config.getConfigs().subscribe(function (data) {
             _this.companyAddUrl = data['companyAdd'];
@@ -32,7 +33,7 @@ var CompanyComponent = /** @class */ (function () {
     }
     CompanyComponent.prototype.addCompany = function () {
         var _this = this;
-        this.rest.addCompany(this.companyData, this.companyAddUrl).subscribe(function (result) { }, function (err) {
+        this.integrationService.sendData(this.companyData, this.companyAddUrl).subscribe(function (result) { }, function (err) {
             _this.errorHandler.handleError(err);
         });
     };
@@ -45,9 +46,9 @@ var CompanyComponent = /** @class */ (function () {
             selector: 'app-company',
             templateUrl: './company.component.html',
             styleUrls: ['./company.component.css'],
-            providers: [CompanyService, AppConfig]
+            providers: [AppConfig, IntegrationService]
         }),
-        __metadata("design:paramtypes", [CompanyService, FormBuilder, GlobalErrorHandlerService, AppConfig])
+        __metadata("design:paramtypes", [IntegrationService, FormBuilder, GlobalErrorHandlerService, AppConfig])
     ], CompanyComponent);
     return CompanyComponent;
 }());
