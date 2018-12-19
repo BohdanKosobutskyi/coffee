@@ -1,4 +1,5 @@
-﻿using Coffee.Contracts.Company;
+﻿using Coffee.Configuration;
+using Coffee.Contracts.Company;
 using Coffee.DbEntities;
 using Coffee.Interface;
 using Coffee.Repositories.Interfaces;
@@ -21,11 +22,15 @@ namespace Coffee.Controllers.Api
     {
         private readonly ICompanyRepository _companyRepository;
         private readonly IDataValidator _dataValidator;
+        private readonly IConfigurableOptions _configurableOptions;
 
-        public CompanyController(ICompanyRepository companyRepository, IDataValidator dataValidator)
+        public CompanyController(ICompanyRepository companyRepository, 
+            IDataValidator dataValidator,
+            IConfigurableOptions configurableOptions)
         {
             _companyRepository = companyRepository;
             _dataValidator = dataValidator;
+            _configurableOptions = configurableOptions;
         }
 
         [HttpPost("/api/web/company/register")]

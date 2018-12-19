@@ -36,7 +36,8 @@ namespace FirstCRUDApplication.DbEntities
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            builder.UseSqlServer(_configurableOptions.DbConnection);
+            //builder.UseSqlServer(_configurableOptions.DbConnection);
+            builder.UseSqlServer("Data Source=.\\SQLEXPRESS;Integrated Security=True;Initial Catalog=coffeApp");
             base.OnConfiguring(builder);
         }
     }

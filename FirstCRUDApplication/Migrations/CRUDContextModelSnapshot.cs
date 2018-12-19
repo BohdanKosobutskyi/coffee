@@ -138,9 +138,17 @@ namespace FirstCRUDApplication.Migrations
 
                     b.Property<long>("CompanyId");
 
+                    b.Property<string>("Email");
+
                     b.Property<bool>("IsAdmin");
 
                     b.Property<bool>("IsSeller");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Password");
+
+                    b.Property<string>("Photo");
 
                     b.HasKey("Id");
 

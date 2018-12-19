@@ -13,6 +13,10 @@ namespace Coffee.DbEntities.Mapping
             entityBuilder.HasKey(t => t.Id);
             entityBuilder.Property(t => t.IsAdmin).IsRequired();
             entityBuilder.Property(t => t.IsSeller).IsRequired();
+            entityBuilder.Property(t => t.Email);
+            entityBuilder.Property(t => t.Password);
+            entityBuilder.Property(t => t.Name);
+            entityBuilder.Property(t => t.Photo);
             entityBuilder.HasOne(x => x.Company).WithMany().HasForeignKey(x => x.CompanyId);
         }
     }
