@@ -1,4 +1,4 @@
-export class User {
+export class UserListView {
   id: number;
   phone: string;
   password: string;

@@ -349,12 +349,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var AppComponent = /** @class */ (function () {
     function AppComponent(http) {
-        var _this = this;
         this.http = http;
         this.title = 'app';
-        this.http.get('/api/values').subscribe(function (result) {
-            _this.values = result.json();
-        }, function (error) { return console.error(error); });
     }
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -464,7 +460,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body {\r\n}\r\n\r\n.approve-button {\r\n  margin-left: 0em;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcGFueS9jb21wYW55LWxpc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtDQUNDOztBQUVEO0VBQ0UsaUJBQWlCO0NBQ2xCIiwiZmlsZSI6InNyYy9hcHAvY29tcGFueS9jb21wYW55LWxpc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xyXG59XHJcblxyXG4uYXBwcm92ZS1idXR0b24ge1xyXG4gIG1hcmdpbi1sZWZ0OiAwZW07XHJcbn1cclxuIl19 */"
+module.exports = "body {\r\n}\r\n\r\n.action-button {\r\n  margin-left: 0em;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcGFueS9jb21wYW55LWxpc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtDQUNDOztBQUVEO0VBQ0UsaUJBQWlCO0NBQ2xCIiwiZmlsZSI6InNyYy9hcHAvY29tcGFueS9jb21wYW55LWxpc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xyXG59XHJcblxyXG4uYWN0aW9uLWJ1dHRvbiB7XHJcbiAgbWFyZ2luLWxlZnQ6IDBlbTtcclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -475,7 +471,7 @@ module.exports = "body {\r\n}\r\n\r\n.approve-button {\r\n  margin-left: 0em;\r\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<table mdbTable hover=\"true\">\r\n  <thead>\r\n    <tr>\r\n      <th *ngFor=\"let head of headElements\" scope=\"col\">{{head}} </th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr mdbTableCol *ngFor=\"let el of companies\">\r\n      <th scope=\"row\">{{el.company_id}}</th>\r\n      <td>{{el.email}}</td>\r\n      <td>{{el.title}}</td>\r\n      <td><mdb-checkbox [checked]=\"el.is_approved\" [disabled]=\"true\"></mdb-checkbox></td>\r\n      <td>\r\n        <button (click)=\"approveCompany(el.company_id, el.is_approved)\" mdbBtn class=\"approve-button\" type=\"button\" size=\"sm\" color=\"default\" mdbWavesEffect>Approve</button>\r\n        <button (click)=\"deleteCompany(el.company_id)\" mdbBtn type=\"button\" size=\"sm\" color=\"danger\" mdbWavesEffect>Delete</button>\r\n      </td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n"
+module.exports = "<table mdbTable hover=\"true\">\r\n  <thead>\r\n    <tr>\r\n      <th *ngFor=\"let head of headElements\" scope=\"col\">{{head}} </th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr mdbTableCol *ngFor=\"let el of companies\">\r\n      <th scope=\"row\">{{el.company_id}}</th>\r\n      <td>{{el.email}}</td>\r\n      <td>{{el.title}}</td>\r\n      <td><mdb-checkbox [checked]=\"el.is_approved\" [disabled]=\"true\"></mdb-checkbox></td>\r\n      <td>\r\n        <button (click)=\"approveCompany(el.company_id, el.is_approved)\" mdbBtn class=\"action-button\" type=\"button\" size=\"sm\" color=\"default\" mdbWavesEffect>Approve</button>\r\n        <button (click)=\"deleteCompany(el.company_id)\" mdbBtn type=\"button\" size=\"sm\" color=\"danger\" mdbWavesEffect>Delete</button>\r\n      </td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n"
 
 /***/ }),
 
@@ -519,8 +515,8 @@ var CompanyListComponent = /** @class */ (function () {
         this.headElements = ['ID', 'Email', 'Title', 'Is Approved', 'Actions'];
         this.config.getConfigs().subscribe(function (data) {
             _this.companyGetAllUrl = data['companyList'];
-            _this.companyApproveUrl = data['approveCompany'];
-            _this.companyDeleteUrl = data['deleteCompany'];
+            _this.companyApproveUrl = data['companyApprove'];
+            _this.companyDeleteUrl = data['companyDelete'];
             _this.integrationService.getAll(_this.companyGetAllUrl).subscribe(function (data) { _this.companies = data; }, function (err) {
                 _this.errorHandler.handleError(err);
             });
@@ -589,7 +585,7 @@ module.exports = "body {\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mdb-card>\r\n  <mdb-card-body>\r\n    <!-- Material form register -->\r\n    <form [formGroup]=\"cardForm\">\r\n      <p class=\"h4 text-center py-4\">Register your business</p>\r\n\r\n      <!-- Material input text -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"user\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.title\" type=\"text\" id=\"materialFormCardNameEx\" formControlName=\"materialFormCardNameEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardNameEx\" class=\"font-weight-light\">Your title of company</label>\r\n      </div>\r\n\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"phone\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.phone\" type=\"text\" id=\"materialFormCardPhoneEx\" formControlName=\"materialFormCardPhoneEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardPhoneEx\" class=\"font-weight-light\">Your number of phone</label>\r\n      </div>\r\n\r\n      <!-- Material input email -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"envelope\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.email\" type=\"email\" id=\"materialFormCardEmailEx\" formControlName=\"materialFormCardEmailEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardEmailEx\" class=\"font-weight-light\">Your email</label>\r\n      </div>\r\n\r\n      <!-- Material input password -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"lock\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.password\" type=\"password\" id=\"materialFormCardPasswordEx\" formControlName=\"materialFormCardPasswordEx\" class=\"form-control\"\r\n               mdbInputDirective>\r\n        <label for=\"materialFormCardPasswordEx\" class=\"font-weight-light\">Your password</label>\r\n      </div>\r\n\r\n      <div class=\"text-center py-4 mt-3\">\r\n        <button (click)=\"addCompany()\" mdbBtn color=\"cyan\" class=\"waves-light\" type=\"submit\" mdbWavesEffect>Register company</button>\r\n      </div>\r\n\r\n      <p class=\"h4 text-center py-4\">{{resultRegister}}</p>\r\n    </form>\r\n    <!-- Material form register -->\r\n  </mdb-card-body>\r\n</mdb-card>\r\n\r\n\r\n<button type=\"button\" mdbBtn color=\"default\" rounded=\"true\" data-toggle=\"modal\" data-target=\"#basicExample\" (click)=\"frame.show()\"\r\n        mdbWavesEffect>\r\n  Launch Modal\r\n</button>\r\n\r\n<div mdbModal #frame=\"mdbModal\" class=\"modal fade left\" id=\"frameModalTop\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\r\n     aria-hidden=\"true\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header text-center\">\r\n        <h4 class=\"modal-title w-100 font-weight-bold\">Sign in</h4>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"frame.hide()\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body mx-3\">\r\n        <div class=\"md-form mb-5\">\r\n          <i class=\"fa fa-envelope prefix grey-text\"></i>\r\n          <input type=\"email\" id=\"defaultForm-email\" [formControl]=\"loginFormModalEmail\" class=\"form-control validate\" mdbInputDirective>\r\n          <label data-error=\"wrong\" data-success=\"right\" for=\"defaultForm-email\">Your email</label>\r\n        </div>\r\n\r\n        <div class=\"md-form mb-4\">\r\n          <i class=\"fa fa-lock prefix grey-text\"></i>\r\n          <input type=\"password\" id=\"defaultForm-pass\" [formControl]=\"loginFormModalPassword\" class=\"form-control validate\" mdbInputDirective>\r\n          <label data-error=\"wrong\" data-success=\"right\" for=\"defaultForm-pass\">Your password</label>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"modal-footer d-flex justify-content-center\">\r\n        <button mdbBtn color=\"default\" class=\"waves-light\" mdbWavesEffect>Login</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<mdb-card>\r\n  <mdb-card-body>\r\n    <!-- Material form register -->\r\n    <form [formGroup]=\"cardForm\">\r\n      <p class=\"h4 text-center py-4\">Register your business</p>\r\n\r\n      <!-- Material input text -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"user\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.title\" type=\"text\" id=\"materialFormCardNameEx\" formControlName=\"materialFormCardNameEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardNameEx\" class=\"font-weight-light\">Your title of company</label>\r\n      </div>\r\n\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"phone\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.phone\" type=\"text\" id=\"materialFormCardPhoneEx\" formControlName=\"materialFormCardPhoneEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardPhoneEx\" class=\"font-weight-light\">Your number of phone</label>\r\n      </div>\r\n\r\n      <!-- Material input email -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"envelope\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.email\" type=\"email\" id=\"materialFormCardEmailEx\" formControlName=\"materialFormCardEmailEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardEmailEx\" class=\"font-weight-light\">Your email</label>\r\n      </div>\r\n\r\n      <!-- Material input password -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"lock\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.password\" type=\"password\" id=\"materialFormCardPasswordEx\" formControlName=\"materialFormCardPasswordEx\" class=\"form-control\"\r\n               mdbInputDirective>\r\n        <label for=\"materialFormCardPasswordEx\" class=\"font-weight-light\">Your password</label>\r\n      </div>\r\n\r\n      <div class=\"text-center py-4 mt-3\">\r\n        <button (click)=\"addCompany()\" mdbBtn color=\"cyan\" class=\"waves-light\" type=\"submit\" mdbWavesEffect>Register company</button>\r\n      </div>\r\n\r\n      <p class=\"h4 text-center py-4\">{{resultRegister}}</p>\r\n    </form>\r\n    <!-- Material form register -->\r\n  </mdb-card-body>\r\n</mdb-card>\r\n"
 
 /***/ }),
 
@@ -630,8 +626,6 @@ var CompanyComponent = /** @class */ (function () {
         this.errorHandler = errorHandler;
         this.config = config;
         this.elem = elem;
-        this.loginFormModalEmail = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].email);
-        this.loginFormModalPassword = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required);
         this.companyData = { email: '', title: '', password: '', phone: '' };
         this.cardForm = fb.group({
             materialFormCardNameEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
@@ -648,9 +642,6 @@ var CompanyComponent = /** @class */ (function () {
         var _this = this;
         this.integrationService.sendData(this.companyData, this.companyAddUrl).subscribe(function (result) {
             _this.resultRegister = "Your company was succesffuly registered, please wait for approving";
-            var elements = _this.elem.nativeElement.querySelectorAll('#frameModalTop');
-            var elements2 = _this.elem.nativeElement.querySelectorAll('#mdbModal');
-            elements[0].show();
         }, function (err) {
             _this.errorHandler.handleError(err);
         });
@@ -861,12 +852,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var HomeComponent = /** @class */ (function () {
     function HomeComponent(http) {
-        var _this = this;
         this.http = http;
         this.title = 'app';
-        this.http.get('/api/values').subscribe(function (result) {
-            _this.values = result.json();
-        }, function (error) { return console.error(error); });
     }
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -938,47 +925,6 @@ var IntegrationService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/user/user-http.service.ts":
-/*!*******************************************!*\
-  !*** ./src/app/user/user-http.service.ts ***!
-  \*******************************************/
-/*! exports provided: UserHttpService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserHttpService", function() { return UserHttpService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var UserHttpService = /** @class */ (function () {
-    function UserHttpService(http) {
-        this.http = http;
-    }
-    UserHttpService.prototype.getUsers = function (apiEndpoint) {
-        return this.http.get(apiEndpoint);
-    };
-    UserHttpService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
-    ], UserHttpService);
-    return UserHttpService;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/user/user-list.component.css":
 /*!**********************************************!*\
   !*** ./src/app/user/user-list.component.css ***!
@@ -986,7 +932,7 @@ var UserHttpService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body {\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdXNlci91c2VyLWxpc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtDQUNDIiwiZmlsZSI6InNyYy9hcHAvdXNlci91c2VyLWxpc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xyXG59XHJcbiJdfQ== */"
+module.exports = "body {\r\n}\r\n\r\n.action-button {\r\n  margin-left: 0em;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdXNlci91c2VyLWxpc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtDQUNDOztBQUVEO0VBQ0UsaUJBQWlCO0NBQ2xCIiwiZmlsZSI6InNyYy9hcHAvdXNlci91c2VyLWxpc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xyXG59XHJcblxyXG4uYWN0aW9uLWJ1dHRvbiB7XHJcbiAgbWFyZ2luLWxlZnQ6IDBlbTtcclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -997,7 +943,7 @@ module.exports = "body {\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<table mdbTable hover=\"true\">\r\n  <thead>\r\n    <tr>\r\n      <th *ngFor=\"let head of headElements\" scope=\"col\">{{head}} </th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr mdbTableCol *ngFor=\"let el of users\">\r\n      <th scope=\"row\">{{el.user_id}}</th>\r\n      <td>{{el.phone}}</td>\r\n      <td>{{el.password}}</td>\r\n      <td>{{el.register_date}}</td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n"
+module.exports = "<table mdbTable hover=\"true\">\r\n  <thead>\r\n    <tr>\r\n      <th *ngFor=\"let head of headElements\" scope=\"col\">{{head}} </th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr mdbTableCol *ngFor=\"let el of users\">\r\n      <th scope=\"row\">{{el.user_id}}</th>\r\n      <td>{{el.phone}}</td>\r\n      <td>{{el.password}}</td>\r\n      <td>{{el.register_date}}</td>\r\n      <td><mdb-checkbox [checked]=\"el.is_confirmed\" [disabled]=\"true\"></mdb-checkbox></td>\r\n      <td>\r\n        <button (click)=\"deleteUser(el.user_id)\" mdbBtn type=\"button\" class=\"action-button\" size=\"sm\" color=\"danger\" mdbWavesEffect>Delete</button>\r\n      </td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n"
 
 /***/ }),
 
@@ -1012,9 +958,9 @@ module.exports = "<table mdbTable hover=\"true\">\r\n  <thead>\r\n    <tr>\r\n  
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserListComponent", function() { return UserListComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _user_http_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user-http.service */ "./src/app/user/user-http.service.ts");
-/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../global-error-handler.service */ "./src/app/global-error-handler.service.ts");
-/* harmony import */ var _configuration_config_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../configuration/config.component */ "./src/app/configuration/config.component.ts");
+/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _configuration_config_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../configuration/config.component */ "./src/app/configuration/config.component.ts");
+/* harmony import */ var _services_integration_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../services/integration-service */ "./src/app/services/integration-service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1029,28 +975,42 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var UserListComponent = /** @class */ (function () {
-    function UserListComponent(httpService, errorHandler, config) {
+    function UserListComponent(integrationService, errorHandler, config) {
         var _this = this;
-        this.httpService = httpService;
+        this.integrationService = integrationService;
         this.errorHandler = errorHandler;
         this.config = config;
         this.users = [];
-        this.headElements = ['ID', 'Phone', 'Password', 'Register Date'];
+        this.headElements = ['ID', 'Phone', 'Password', 'Register Date', 'Is Confirm', 'Actions'];
         this.config.getConfigs().subscribe(function (data) {
-            _this.userList = data['userList'];
-            _this.httpService.getUsers(_this.userList).subscribe(function (data) { _this.users = data; }, function (err) {
+            _this.userGetAllUrl = data['userList'];
+            _this.userDeleteUrl = data['userDelete'];
+            _this.integrationService.getAll(_this.userGetAllUrl).subscribe(function (data) { _this.users = data; }, function (err) {
                 _this.errorHandler.handleError(err);
             });
         });
     }
+    UserListComponent.prototype.deleteUser = function (user_id) {
+        var _this = this;
+        var postBody = {
+            user_id: user_id
+        };
+        this.integrationService.sendData(postBody, this.userDeleteUrl).subscribe(function (result) {
+            _this.integrationService.getAll(_this.userGetAllUrl).subscribe(function (data) { _this.users = data; }, function (err) {
+                _this.errorHandler.handleError(err);
+            });
+        }, function (err) {
+            _this.errorHandler.handleError(err);
+        });
+    };
     UserListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'user-list',
             template: __webpack_require__(/*! ./user-list.component.html */ "./src/app/user/user-list.component.html"),
             styles: [__webpack_require__(/*! ./user-list.component.css */ "./src/app/user/user-list.component.css")],
-            providers: [_user_http_service__WEBPACK_IMPORTED_MODULE_1__["UserHttpService"], _configuration_config_component__WEBPACK_IMPORTED_MODULE_3__["AppConfig"]]
+            providers: [_configuration_config_component__WEBPACK_IMPORTED_MODULE_2__["AppConfig"], _services_integration_service__WEBPACK_IMPORTED_MODULE_3__["IntegrationService"]]
         }),
-        __metadata("design:paramtypes", [_user_http_service__WEBPACK_IMPORTED_MODULE_1__["UserHttpService"], _global_error_handler_service__WEBPACK_IMPORTED_MODULE_2__["GlobalErrorHandlerService"], _configuration_config_component__WEBPACK_IMPORTED_MODULE_3__["AppConfig"]])
+        __metadata("design:paramtypes", [_services_integration_service__WEBPACK_IMPORTED_MODULE_3__["IntegrationService"], _global_error_handler_service__WEBPACK_IMPORTED_MODULE_1__["GlobalErrorHandlerService"], _configuration_config_component__WEBPACK_IMPORTED_MODULE_2__["AppConfig"]])
     ], UserListComponent);
     return UserListComponent;
 }());
@@ -1085,7 +1045,7 @@ platform.bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_1__["AppModule
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Projects\coffeecore\FirstCRUDApplication\CoffeeUI\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! J:\Projects\coffeecore\FirstCRUDApplication\CoffeeUI\src\main.ts */"./src/main.ts");
 
 
 /***/ })

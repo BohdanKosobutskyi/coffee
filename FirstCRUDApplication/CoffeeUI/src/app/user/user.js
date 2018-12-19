@@ -1,7 +1,7 @@
-var User = /** @class */ (function () {
-    function User() {
+var UserListView = (function () {
+    function UserListView() {
     }
-    return User;
+    return UserListView;
 }());
-export { User };
+export { UserListView };
 //# sourceMappingURL=user.js.map

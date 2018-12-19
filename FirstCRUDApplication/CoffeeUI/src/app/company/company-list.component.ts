@@ -22,8 +22,8 @@ export class CompanyListComponent {
 
     this.config.getConfigs().subscribe(data => {
       this.companyGetAllUrl = data['companyList'];
-      this.companyApproveUrl = data['approveCompany'];
-      this.companyDeleteUrl = data['deleteCompany'];
+      this.companyApproveUrl = data['companyApprove'];
+      this.companyDeleteUrl = data['companyDelete'];
       
       this.integrationService.getAll(this.companyGetAllUrl).subscribe((data) => { this.companies = <CompanyListView[]>data }, (err) => {
         this.errorHandler.handleError(err);

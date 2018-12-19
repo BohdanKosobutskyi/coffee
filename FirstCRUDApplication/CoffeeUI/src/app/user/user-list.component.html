@@ -10,6 +10,10 @@
       <td>{{el.phone}}</td>
       <td>{{el.password}}</td>
       <td>{{el.register_date}}</td>
+      <td><mdb-checkbox [checked]="el.is_confirmed" [disabled]="true"></mdb-checkbox></td>
+      <td>
+        <button (click)="deleteUser(el.user_id)" mdbBtn type="button" class="action-button" size="sm" color="danger" mdbWavesEffect>Delete</button>
+      </td>
     </tr>
   </tbody>
 </table>

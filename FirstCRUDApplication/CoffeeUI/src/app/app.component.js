@@ -9,24 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
-var AppComponent = /** @class */ (function () {
+var AppComponent = (function () {
     function AppComponent(http) {
-        var _this = this;
         this.http = http;
         this.title = 'app';
-        this.http.get('/api/values').subscribe(function (result) {
-            _this.values = result.json();
-        }, function (error) { return console.error(error); });
     }
-    AppComponent = __decorate([
-        Component({
-            selector: 'my-app',
-            templateUrl: './app.component.html',
-            styleUrls: ['./app.component.css']
-        }),
-        __metadata("design:paramtypes", [Http])
-    ], AppComponent);
     return AppComponent;
 }());
+AppComponent = __decorate([
+    Component({
+        selector: 'my-app',
+        templateUrl: './app.component.html',
+        styleUrls: ['./app.component.css']
+    }),
+    __metadata("design:paramtypes", [Http])
+], AppComponent);
 export { AppComponent };
 //# sourceMappingURL=app.component.js.map

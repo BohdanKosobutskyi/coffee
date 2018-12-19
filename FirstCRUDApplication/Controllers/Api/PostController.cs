@@ -24,7 +24,7 @@ namespace Coffee.Controllers.Api
             _postRepository = postRepository;
         }
 
-        [HttpGet("api/post/all")]
+        [HttpGet("api/mobile/post/all")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<PostViewModel>))]
         public async Task Posts()
         {
@@ -40,7 +40,7 @@ namespace Coffee.Controllers.Api
             await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
         }
 
-        [HttpPost("api/post/create")]
+        [HttpPost("api/mobile/post/create")]
         public void Create([FromBody] PostCreateViewModel post)
         {
             var postDbEntity = new Post

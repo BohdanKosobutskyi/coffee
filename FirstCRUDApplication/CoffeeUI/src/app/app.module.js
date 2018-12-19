@@ -27,33 +27,33 @@ var appRoutes = [
     { path: 'superadmin/users', component: UserListComponent },
     { path: 'superadmin/companies', component: CompanyListComponent }
 ];
-var AppModule = /** @class */ (function () {
+var AppModule = (function () {
     function AppModule() {
     }
-    AppModule = __decorate([
-        NgModule({
-            declarations: [AppComponent, HomeComponent, CompanyComponent, GlobalErrorComponent, UserListComponent, CompanyListComponent],
-            imports: [BrowserModule,
-                HttpModule,
-                RouterModule.forRoot(appRoutes),
-                FormsModule,
-                HttpClientModule,
-                ReactiveFormsModule,
-                CheckboxModule,
-                IconsModule,
-                MDBBootstrapModule.forRoot(),
-                ButtonsModule,
-                ChartsModule,
-                InputsModule.forRoot(),
-                WavesModule.forRoot()],
-            providers: [
-                GlobalErrorHandlerService,
-                { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
-            ],
-            bootstrap: [AppComponent]
-        })
-    ], AppModule);
     return AppModule;
 }());
+AppModule = __decorate([
+    NgModule({
+        declarations: [AppComponent, HomeComponent, CompanyComponent, GlobalErrorComponent, UserListComponent, CompanyListComponent],
+        imports: [BrowserModule,
+            HttpModule,
+            RouterModule.forRoot(appRoutes),
+            FormsModule,
+            HttpClientModule,
+            ReactiveFormsModule,
+            CheckboxModule,
+            IconsModule,
+            MDBBootstrapModule.forRoot(),
+            ButtonsModule,
+            ChartsModule,
+            InputsModule.forRoot(),
+            WavesModule.forRoot()],
+        providers: [
+            GlobalErrorHandlerService,
+            { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
+        ],
+        bootstrap: [AppComponent]
+    })
+], AppModule);
 export { AppModule };
 //# sourceMappingURL=app.module.js.map

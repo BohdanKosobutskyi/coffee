@@ -10,13 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Injectable, Injector } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-var GlobalErrorHandlerService = /** @class */ (function () {
-    function GlobalErrorHandlerService(injector, router) {
+var GlobalErrorHandlerService = (function () {
+    function GlobalErrorHandlerService(injector) {
         this.injector = injector;
-        this.router = router;
     }
     GlobalErrorHandlerService.prototype.handleError = function (error) {
-        //let router = this.injector.get(Router);
+        var router = this.injector.get(Router);
         //console.log('URL: ' + router.url);
         if (error instanceof HttpErrorResponse) {
             //Backend returns unsuccessful response codes such as 404, 500 etc.				  
@@ -28,18 +27,18 @@ var GlobalErrorHandlerService = /** @class */ (function () {
             console.error('Backend returned status code: ', error.statusText);
             console.error('An error occurred:', error.message);
         }
-        this.router.navigate(['/error'], {
+        router.navigate(['/error'], {
             queryParams: {
                 'statusText': error.statusText,
                 'error': error.error
             }
         });
     };
-    GlobalErrorHandlerService = __decorate([
-        Injectable(),
-        __metadata("design:paramtypes", [Injector, Router])
-    ], GlobalErrorHandlerService);
     return GlobalErrorHandlerService;
 }());
+GlobalErrorHandlerService = __decorate([
+    Injectable(),
+    __metadata("design:paramtypes", [Injector])
+], GlobalErrorHandlerService);
 export { GlobalErrorHandlerService };
 //# sourceMappingURL=global-error-handler.service.js.map

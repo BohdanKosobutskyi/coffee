@@ -23,6 +23,7 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Coffee.Helper;
+using Coffee.Configuration;
 
 namespace FirstCRUDApplication
 {
@@ -47,9 +48,7 @@ namespace FirstCRUDApplication
             //{
             //    options.Filters.Add(typeof(CustomExceptionFilterAttribute));
             //});
-
-            //services.AddCors();
-
+            
             services.AddDbContext<CoffeeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -102,7 +101,11 @@ namespace FirstCRUDApplication
             services.AddTransient<ISellerRepository, SellerRepository>();
             services.AddTransient<ICompanyRepository, CompanyRepository>();
             services.AddTransient<IDataValidator, DataValidator>();
-            
+            services.AddSingleton<IConfigurableOptions,ConfigurableOptions>(options =>
+           {
+               return new ConfigurableOptions(
+                   Configuration.GetConnectionString("DefaultConnection"));
+           });
         }
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

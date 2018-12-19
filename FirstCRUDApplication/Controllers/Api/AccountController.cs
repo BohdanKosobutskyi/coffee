@@ -28,7 +28,7 @@ namespace Coffee.Controllers.Api
             _securityService = securityService;
         }
 
-        [HttpGet("/token/{refresh_token}/refresh")]
+        [HttpGet("/api/mobile/token/{refresh_token}/refresh")]
         public async Task RefreshToken(string refresh_token)
         {
             var user = _userRepository.Get(x => x.RefreshToken == refresh_token && x.IsConfirm).FirstOrDefault();
@@ -53,7 +53,7 @@ namespace Coffee.Controllers.Api
             await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
         }
 
-        [HttpPost("/token")]
+        [HttpPost("/api/mobile/token")]
         [ProducesResponseType(200, Type = typeof(TokenModelResponse))]
         public async Task Token([FromBody] LoginModel model)
         {
@@ -84,7 +84,7 @@ namespace Coffee.Controllers.Api
             await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
         }
 
-        [HttpPost("/register")]
+        [HttpPost("/api/mobile/register")]
         public async Task Registration([FromBody] RegisterModel model)
         {
             var phone = model.phone;
@@ -120,7 +120,7 @@ namespace Coffee.Controllers.Api
             return;
         }
 
-        [HttpPost("/confirm")]
+        [HttpPost("/api/mobile/confirm")]
         public async Task ConfirmRegister([FromBody] ConfirmModel model)
         {
             var phone = model.phone;
@@ -136,6 +136,29 @@ namespace Coffee.Controllers.Api
 
             user.IsConfirm = true;
 
+            _userRepository.Update(user);
+
+            Response.StatusCode = 200;
+            return;
+        }
+
+        [HttpPost("/api/mobile/password")]
+        public async Task Password([FromBody] PasswordModel model)
+        {
+            var phone = model.phone;
+
+            User user = _userRepository.Get(item => item.Phone == phone && item.IsConfirm).FirstOrDefault();
+
+            if (user == null)
+            {
+                Response.StatusCode = 400;
+                await Response.WriteAsync("User with this phone not exist.");
+                return;
+            }
+
+            // TO DO add sending new password by sms
+
+            user.Password = "testNew";
             _userRepository.Update(user);
 
             Response.StatusCode = 200;

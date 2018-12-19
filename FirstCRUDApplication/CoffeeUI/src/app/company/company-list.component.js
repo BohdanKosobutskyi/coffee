@@ -12,7 +12,7 @@ import { IntegrationService } from './../services/integration-service';
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { AppConfig } from './../configuration/config.component';
 import { Router } from "@angular/router";
-var CompanyListComponent = /** @class */ (function () {
+var CompanyListComponent = (function () {
     function CompanyListComponent(router, integrationService, errorHandler, config) {
         var _this = this;
         this.router = router;
@@ -23,8 +23,8 @@ var CompanyListComponent = /** @class */ (function () {
         this.headElements = ['ID', 'Email', 'Title', 'Is Approved', 'Actions'];
         this.config.getConfigs().subscribe(function (data) {
             _this.companyGetAllUrl = data['companyList'];
-            _this.companyApproveUrl = data['approveCompany'];
-            _this.companyDeleteUrl = data['deleteCompany'];
+            _this.companyApproveUrl = data['companyApprove'];
+            _this.companyDeleteUrl = data['companyDelete'];
             _this.integrationService.getAll(_this.companyGetAllUrl).subscribe(function (data) { _this.companies = data; }, function (err) {
                 _this.errorHandler.handleError(err);
             });
@@ -59,16 +59,16 @@ var CompanyListComponent = /** @class */ (function () {
             _this.errorHandler.handleError(err);
         });
     };
-    CompanyListComponent = __decorate([
-        Component({
-            selector: 'company-list',
-            templateUrl: './company-list.component.html',
-            styleUrls: ['./company-list.component.css'],
-            providers: [IntegrationService, AppConfig]
-        }),
-        __metadata("design:paramtypes", [Router, IntegrationService, GlobalErrorHandlerService, AppConfig])
-    ], CompanyListComponent);
     return CompanyListComponent;
 }());
+CompanyListComponent = __decorate([
+    Component({
+        selector: 'company-list',
+        templateUrl: './company-list.component.html',
+        styleUrls: ['./company-list.component.css'],
+        providers: [IntegrationService, AppConfig]
+    }),
+    __metadata("design:paramtypes", [Router, IntegrationService, GlobalErrorHandlerService, AppConfig])
+], CompanyListComponent);
 export { CompanyListComponent };
 //# sourceMappingURL=company-list.component.js.map

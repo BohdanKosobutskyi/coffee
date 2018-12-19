@@ -7,18 +7,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Input } from '@angular/core';
+import { Component, Input, ElementRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { AppConfig } from './../configuration/config.component';
 import { IntegrationService } from './../services/integration-service';
-var CompanyComponent = /** @class */ (function () {
-    function CompanyComponent(integrationService, fb, errorHandler, config) {
+var CompanyComponent = (function () {
+    function CompanyComponent(integrationService, fb, errorHandler, config, elem) {
         var _this = this;
         this.integrationService = integrationService;
         this.fb = fb;
         this.errorHandler = errorHandler;
         this.config = config;
+        this.elem = elem;
         this.companyData = { email: '', title: '', password: '', phone: '' };
         this.cardForm = fb.group({
             materialFormCardNameEx: ['', Validators.required],
@@ -33,24 +34,30 @@ var CompanyComponent = /** @class */ (function () {
     }
     CompanyComponent.prototype.addCompany = function () {
         var _this = this;
-        this.integrationService.sendData(this.companyData, this.companyAddUrl).subscribe(function (result) { }, function (err) {
+        this.integrationService.sendData(this.companyData, this.companyAddUrl).subscribe(function (result) {
+            _this.resultRegister = "Your company was succesffuly registered, please wait for approving";
+        }, function (err) {
             _this.errorHandler.handleError(err);
         });
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", Object)
-    ], CompanyComponent.prototype, "companyData", void 0);
-    CompanyComponent = __decorate([
-        Component({
-            selector: 'app-company',
-            templateUrl: './company.component.html',
-            styleUrls: ['./company.component.css'],
-            providers: [AppConfig, IntegrationService]
-        }),
-        __metadata("design:paramtypes", [IntegrationService, FormBuilder, GlobalErrorHandlerService, AppConfig])
-    ], CompanyComponent);
     return CompanyComponent;
 }());
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], CompanyComponent.prototype, "companyData", void 0);
+CompanyComponent = __decorate([
+    Component({
+        selector: 'app-company',
+        templateUrl: './company.component.html',
+        styleUrls: ['./company.component.css'],
+        providers: [AppConfig, IntegrationService]
+    }),
+    __metadata("design:paramtypes", [IntegrationService,
+        FormBuilder,
+        GlobalErrorHandlerService,
+        AppConfig,
+        ElementRef])
+], CompanyComponent);
 export { CompanyComponent };
 //# sourceMappingURL=company.component.js.map

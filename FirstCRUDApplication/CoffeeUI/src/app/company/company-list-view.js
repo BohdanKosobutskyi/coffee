@@ -1,4 +1,4 @@
-var CompanyListView = /** @class */ (function () {
+var CompanyListView = (function () {
     function CompanyListView() {
     }
     return CompanyListView;

@@ -1,4 +1,5 @@
-﻿using Coffee.DbEntities;
+﻿using Coffee.Configuration;
+using Coffee.DbEntities;
 using Coffee.DbEntities.Mapping;
 using Coffee.Models;
 using Microsoft.EntityFrameworkCore;
@@ -7,14 +8,16 @@ namespace FirstCRUDApplication.DbEntities
 {
     public class CoffeeContext : DbContext
     {
+        private readonly IConfigurableOptions _configurableOptions;
         public CoffeeContext() 
             : base()
         {
-
+            
         }
 
-        public CoffeeContext(DbContextOptions<CoffeeContext> options) : base(options)
+        public CoffeeContext(DbContextOptions<CoffeeContext> options,IConfigurableOptions configurableOptions) : base(options)
         {
+            _configurableOptions = configurableOptions;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,7 +36,7 @@ namespace FirstCRUDApplication.DbEntities
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            builder.UseSqlServer("Data Source=.;Integrated Security=True;Initial Catalog=coffeApp");
+            builder.UseSqlServer(_configurableOptions.DbConnection);
             base.OnConfiguring(builder);
         }
     }

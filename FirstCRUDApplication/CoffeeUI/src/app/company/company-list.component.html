@@ -11,7 +11,7 @@
       <td>{{el.title}}</td>
       <td><mdb-checkbox [checked]="el.is_approved" [disabled]="true"></mdb-checkbox></td>
       <td>
-        <button (click)="approveCompany(el.company_id, el.is_approved)" mdbBtn class="approve-button" type="button" size="sm" color="default" mdbWavesEffect>Approve</button>
+        <button (click)="approveCompany(el.company_id, el.is_approved)" mdbBtn class="action-button" type="button" size="sm" color="default" mdbWavesEffect>Approve</button>
         <button (click)="deleteCompany(el.company_id)" mdbBtn type="button" size="sm" color="danger" mdbWavesEffect>Delete</button>
       </td>
     </tr>

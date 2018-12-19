@@ -8,34 +8,48 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
-import { UserHttpService } from './user-http.service';
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { AppConfig } from './../configuration/config.component';
-var UserListComponent = /** @class */ (function () {
-    function UserListComponent(httpService, errorHandler, config) {
+import { IntegrationService } from './../services/integration-service';
+var UserListComponent = (function () {
+    function UserListComponent(integrationService, errorHandler, config) {
         var _this = this;
-        this.httpService = httpService;
+        this.integrationService = integrationService;
         this.errorHandler = errorHandler;
         this.config = config;
         this.users = [];
-        this.headElements = ['ID', 'Phone', 'Password', 'Register Date'];
+        this.headElements = ['ID', 'Phone', 'Password', 'Register Date', 'Is Confirm', 'Actions'];
         this.config.getConfigs().subscribe(function (data) {
-            _this.userList = data['userList'];
-            _this.httpService.getUsers(_this.userList).subscribe(function (data) { _this.users = data; }, function (err) {
+            _this.userGetAllUrl = data['userList'];
+            _this.userDeleteUrl = data['userDelete'];
+            _this.integrationService.getAll(_this.userGetAllUrl).subscribe(function (data) { _this.users = data; }, function (err) {
                 _this.errorHandler.handleError(err);
             });
         });
     }
-    UserListComponent = __decorate([
-        Component({
-            selector: 'user-list',
-            templateUrl: './user-list.component.html',
-            styleUrls: ['./user-list.component.css'],
-            providers: [UserHttpService, AppConfig]
-        }),
-        __metadata("design:paramtypes", [UserHttpService, GlobalErrorHandlerService, AppConfig])
-    ], UserListComponent);
+    UserListComponent.prototype.deleteUser = function (user_id) {
+        var _this = this;
+        var postBody = {
+            user_id: user_id
+        };
+        this.integrationService.sendData(postBody, this.userDeleteUrl).subscribe(function (result) {
+            _this.integrationService.getAll(_this.userGetAllUrl).subscribe(function (data) { _this.users = data; }, function (err) {
+                _this.errorHandler.handleError(err);
+            });
+        }, function (err) {
+            _this.errorHandler.handleError(err);
+        });
+    };
     return UserListComponent;
 }());
+UserListComponent = __decorate([
+    Component({
+        selector: 'user-list',
+        templateUrl: './user-list.component.html',
+        styleUrls: ['./user-list.component.css'],
+        providers: [AppConfig, IntegrationService]
+    }),
+    __metadata("design:paramtypes", [IntegrationService, GlobalErrorHandlerService, AppConfig])
+], UserListComponent);
 export { UserListComponent };
 //# sourceMappingURL=user-list.component.js.map

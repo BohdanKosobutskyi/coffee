@@ -28,7 +28,7 @@ namespace Coffee.Controllers.Api
             _dataValidator = dataValidator;
         }
 
-        [HttpPost("/api/company/register")]
+        [HttpPost("/api/web/company/register")]
         public async Task Register([FromBody] CompanyCreateView company)
         {
             if (_dataValidator.IsValidEmail(company.email))
@@ -58,7 +58,7 @@ namespace Coffee.Controllers.Api
         }
 
         [ProducesResponseType(200, Type = typeof(IEnumerable<CompanyListView>))]
-        [HttpGet("/api/company/all")]
+        [HttpGet("/api/web/company/all")]
         public async Task GetAll()
         {
             var response = _companyRepository.Get().Select(x => new CompanyListView
@@ -73,7 +73,7 @@ namespace Coffee.Controllers.Api
             await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
         }
 
-        [HttpPost("/api/company/approve")]
+        [HttpPost("/api/web/company/approve")]
         public async Task Approve([FromBody] CompanyApproveView company)
         {
             var companyId = company.company_id;
@@ -95,14 +95,14 @@ namespace Coffee.Controllers.Api
             return;
         }
 
-        [HttpPost("/api/company/delete")]
+        [HttpPost("/api/web/company/delete")]
         public async Task Delete([FromBody] CompanyDeleteView company)
         {
             var companyId = company.company_id;
 
             var companyDb = _companyRepository.Get(item => item.Id == companyId).FirstOrDefault();
 
-            if (company == null)
+            if (companyDb == null)
             {
                 Response.StatusCode = 400;
                 await Response.WriteAsync("Company with this parameters not exist.");
