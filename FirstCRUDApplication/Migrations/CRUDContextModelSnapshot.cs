@@ -150,11 +150,26 @@ namespace FirstCRUDApplication.Migrations
 
                     b.Property<string>("Photo");
 
+                    b.Property<string>("RefreshToken");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
 
                     b.ToTable("Seller");
+                });
+
+            modelBuilder.Entity("Coffee.DbEntities.SellerRole", b =>
+                {
+                    b.Property<long>("RoleId");
+
+                    b.Property<long>("UserId");
+
+                    b.HasKey("RoleId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("SellerRole");
                 });
 
             modelBuilder.Entity("Coffee.DbEntities.User", b =>
@@ -179,19 +194,6 @@ namespace FirstCRUDApplication.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
-                });
-
-            modelBuilder.Entity("Coffee.DbEntities.UserRole", b =>
-                {
-                    b.Property<long>("RoleId");
-
-                    b.Property<long>("UserId");
-
-                    b.HasKey("RoleId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserRole");
                 });
 
             modelBuilder.Entity("Coffee.DbEntities.Comment", b =>
@@ -236,15 +238,15 @@ namespace FirstCRUDApplication.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Coffee.DbEntities.UserRole", b =>
+            modelBuilder.Entity("Coffee.DbEntities.SellerRole", b =>
                 {
                     b.HasOne("Coffee.DbEntities.Role", "Role")
-                        .WithMany("UserRole")
+                        .WithMany("SellerRole")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Coffee.DbEntities.User", "User")
-                        .WithMany("UserRole")
+                    b.HasOne("Coffee.DbEntities.Seller", "Seller")
+                        .WithMany("SellerRole")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

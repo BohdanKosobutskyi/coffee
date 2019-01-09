@@ -1,4 +1,5 @@
 ﻿using FirstCRUDApplication.DbEntities;
+using System.Collections.Generic;
 
 namespace Coffee.DbEntities
 {
@@ -18,6 +19,10 @@ namespace Coffee.DbEntities
 
         public string Photo { get; set; }
 
+        public string RefreshToken { get; set; }
+
         public Company Company { get; set; }
+
+        public IEnumerable<SellerRole> SellerRole { get; set; }
     }
 }

@@ -23,14 +23,17 @@ namespace Coffee.Controllers.Api
         private readonly ICompanyRepository _companyRepository;
         private readonly IDataValidator _dataValidator;
         private readonly IConfigurableOptions _configurableOptions;
+        private readonly ISellerRepository _sellerRepository;
 
         public CompanyController(ICompanyRepository companyRepository, 
             IDataValidator dataValidator,
-            IConfigurableOptions configurableOptions)
+            IConfigurableOptions configurableOptions,
+            ISellerRepository sellerRepository)
         {
             _companyRepository = companyRepository;
             _dataValidator = dataValidator;
             _configurableOptions = configurableOptions;
+            _sellerRepository = sellerRepository;
         }
 
         [HttpPost("/api/web/company/register")]
@@ -85,7 +88,7 @@ namespace Coffee.Controllers.Api
 
             var companyDb = _companyRepository.Get(item => item.Id == companyId).FirstOrDefault();
 
-            if(company == null)
+            if (company == null)
             {
                 Response.StatusCode = 400;
                 await Response.WriteAsync("Company with this parameters not exist.");
@@ -95,6 +98,16 @@ namespace Coffee.Controllers.Api
             companyDb.IsAproved = true;
 
             _companyRepository.Update(companyDb);
+
+            var seller = new Seller
+            {
+                CompanyId = companyId,
+                Email = companyDb.Email,
+                Password = companyDb.Password,
+                IsAdmin = true
+            };
+
+            _sellerRepository.Create(seller);
 
             Response.StatusCode = 200;
             return;

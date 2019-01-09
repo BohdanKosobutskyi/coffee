@@ -12,6 +12,7 @@ using Coffee.Services.Interfaces;
 using Coffee.Contracts;
 using Coffee.Contracts.Authorization;
 using Coffee.DbEntities;
+using Coffee.Code;
 
 namespace Coffee.Controllers.Api
 {   
@@ -20,12 +21,20 @@ namespace Coffee.Controllers.Api
     public class AccountController : Controller
     {
         private IUserRepository _userRepository;
-        private ISecurityService _securityService;
+        private ISellerRepository _sellerRepository;
+        private IIdentityService _identityService;
+        
+        private readonly Func<Application, ISecurityService> _serviceSecurityAccessor;
 
-        public AccountController(IUserRepository userRepository, ISecurityService securityService)
+        public AccountController(IUserRepository userRepository, 
+            ISellerRepository sellerRepository,
+            IIdentityService identityService,
+            Func<Application, ISecurityService> serviceSecurityAccessor)
         {
             _userRepository = userRepository;
-            _securityService = securityService;
+            _sellerRepository = sellerRepository;
+            _identityService = identityService;
+            _serviceSecurityAccessor = serviceSecurityAccessor;
         }
 
         [HttpGet("/api/mobile/token/{refresh_token}/refresh")]
@@ -45,13 +54,45 @@ namespace Coffee.Controllers.Api
 
             var response = new
             {
-                access_token = _securityService.GenerateToken(user),
+                access_token = _serviceSecurityAccessor(Application.Mobile).GenerateToken(user),
                 refresh_token = user.RefreshToken
             };
             
             Response.ContentType = "application/json";
             await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
         }
+
+        [HttpPost("/api/web/token")]
+        [ProducesResponseType(200, Type = typeof(TokenModelResponse))]
+        public async Task TokenWeb([FromBody] LoginWebModel model)
+        {
+            var email = model.email;
+            var password = model.password;
+
+            var seller = _sellerRepository.Get(x => x.Email == email && x.Password == password).FirstOrDefault();
+
+            var identity = _identityService.GetIdentity(seller);
+            if (identity == null)
+            {
+                Response.StatusCode = 400;
+                await Response.WriteAsync("Invalid phone or password.");
+                return;
+            }
+
+            seller.RefreshToken = Guid.NewGuid().ToString().Replace("-", "");
+            _sellerRepository.Update(seller);
+
+            var response = new TokenModelResponse
+            {
+                access_token = _serviceSecurityAccessor(Application.Web).GenerateToken(seller),
+                refresh_token = seller.RefreshToken,
+                expire_time = DateTime.UtcNow.AddMinutes(AuthOptions.LIFETIME)
+            };
+
+            Response.ContentType = "application/json";
+            await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
+        }
+
 
         [HttpPost("/api/mobile/token")]
         [ProducesResponseType(200, Type = typeof(TokenModelResponse))]
@@ -62,7 +103,7 @@ namespace Coffee.Controllers.Api
 
             var user = _userRepository.Get(x => x.Phone == phone && x.Password == password && x.IsConfirm).FirstOrDefault();
 
-            var identity = _securityService.GetIdentity(user);
+            var identity = _identityService.GetIdentity(user);
             if (identity == null)
             {
                 Response.StatusCode = 400;
@@ -75,9 +116,9 @@ namespace Coffee.Controllers.Api
 
             var response = new TokenModelResponse
             {
-                access_token = _securityService.GenerateToken(user),
+                access_token = _serviceSecurityAccessor(Application.Mobile).GenerateToken(user),
                 refresh_token = user.RefreshToken,
-                expire_time = DateTime.UtcNow.AddSeconds(AuthOptions.LIFETIME)
+                expire_time = DateTime.UtcNow.AddMinutes(AuthOptions.LIFETIME)
             };
 
             Response.ContentType = "application/json";

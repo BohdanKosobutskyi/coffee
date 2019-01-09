@@ -10,6 +10,6 @@ namespace Coffee.DbEntities
     {
         public string Title { get; set; }
 
-        public IEnumerable<UserRole> UserRole { get; set; }
+        public IEnumerable<SellerRole> SellerRole { get; set; }
     }
 }

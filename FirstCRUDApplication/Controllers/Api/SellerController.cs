@@ -6,7 +6,6 @@ namespace Coffee.Controllers.Api
 {
     [Produces("application/json")]
     [Consumes("application/json")]
-    [Authorize(AuthenticationSchemes = "Bearer")]
     public class SellerController : Controller
     {
         /// <summary>
@@ -14,10 +13,18 @@ namespace Coffee.Controllers.Api
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        //[HttpPost("api/add/points")]
-        //public async Task<IActionResult> UploadImage(long userId, double points)
-        //{
-        //    return null;
-        //}
+        [HttpPost("api/add/points")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public IActionResult UploadImage()
+        {
+            return null;
+        }
+
+        [HttpPost("api/add/points/test")]
+        [Authorize(AuthenticationSchemes = "test")]
+        public IActionResult UploadImageTest()
+        {
+            return null;
+        }
     }
 }

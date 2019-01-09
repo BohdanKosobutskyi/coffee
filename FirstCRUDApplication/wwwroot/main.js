@@ -302,6 +302,51 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
+/***/ "./src/app/admin/home/home.component.html":
+/*!************************************************!*\
+  !*** ./src/app/admin/home/home.component.html ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/admin/home/home.component.ts":
+/*!**********************************************!*\
+  !*** ./src/app/admin/home/home.component.ts ***!
+  \**********************************************/
+/*! exports provided: HomeAdminComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeAdminComponent", function() { return HomeAdminComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var HomeAdminComponent = /** @class */ (function () {
+    function HomeAdminComponent() {
+    }
+    HomeAdminComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'home-admin',
+            template: __webpack_require__(/*! ./home.component.html */ "./src/app/admin/home/home.component.html")
+        })
+    ], HomeAdminComponent);
+    return HomeAdminComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/app.component.css":
 /*!***********************************!*\
   !*** ./src/app/app.component.css ***!
@@ -388,9 +433,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _global_error_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./global-error.component */ "./src/app/global-error.component.ts");
 /* harmony import */ var _user_user_list_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./user/user-list.component */ "./src/app/user/user-list.component.ts");
 /* harmony import */ var _company_company_list_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./company/company-list.component */ "./src/app/company/company-list.component.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! angular-bootstrap-md */ "./node_modules/angular-bootstrap-md/esm5/angular-bootstrap-md.es5.js");
-/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _admin_home_home_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./admin/home/home.component */ "./src/app/admin/home/home.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! angular-bootstrap-md */ "./node_modules/angular-bootstrap-md/esm5/angular-bootstrap-md.es5.js");
+/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -408,7 +455,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 // MDB Angular Free
+
 
 
 
@@ -418,30 +467,32 @@ var appRoutes = [
     { path: 'home', component: _company_company_component__WEBPACK_IMPORTED_MODULE_7__["CompanyComponent"] },
     { path: 'error', component: _global_error_component__WEBPACK_IMPORTED_MODULE_8__["GlobalErrorComponent"] },
     { path: 'superadmin/users', component: _user_user_list_component__WEBPACK_IMPORTED_MODULE_9__["UserListComponent"] },
-    { path: 'superadmin/companies', component: _company_company_list_component__WEBPACK_IMPORTED_MODULE_10__["CompanyListComponent"] }
+    { path: 'superadmin/companies', component: _company_company_list_component__WEBPACK_IMPORTED_MODULE_10__["CompanyListComponent"] },
+    { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_15__["LoginComponent"] },
+    { path: 'admin/home', component: _admin_home_home_component__WEBPACK_IMPORTED_MODULE_11__["HomeAdminComponent"] }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"], _company_company_component__WEBPACK_IMPORTED_MODULE_7__["CompanyComponent"], _global_error_component__WEBPACK_IMPORTED_MODULE_8__["GlobalErrorComponent"], _user_user_list_component__WEBPACK_IMPORTED_MODULE_9__["UserListComponent"], _company_company_list_component__WEBPACK_IMPORTED_MODULE_10__["CompanyListComponent"]],
+            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_15__["LoginComponent"], _home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"], _admin_home_home_component__WEBPACK_IMPORTED_MODULE_11__["HomeAdminComponent"], _company_company_component__WEBPACK_IMPORTED_MODULE_7__["CompanyComponent"], _global_error_component__WEBPACK_IMPORTED_MODULE_8__["GlobalErrorComponent"], _user_user_list_component__WEBPACK_IMPORTED_MODULE_9__["UserListComponent"], _company_company_list_component__WEBPACK_IMPORTED_MODULE_10__["CompanyListComponent"]],
             imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
                 _angular_http__WEBPACK_IMPORTED_MODULE_2__["HttpModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forRoot(appRoutes),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_11__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_12__["FormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_11__["ReactiveFormsModule"],
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_12__["CheckboxModule"],
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_12__["IconsModule"],
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_12__["MDBBootstrapModule"].forRoot(),
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_12__["ButtonsModule"],
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_12__["ChartsModule"],
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_12__["InputsModule"].forRoot(),
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_12__["WavesModule"].forRoot()],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_12__["ReactiveFormsModule"],
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_13__["CheckboxModule"],
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_13__["IconsModule"],
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_13__["MDBBootstrapModule"].forRoot(),
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_13__["ButtonsModule"],
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_13__["ChartsModule"],
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_13__["InputsModule"].forRoot(),
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_13__["WavesModule"].forRoot()],
             providers: [
-                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_13__["GlobalErrorHandlerService"],
-                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_13__["GlobalErrorHandlerService"] },
+                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_14__["GlobalErrorHandlerService"],
+                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_14__["GlobalErrorHandlerService"] },
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
         })
@@ -585,7 +636,7 @@ module.exports = "body {\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mdb-card>\r\n  <mdb-card-body>\r\n    <!-- Material form register -->\r\n    <form [formGroup]=\"cardForm\">\r\n      <p class=\"h4 text-center py-4\">Register your business</p>\r\n\r\n      <!-- Material input text -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"user\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.title\" type=\"text\" id=\"materialFormCardNameEx\" formControlName=\"materialFormCardNameEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardNameEx\" class=\"font-weight-light\">Your title of company</label>\r\n      </div>\r\n\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"phone\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.phone\" type=\"text\" id=\"materialFormCardPhoneEx\" formControlName=\"materialFormCardPhoneEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardPhoneEx\" class=\"font-weight-light\">Your number of phone</label>\r\n      </div>\r\n\r\n      <!-- Material input email -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"envelope\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.email\" type=\"email\" id=\"materialFormCardEmailEx\" formControlName=\"materialFormCardEmailEx\" class=\"form-control\" mdbInputDirective>\r\n        <label for=\"materialFormCardEmailEx\" class=\"font-weight-light\">Your email</label>\r\n      </div>\r\n\r\n      <!-- Material input password -->\r\n      <div class=\"md-form\">\r\n        <mdb-icon icon=\"lock\" class=\"prefix grey-text\"></mdb-icon>\r\n        <input [(ngModel)]=\"companyData.password\" type=\"password\" id=\"materialFormCardPasswordEx\" formControlName=\"materialFormCardPasswordEx\" class=\"form-control\"\r\n               mdbInputDirective>\r\n        <label for=\"materialFormCardPasswordEx\" class=\"font-weight-light\">Your password</label>\r\n      </div>\r\n\r\n      <div class=\"text-center py-4 mt-3\">\r\n        <button (click)=\"addCompany()\" mdbBtn color=\"cyan\" class=\"waves-light\" type=\"submit\" mdbWavesEffect>Register company</button>\r\n      </div>\r\n\r\n      <p class=\"h4 text-center py-4\">{{resultRegister}}</p>\r\n    </form>\r\n    <!-- Material form register -->\r\n  </mdb-card-body>\r\n</mdb-card>\r\n"
+module.exports = "<nav class=\"mb-1 navbar navbar-expand-lg navbar-dark info-color\">\r\n  <a class=\"navbar-brand\" href=\"#\">Loyality system</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent-4\"\r\n          aria-controls=\"navbarSupportedContent-4\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  \r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent-4\">\r\n    <ul class=\"navbar-nav ml-auto\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"#\">\r\n          <mdb-icon icon=\"facebook\"></mdb-icon> Facebook\r\n          <span class=\"sr-only\">(current)</span>\r\n        </a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" href=\"#\">\r\n          <mdb-icon icon=\"instagram\"></mdb-icon> Instagram\r\n        </a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <button mdbBtn type=\"button\" color=\"info\" size=\"sm\" data-toggle=\"modal\" data-target=\"#basicExample\" (click)=\"frame.show()\" mdbWavesEffect>\r\n          Log In\r\n          <mdb-icon icon=\"sign-in\"></mdb-icon>\r\n        </button>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</nav>\r\n\r\n<form [formGroup]=\"cardFormLogin\">\r\n  <div mdbModal #frame=\"mdbModal\" class=\"modal fade left\" id=\"frameModalTop\" tabindex=\"-1\" role=\"dialog\"\r\n       aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header text-center\">\r\n          <h4 class=\"modal-title w-100 font-weight-bold\">Sign in</h4>\r\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"frame.hide()\">\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body mx-3\">\r\n          <div class=\"md-form mb-5\">\r\n            <i class=\"fa fa-envelope prefix grey-text\"></i>\r\n            <input [(ngModel)]=\"loginData.email\" type=\"email\" id=\"materialFormCardEmailLoginEx\" formControlName=\"materialFormCardEmailLoginEx\" class=\"form-control validate\"\r\n                   mdbInputDirective>\r\n            <label data-error=\"wrong\" data-success=\"right\" for=\"materialFormCardEmailLoginEx\">Your email</label>\r\n          </div>\r\n\r\n          <div class=\"md-form mb-4\">\r\n            <i class=\"fa fa-lock prefix grey-text\"></i>\r\n            <input [(ngModel)]=\"loginData.password\" type=\"password\" id=\"materialFormCardPasswordLoginEx\" formControlName=\"materialFormCardPasswordLoginEx\" class=\"form-control validate\"\r\n                   mdbInputDirective>\r\n            <label data-error=\"wrong\" data-success=\"right\" for=\"materialFormCardPasswordLoginEx\">Your password</label>\r\n          </div>\r\n\r\n        </div>\r\n        <div class=\"modal-footer d-flex justify-content-center\">\r\n          <button (click)=\"login()\" mdbBtn color=\"default\" class=\"waves-light\" mdbWavesEffect>Login</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</form>\r\n\r\n\r\n  <mdb-card>\r\n    <mdb-card-body>\r\n      <!-- Material form register -->\r\n      <form [formGroup]=\"cardForm\">\r\n        <p class=\"h4 text-center py-4\">Register your business</p>\r\n\r\n        <!-- Material input text -->\r\n        <div class=\"md-form\">\r\n          <mdb-icon icon=\"user\" class=\"prefix grey-text\"></mdb-icon>\r\n          <input [(ngModel)]=\"companyData.title\" type=\"text\" id=\"materialFormCardNameEx\" formControlName=\"materialFormCardNameEx\" class=\"form-control\" mdbInputDirective>\r\n          <label for=\"materialFormCardNameEx\" class=\"font-weight-light\">Your title of company</label>\r\n        </div>\r\n\r\n        <div class=\"md-form\">\r\n          <mdb-icon icon=\"phone\" class=\"prefix grey-text\"></mdb-icon>\r\n          <input [(ngModel)]=\"companyData.phone\" type=\"text\" id=\"materialFormCardPhoneEx\" formControlName=\"materialFormCardPhoneEx\" class=\"form-control\" mdbInputDirective>\r\n          <label for=\"materialFormCardPhoneEx\" class=\"font-weight-light\">Your number of phone</label>\r\n        </div>\r\n\r\n        <!-- Material input email -->\r\n        <div class=\"md-form\">\r\n          <mdb-icon icon=\"envelope\" class=\"prefix grey-text\"></mdb-icon>\r\n          <input [(ngModel)]=\"companyData.email\" type=\"email\" id=\"materialFormCardEmailEx\" formControlName=\"materialFormCardEmailEx\" class=\"form-control\" mdbInputDirective>\r\n          <label for=\"materialFormCardEmailEx\" class=\"font-weight-light\">Your email</label>\r\n        </div>\r\n\r\n        <!-- Material input password -->\r\n        <div class=\"md-form\">\r\n          <mdb-icon icon=\"lock\" class=\"prefix grey-text\"></mdb-icon>\r\n          <input [(ngModel)]=\"companyData.password\" type=\"password\" id=\"materialFormCardPasswordEx\" formControlName=\"materialFormCardPasswordEx\" class=\"form-control\"\r\n                 mdbInputDirective>\r\n          <label for=\"materialFormCardPasswordEx\" class=\"font-weight-light\">Your password</label>\r\n        </div>\r\n\r\n        <div class=\"text-center py-4 mt-3\">\r\n          <button (click)=\"addCompany()\" mdbBtn color=\"cyan\" class=\"waves-light\" type=\"submit\" mdbWavesEffect>Register company</button>\r\n        </div>\r\n\r\n        <p class=\"h4 text-center py-4\">{{resultRegister}}</p>\r\n      </form>\r\n      <!-- Material form register -->\r\n    </mdb-card-body>\r\n  </mdb-card>\r\n\r\n"
 
 /***/ }),
 
@@ -604,6 +655,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../global-error-handler.service */ "./src/app/global-error-handler.service.ts");
 /* harmony import */ var _configuration_config_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../configuration/config.component */ "./src/app/configuration/config.component.ts");
 /* harmony import */ var _services_integration_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../services/integration-service */ "./src/app/services/integration-service.ts");
+/* harmony import */ var _services_authentication_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/authentication-service */ "./src/app/services/authentication-service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -618,21 +670,30 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var CompanyComponent = /** @class */ (function () {
-    function CompanyComponent(integrationService, fb, errorHandler, config, elem) {
+    function CompanyComponent(integrationService, fb, errorHandler, config, elem, authenticationService) {
         var _this = this;
         this.integrationService = integrationService;
         this.fb = fb;
         this.errorHandler = errorHandler;
         this.config = config;
         this.elem = elem;
+        this.authenticationService = authenticationService;
+        this.loginFormModalEmail = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].email);
+        this.loginFormModalPassword = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required);
         this.companyData = { email: '', title: '', password: '', phone: '' };
+        this.loginData = { email: '', password: '' };
         this.cardForm = fb.group({
             materialFormCardNameEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             materialFormCardEmailEx: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].email, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
             materialFormCardConfirmEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             materialFormCardPasswordEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             materialFormCardPhoneEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
+        });
+        this.cardFormLogin = fb.group({
+            materialFormCardPasswordLoginEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            materialFormCardEmailLoginEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
         this.config.getConfigs().subscribe(function (data) {
             _this.companyAddUrl = data['companyAdd'];
@@ -646,22 +707,30 @@ var CompanyComponent = /** @class */ (function () {
             _this.errorHandler.handleError(err);
         });
     };
+    CompanyComponent.prototype.login = function () {
+        this.authenticationService.login(this.loginData);
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
     ], CompanyComponent.prototype, "companyData", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], CompanyComponent.prototype, "loginData", void 0);
     CompanyComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-company',
             template: __webpack_require__(/*! ./company.component.html */ "./src/app/company/company.component.html"),
             styles: [__webpack_require__(/*! ./company.component.css */ "./src/app/company/company.component.css")],
-            providers: [_configuration_config_component__WEBPACK_IMPORTED_MODULE_3__["AppConfig"], _services_integration_service__WEBPACK_IMPORTED_MODULE_4__["IntegrationService"]]
+            providers: [_configuration_config_component__WEBPACK_IMPORTED_MODULE_3__["AppConfig"], _services_integration_service__WEBPACK_IMPORTED_MODULE_4__["IntegrationService"], _services_authentication_service__WEBPACK_IMPORTED_MODULE_5__["AuthenticationService"]]
         }),
         __metadata("design:paramtypes", [_services_integration_service__WEBPACK_IMPORTED_MODULE_4__["IntegrationService"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"],
             _global_error_handler_service__WEBPACK_IMPORTED_MODULE_2__["GlobalErrorHandlerService"],
             _configuration_config_component__WEBPACK_IMPORTED_MODULE_3__["AppConfig"],
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]])
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"],
+            _services_authentication_service__WEBPACK_IMPORTED_MODULE_5__["AuthenticationService"]])
     ], CompanyComponent);
     return CompanyComponent;
 }());
@@ -869,6 +938,150 @@ var HomeComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/login/login.component.html":
+/*!********************************************!*\
+  !*** ./src/app/login/login.component.html ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h2>Login</h2>\r\n<form [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\r\n\r\n  <div class=\"md-form\">\r\n    <input [(ngModel)]=\"loginData.email\" type=\"email\" id=\"materialFormCardEmailEx\" formControlName=\"materialFormCardEmailEx\" class=\"form-control\"\r\n           mdbInputDirective>\r\n    <label for=\"materialFormCardEmailEx\" class=\"font-weight-light\">Your email</label>\r\n  </div>\r\n\r\n  <div class=\"md-form\">\r\n    <input [(ngModel)]=\"loginData.password\" type=\"password\" id=\"materialFormCardPasswordEx\" formControlName=\"materialFormCardPasswordEx\" class=\"form-control\"\r\n           mdbInputDirective>\r\n    <label for=\"materialFormCardPasswordEx\" class=\"font-weight-light\">Your password</label>\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <button [disabled]=\"loading\" class=\"btn btn-primary\">Login</button>\r\n    <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\" />\r\n    <a [routerLink]=\"['/register']\" class=\"btn btn-link\">Register</a>\r\n  </div>\r\n\r\n</form>\r\n"
+
+/***/ }),
+
+/***/ "./src/app/login/login.component.ts":
+/*!******************************************!*\
+  !*** ./src/app/login/login.component.ts ***!
+  \******************************************/
+/*! exports provided: LoginComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginComponent", function() { return LoginComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _services_authentication_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/authentication-service */ "./src/app/services/authentication-service.ts");
+/* harmony import */ var _services_integration_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/integration-service */ "./src/app/services/integration-service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var LoginComponent = /** @class */ (function () {
+    function LoginComponent(formBuilder, router, authenticationService) {
+        this.formBuilder = formBuilder;
+        this.router = router;
+        this.authenticationService = authenticationService;
+        this.loading = false;
+        this.submitted = false;
+        this.loginData = { email: '', password: '' };
+    }
+    LoginComponent.prototype.ngOnInit = function () {
+        this.loginForm = this.formBuilder.group({
+            materialFormCardPasswordEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            materialFormCardEmailEx: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+        });
+        // reset login status
+        this.authenticationService.logout();
+    };
+    LoginComponent.prototype.onSubmit = function () {
+        this.loading = true;
+        this.authenticationService.login(this.loginData);
+        this.loading = false;
+        this.router.navigate(['/admin/home']);
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], LoginComponent.prototype, "loginData", void 0);
+    LoginComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'login',
+            template: __webpack_require__(/*! ./login.component.html */ "./src/app/login/login.component.html"),
+            providers: [_services_authentication_service__WEBPACK_IMPORTED_MODULE_3__["AuthenticationService"], _services_integration_service__WEBPACK_IMPORTED_MODULE_4__["IntegrationService"]]
+        }),
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            _services_authentication_service__WEBPACK_IMPORTED_MODULE_3__["AuthenticationService"]])
+    ], LoginComponent);
+    return LoginComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/authentication-service.ts":
+/*!****************************************************!*\
+  !*** ./src/app/services/authentication-service.ts ***!
+  \****************************************************/
+/*! exports provided: AuthenticationService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthenticationService", function() { return AuthenticationService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _integration_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./integration-service */ "./src/app/services/integration-service.ts");
+/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var AuthenticationService = /** @class */ (function () {
+    function AuthenticationService(integrationService, errorHandler, router) {
+        this.integrationService = integrationService;
+        this.errorHandler = errorHandler;
+        this.router = router;
+    }
+    AuthenticationService.prototype.login = function (companyData) {
+        var _this = this;
+        this.integrationService.sendData(companyData, "http://localhost:58114/api/web/token").subscribe(function (result) {
+            if (result) {
+                localStorage.setItem('currentUser', JSON.stringify(result.body));
+                _this.router.navigate(['/admin/home']);
+            }
+        }, function (err) {
+            _this.errorHandler.handleError(err);
+        });
+    };
+    AuthenticationService.prototype.logout = function () {
+        localStorage.removeItem('currentUser');
+    };
+    AuthenticationService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_integration_service__WEBPACK_IMPORTED_MODULE_1__["IntegrationService"],
+            _global_error_handler_service__WEBPACK_IMPORTED_MODULE_2__["GlobalErrorHandlerService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+    ], AuthenticationService);
+    return AuthenticationService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/services/integration-service.ts":
 /*!*************************************************!*\
   !*** ./src/app/services/integration-service.ts ***!
@@ -1045,7 +1258,7 @@ platform.bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_1__["AppModule
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! J:\Projects\coffeecore\FirstCRUDApplication\CoffeeUI\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! D:\Projects\coffeecore\FirstCRUDApplication\CoffeeUI\src\main.ts */"./src/main.ts");
 
 
 /***/ })

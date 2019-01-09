@@ -1,12 +1,11 @@
 ﻿using Coffee.DbEntities;
-using Coffee.Models;
+using FirstCRUDApplication.DbEntities;
 using System.Security.Claims;
 
 namespace Coffee.Services.Interfaces
 {
     public interface ISecurityService
     {
-        string GenerateToken(User user);
-        ClaimsIdentity GetIdentity(User user);
+        string GenerateToken(BaseEntity user);
     }
 }

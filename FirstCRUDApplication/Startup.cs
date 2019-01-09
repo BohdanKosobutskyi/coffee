@@ -24,6 +24,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Coffee.Helper;
 using Coffee.Configuration;
+using System;
+using System.Collections.Generic;
+using Coffee.Code;
 
 namespace FirstCRUDApplication
 {
@@ -83,6 +86,7 @@ namespace FirstCRUDApplication
                 .Build();
             });
 
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("help", new Info
@@ -93,7 +97,21 @@ namespace FirstCRUDApplication
             });
 
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<ISecurityService, SecurityService>();
+            services.AddTransient<MobileSecurityService>();
+            services.AddTransient<WebSecurityService>();
+            services.AddTransient<Func<Application, ISecurityService>>(serviceProvider => key =>
+            {
+                switch (key)
+                {
+                    case Application.Mobile:
+                        return serviceProvider.GetService<MobileSecurityService>();
+                    case Application.Web:
+                        return serviceProvider.GetService<WebSecurityService>();
+                    default:
+                        throw new KeyNotFoundException();
+                }
+            });
+            services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<IImageHandler, ImageHandler>();
             services.AddTransient<IImageWriter, ImageWriter>();
             services.AddTransient<IPostRepository, PostRepository>();

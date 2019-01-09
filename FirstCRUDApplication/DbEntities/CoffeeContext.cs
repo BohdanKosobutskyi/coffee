@@ -31,13 +31,13 @@ namespace FirstCRUDApplication.DbEntities
             new UserCompanyMap(modelBuilder.Entity<UserCompany>());
             new SellerMap(modelBuilder.Entity<Seller>());
             new RoleMap(modelBuilder.Entity<Role>());
-            new UserRoleMap(modelBuilder.Entity<UserRole>());
+            new SellerRoleMap(modelBuilder.Entity<SellerRole>());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             //builder.UseSqlServer(_configurableOptions.DbConnection);
-            builder.UseSqlServer("Data Source=.\\SQLEXPRESS;Integrated Security=True;Initial Catalog=coffeApp");
+            builder.UseSqlServer("Data Source=.;Integrated Security=True;Initial Catalog=coffeApp");
             base.OnConfiguring(builder);
         }
     }
