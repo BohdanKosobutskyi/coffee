@@ -1,43 +1,110 @@
-<mdb-card>
-  <mdb-card-body>
-    <!-- Material form register -->
-    <form [formGroup]="cardForm">
-      <p class="h4 text-center py-4">Register your business</p>
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
+  <a class="navbar-brand" href="#">Loyality system</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+          aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">
+          <mdb-icon icon="facebook"></mdb-icon> Facebook
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <mdb-icon icon="instagram"></mdb-icon> Instagram
+        </a>
+      </li>
+      <li class="nav-item">
+        <button mdbBtn type="button" color="info" size="sm" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" mdbWavesEffect>
+          Log In
+          <mdb-icon icon="sign-in"></mdb-icon>
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
 
-      <!-- Material input text -->
-      <div class="md-form">
-        <mdb-icon icon="user" class="prefix grey-text"></mdb-icon>
-        <input [(ngModel)]="companyData.title" type="text" id="materialFormCardNameEx" formControlName="materialFormCardNameEx" class="form-control" mdbInputDirective>
-        <label for="materialFormCardNameEx" class="font-weight-light">Your title of company</label>
+<form [formGroup]="cardFormLogin">
+  <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+       aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input [(ngModel)]="loginData.email" type="email" id="materialFormCardEmailLoginEx" formControlName="materialFormCardEmailLoginEx" class="form-control validate"
+                   mdbInputDirective>
+            <label data-error="wrong" data-success="right" for="materialFormCardEmailLoginEx">Your email</label>
+          </div>
+
+          <div class="md-form mb-4">
+            <i class="fa fa-lock prefix grey-text"></i>
+            <input [(ngModel)]="loginData.password" type="password" id="materialFormCardPasswordLoginEx" formControlName="materialFormCardPasswordLoginEx" class="form-control validate"
+                   mdbInputDirective>
+            <label data-error="wrong" data-success="right" for="materialFormCardPasswordLoginEx">Your password</label>
+          </div>
+
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button (click)="login()" mdbBtn color="default" class="waves-light" mdbWavesEffect>Login</button>
+        </div>
       </div>
+    </div>
+  </div>
+</form>
 
-      <div class="md-form">
-        <mdb-icon icon="phone" class="prefix grey-text"></mdb-icon>
-        <input [(ngModel)]="companyData.phone" type="text" id="materialFormCardPhoneEx" formControlName="materialFormCardPhoneEx" class="form-control" mdbInputDirective>
-        <label for="materialFormCardPhoneEx" class="font-weight-light">Your number of phone</label>
-      </div>
 
-      <!-- Material input email -->
-      <div class="md-form">
-        <mdb-icon icon="envelope" class="prefix grey-text"></mdb-icon>
-        <input [(ngModel)]="companyData.email" type="email" id="materialFormCardEmailEx" formControlName="materialFormCardEmailEx" class="form-control" mdbInputDirective>
-        <label for="materialFormCardEmailEx" class="font-weight-light">Your email</label>
-      </div>
+  <mdb-card>
+    <mdb-card-body>
+      <!-- Material form register -->
+      <form [formGroup]="cardForm">
+        <p class="h4 text-center py-4">Register your business</p>
 
-      <!-- Material input password -->
-      <div class="md-form">
-        <mdb-icon icon="lock" class="prefix grey-text"></mdb-icon>
-        <input [(ngModel)]="companyData.password" type="password" id="materialFormCardPasswordEx" formControlName="materialFormCardPasswordEx" class="form-control"
-               mdbInputDirective>
-        <label for="materialFormCardPasswordEx" class="font-weight-light">Your password</label>
-      </div>
+        <!-- Material input text -->
+        <div class="md-form">
+          <mdb-icon icon="user" class="prefix grey-text"></mdb-icon>
+          <input [(ngModel)]="companyData.title" type="text" id="materialFormCardNameEx" formControlName="materialFormCardNameEx" class="form-control" mdbInputDirective>
+          <label for="materialFormCardNameEx" class="font-weight-light">Your title of company</label>
+        </div>
 
-      <div class="text-center py-4 mt-3">
-        <button (click)="addCompany()" mdbBtn color="cyan" class="waves-light" type="submit" mdbWavesEffect>Register company</button>
-      </div>
+        <div class="md-form">
+          <mdb-icon icon="phone" class="prefix grey-text"></mdb-icon>
+          <input [(ngModel)]="companyData.phone" type="text" id="materialFormCardPhoneEx" formControlName="materialFormCardPhoneEx" class="form-control" mdbInputDirective>
+          <label for="materialFormCardPhoneEx" class="font-weight-light">Your number of phone</label>
+        </div>
 
-      <p class="h4 text-center py-4">{{resultRegister}}</p>
-    </form>
-    <!-- Material form register -->
-  </mdb-card-body>
-</mdb-card>
+        <!-- Material input email -->
+        <div class="md-form">
+          <mdb-icon icon="envelope" class="prefix grey-text"></mdb-icon>
+          <input [(ngModel)]="companyData.email" type="email" id="materialFormCardEmailEx" formControlName="materialFormCardEmailEx" class="form-control" mdbInputDirective>
+          <label for="materialFormCardEmailEx" class="font-weight-light">Your email</label>
+        </div>
+
+        <!-- Material input password -->
+        <div class="md-form">
+          <mdb-icon icon="lock" class="prefix grey-text"></mdb-icon>
+          <input [(ngModel)]="companyData.password" type="password" id="materialFormCardPasswordEx" formControlName="materialFormCardPasswordEx" class="form-control"
+                 mdbInputDirective>
+          <label for="materialFormCardPasswordEx" class="font-weight-light">Your password</label>
+        </div>
+
+        <div class="text-center py-4 mt-3">
+          <button (click)="addCompany()" mdbBtn color="cyan" class="waves-light" type="submit" mdbWavesEffect>Register company</button>
+        </div>
+
+        <p class="h4 text-center py-4">{{resultRegister}}</p>
+      </form>
+      <!-- Material form register -->
+    </mdb-card-body>
+  </mdb-card>
+

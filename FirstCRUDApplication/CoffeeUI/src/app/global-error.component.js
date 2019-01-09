@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-var GlobalErrorComponent = (function () {
+var GlobalErrorComponent = /** @class */ (function () {
     function GlobalErrorComponent(route) {
         var _this = this;
         this.route = route;
@@ -18,13 +18,13 @@ var GlobalErrorComponent = (function () {
             _this.message = queryParam['error'];
         });
     }
+    GlobalErrorComponent = __decorate([
+        Component({
+            template: "\n        <h2>{{statusText}}</h2>\n        <h2>Error message : {{message}}</h2>"
+        }),
+        __metadata("design:paramtypes", [ActivatedRoute])
+    ], GlobalErrorComponent);
     return GlobalErrorComponent;
 }());
-GlobalErrorComponent = __decorate([
-    Component({
-        template: "\n        <h2>{{statusText}}</h2>\n        <h2>Error message : {{message}}</h2>"
-    }),
-    __metadata("design:paramtypes", [ActivatedRoute])
-], GlobalErrorComponent);
 export { GlobalErrorComponent };
 //# sourceMappingURL=global-error.component.js.map

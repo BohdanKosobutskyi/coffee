@@ -4,24 +4,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
-var HomeComponent = /** @class */ (function () {
-    function HomeComponent(http) {
-        this.http = http;
-        this.title = 'app';
+var HomeAdminComponent = /** @class */ (function () {
+    function HomeAdminComponent() {
     }
-    HomeComponent = __decorate([
+    HomeAdminComponent = __decorate([
         Component({
-            selector: 'home-app',
+            selector: 'home-admin',
             templateUrl: './home.component.html'
-        }),
-        __metadata("design:paramtypes", [Http])
-    ], HomeComponent);
-    return HomeComponent;
+        })
+    ], HomeAdminComponent);
+    return HomeAdminComponent;
 }());
-export { HomeComponent };
+export { HomeAdminComponent };
 //# sourceMappingURL=home.component.js.map

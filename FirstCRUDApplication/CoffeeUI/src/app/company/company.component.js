@@ -8,11 +8,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, Input, ElementRef } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { AppConfig } from './../configuration/config.component';
 import { IntegrationService } from './../services/integration-service';
-var CompanyComponent = (function () {
+var CompanyComponent = /** @class */ (function () {
     function CompanyComponent(integrationService, fb, errorHandler, config, elem) {
         var _this = this;
         this.integrationService = integrationService;
@@ -20,6 +20,8 @@ var CompanyComponent = (function () {
         this.errorHandler = errorHandler;
         this.config = config;
         this.elem = elem;
+        this.loginFormModalEmail = new FormControl('', Validators.email);
+        this.loginFormModalPassword = new FormControl('', Validators.required);
         this.companyData = { email: '', title: '', password: '', phone: '' };
         this.cardForm = fb.group({
             materialFormCardNameEx: ['', Validators.required],
@@ -40,24 +42,24 @@ var CompanyComponent = (function () {
             _this.errorHandler.handleError(err);
         });
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], CompanyComponent.prototype, "companyData", void 0);
+    CompanyComponent = __decorate([
+        Component({
+            selector: 'app-company',
+            templateUrl: './company.component.html',
+            styleUrls: ['./company.component.css'],
+            providers: [AppConfig, IntegrationService]
+        }),
+        __metadata("design:paramtypes", [IntegrationService,
+            FormBuilder,
+            GlobalErrorHandlerService,
+            AppConfig,
+            ElementRef])
+    ], CompanyComponent);
     return CompanyComponent;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", Object)
-], CompanyComponent.prototype, "companyData", void 0);
-CompanyComponent = __decorate([
-    Component({
-        selector: 'app-company',
-        templateUrl: './company.component.html',
-        styleUrls: ['./company.component.css'],
-        providers: [AppConfig, IntegrationService]
-    }),
-    __metadata("design:paramtypes", [IntegrationService,
-        FormBuilder,
-        GlobalErrorHandlerService,
-        AppConfig,
-        ElementRef])
-], CompanyComponent);
 export { CompanyComponent };
 //# sourceMappingURL=company.component.js.map

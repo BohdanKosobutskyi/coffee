@@ -9,18 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-var UserHttpService = (function () {
+var UserHttpService = /** @class */ (function () {
     function UserHttpService(http) {
         this.http = http;
     }
     UserHttpService.prototype.getUsers = function (apiEndpoint) {
         return this.http.get(apiEndpoint);
     };
+    UserHttpService = __decorate([
+        Injectable(),
+        __metadata("design:paramtypes", [HttpClient])
+    ], UserHttpService);
     return UserHttpService;
 }());
-UserHttpService = __decorate([
-    Injectable(),
-    __metadata("design:paramtypes", [HttpClient])
-], UserHttpService);
 export { UserHttpService };
 //# sourceMappingURL=user-http.service.js.map
