@@ -12,23 +12,30 @@ import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { AppConfig } from './../configuration/config.component';
 import { IntegrationService } from './../services/integration-service';
-var CompanyComponent = /** @class */ (function () {
-    function CompanyComponent(integrationService, fb, errorHandler, config, elem) {
+import { AuthenticationService } from '../services/authentication-service';
+var CompanyComponent = (function () {
+    function CompanyComponent(integrationService, fb, errorHandler, config, elem, authenticationService) {
         var _this = this;
         this.integrationService = integrationService;
         this.fb = fb;
         this.errorHandler = errorHandler;
         this.config = config;
         this.elem = elem;
+        this.authenticationService = authenticationService;
         this.loginFormModalEmail = new FormControl('', Validators.email);
         this.loginFormModalPassword = new FormControl('', Validators.required);
         this.companyData = { email: '', title: '', password: '', phone: '' };
+        this.loginData = { email: '', password: '' };
         this.cardForm = fb.group({
             materialFormCardNameEx: ['', Validators.required],
             materialFormCardEmailEx: ['', [Validators.email, Validators.required]],
             materialFormCardConfirmEx: ['', Validators.required],
             materialFormCardPasswordEx: ['', Validators.required],
             materialFormCardPhoneEx: ['', Validators.required]
+        });
+        this.cardFormLogin = fb.group({
+            materialFormCardPasswordLoginEx: ['', Validators.required],
+            materialFormCardEmailLoginEx: ['', Validators.required]
         });
         this.config.getConfigs().subscribe(function (data) {
             _this.companyAddUrl = data['companyAdd'];
@@ -42,24 +49,32 @@ var CompanyComponent = /** @class */ (function () {
             _this.errorHandler.handleError(err);
         });
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", Object)
-    ], CompanyComponent.prototype, "companyData", void 0);
-    CompanyComponent = __decorate([
-        Component({
-            selector: 'app-company',
-            templateUrl: './company.component.html',
-            styleUrls: ['./company.component.css'],
-            providers: [AppConfig, IntegrationService]
-        }),
-        __metadata("design:paramtypes", [IntegrationService,
-            FormBuilder,
-            GlobalErrorHandlerService,
-            AppConfig,
-            ElementRef])
-    ], CompanyComponent);
+    CompanyComponent.prototype.login = function () {
+        this.authenticationService.login(this.loginData);
+    };
     return CompanyComponent;
 }());
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], CompanyComponent.prototype, "companyData", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], CompanyComponent.prototype, "loginData", void 0);
+CompanyComponent = __decorate([
+    Component({
+        selector: 'app-company',
+        templateUrl: './company.component.html',
+        styleUrls: ['./company.component.css'],
+        providers: [AppConfig, IntegrationService, AuthenticationService]
+    }),
+    __metadata("design:paramtypes", [IntegrationService,
+        FormBuilder,
+        GlobalErrorHandlerService,
+        AppConfig,
+        ElementRef,
+        AuthenticationService])
+], CompanyComponent);
 export { CompanyComponent };
 //# sourceMappingURL=company.component.js.map

@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { AppConfig } from './../configuration/config.component';
 import { IntegrationService } from './../services/integration-service';
-var UserListComponent = /** @class */ (function () {
+var UserListComponent = (function () {
     function UserListComponent(integrationService, errorHandler, config) {
         var _this = this;
         this.integrationService = integrationService;
@@ -40,16 +40,16 @@ var UserListComponent = /** @class */ (function () {
             _this.errorHandler.handleError(err);
         });
     };
-    UserListComponent = __decorate([
-        Component({
-            selector: 'user-list',
-            templateUrl: './user-list.component.html',
-            styleUrls: ['./user-list.component.css'],
-            providers: [AppConfig, IntegrationService]
-        }),
-        __metadata("design:paramtypes", [IntegrationService, GlobalErrorHandlerService, AppConfig])
-    ], UserListComponent);
     return UserListComponent;
 }());
+UserListComponent = __decorate([
+    Component({
+        selector: 'user-list',
+        templateUrl: './user-list.component.html',
+        styleUrls: ['./user-list.component.css'],
+        providers: [AppConfig, IntegrationService]
+    }),
+    __metadata("design:paramtypes", [IntegrationService, GlobalErrorHandlerService, AppConfig])
+], UserListComponent);
 export { UserListComponent };
 //# sourceMappingURL=user-list.component.js.map

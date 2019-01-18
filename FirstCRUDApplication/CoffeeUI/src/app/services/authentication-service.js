@@ -10,31 +10,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Injectable } from '@angular/core';
 import { IntegrationService } from './integration-service';
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
-var AuthenticationService = /** @class */ (function () {
-    function AuthenticationService(integrationService, errorHandler) {
+import { Router } from '@angular/router';
+var AuthenticationService = (function () {
+    function AuthenticationService(integrationService, errorHandler, router) {
         this.integrationService = integrationService;
         this.errorHandler = errorHandler;
+        this.router = router;
     }
     AuthenticationService.prototype.login = function (companyData) {
         var _this = this;
         this.integrationService.sendData(companyData, "http://localhost:58114/api/web/token").subscribe(function (result) {
             if (result) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(result.body));
+                _this.router.navigate(['/admin/home']);
             }
         }, function (err) {
             _this.errorHandler.handleError(err);
         });
     };
     AuthenticationService.prototype.logout = function () {
-        // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
     };
-    AuthenticationService = __decorate([
-        Injectable(),
-        __metadata("design:paramtypes", [IntegrationService, GlobalErrorHandlerService])
-    ], AuthenticationService);
     return AuthenticationService;
 }());
+AuthenticationService = __decorate([
+    Injectable(),
+    __metadata("design:paramtypes", [IntegrationService,
+        GlobalErrorHandlerService,
+        Router])
+], AuthenticationService);
 export { AuthenticationService };
 //# sourceMappingURL=authentication-service.js.map

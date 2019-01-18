@@ -75,7 +75,7 @@ namespace Coffee.Controllers.Api
             if (identity == null)
             {
                 Response.StatusCode = 400;
-                await Response.WriteAsync("Invalid phone or password.");
+                await Response.WriteAsync("Invalid email or password.");
                 return;
             }
 

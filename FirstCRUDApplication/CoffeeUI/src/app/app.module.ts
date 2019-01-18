@@ -20,6 +20,8 @@ import { GlobalErrorHandlerService } from './global-error-handler.service';
 
 import { LoginComponent } from './login/login.component';
 
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+
 // определение маршрутов
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -50,6 +52,11 @@ const appRoutes: Routes = [
   providers: [
     GlobalErrorHandlerService,
     { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: JwtInterceptor,
+        multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })
