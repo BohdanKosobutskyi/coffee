@@ -67,7 +67,7 @@ namespace Coffee.Controllers.Api
 
         [ProducesResponseType(200, Type = typeof(IEnumerable<CompanyListView>))]
         [HttpGet("/api/web/company/all")]
-        [Authorize(AuthenticationSchemes = "Bearer")]
+        //[Authorize(AuthenticationSchemes = "Bearer")]
         public async Task GetAll()
         {
             var response = _companyRepository.Get().Select(x => new CompanyListView

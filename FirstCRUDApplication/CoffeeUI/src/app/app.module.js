@@ -16,6 +16,8 @@ import { GlobalErrorComponent } from './global-error.component';
 import { UserListComponent } from './user/user-list.component';
 import { CompanyListComponent } from './company/company-list.component';
 import { HomeAdminComponent } from './admin/home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { HeaderAdminComponent } from './header/header.admin.component';
 // MDB Angular Free
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MDBBootstrapModule, CheckboxModule, WavesModule, ButtonsModule, InputsModule, IconsModule, ChartsModule } from 'angular-bootstrap-md';
@@ -27,43 +29,43 @@ var appRoutes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: CompanyComponent },
     { path: 'error', component: GlobalErrorComponent },
-    { path: 'superadmin/users', component: UserListComponent },
-    { path: 'superadmin/companies', component: CompanyListComponent },
+    { path: 'superadmin/emulator/users', component: UserListComponent },
+    { path: 'superadmin/emulator/companies', component: CompanyListComponent },
     { path: 'login', component: LoginComponent },
     { path: 'admin/home', component: HomeAdminComponent }
 ];
-var AppModule = (function () {
+var AppModule = /** @class */ (function () {
     function AppModule() {
     }
+    AppModule = __decorate([
+        NgModule({
+            declarations: [HeaderAdminComponent, HeaderComponent, AppComponent, LoginComponent, HomeComponent, HomeAdminComponent, CompanyComponent, GlobalErrorComponent, UserListComponent, CompanyListComponent],
+            imports: [BrowserModule,
+                HttpModule,
+                RouterModule.forRoot(appRoutes),
+                FormsModule,
+                HttpClientModule,
+                ReactiveFormsModule,
+                CheckboxModule,
+                IconsModule,
+                MDBBootstrapModule.forRoot(),
+                ButtonsModule,
+                ChartsModule,
+                InputsModule.forRoot(),
+                WavesModule.forRoot()],
+            providers: [
+                GlobalErrorHandlerService,
+                { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
+                {
+                    provide: HTTP_INTERCEPTORS,
+                    useClass: JwtInterceptor,
+                    multi: true
+                },
+            ],
+            bootstrap: [AppComponent]
+        })
+    ], AppModule);
     return AppModule;
 }());
-AppModule = __decorate([
-    NgModule({
-        declarations: [AppComponent, LoginComponent, HomeComponent, HomeAdminComponent, CompanyComponent, GlobalErrorComponent, UserListComponent, CompanyListComponent],
-        imports: [BrowserModule,
-            HttpModule,
-            RouterModule.forRoot(appRoutes),
-            FormsModule,
-            HttpClientModule,
-            ReactiveFormsModule,
-            CheckboxModule,
-            IconsModule,
-            MDBBootstrapModule.forRoot(),
-            ButtonsModule,
-            ChartsModule,
-            InputsModule.forRoot(),
-            WavesModule.forRoot()],
-        providers: [
-            GlobalErrorHandlerService,
-            { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
-            {
-                provide: HTTP_INTERCEPTORS,
-                useClass: JwtInterceptor,
-                multi: true
-            },
-        ],
-        bootstrap: [AppComponent]
-    })
-], AppModule);
 export { AppModule };
 //# sourceMappingURL=app.module.js.map

@@ -17,7 +17,8 @@
     <None Remove="CoffeeUI\src\app\configuration\config.component.ts" />
     <None Remove="CoffeeUI\src\app\global-error-handler.service.ts" />
     <None Remove="CoffeeUI\src\app\global-error.component.ts" />
-    <None Remove="CoffeeUI\src\app\helpers\jwt.interceptor.ts" />
+    <None Remove="CoffeeUI\src\app\header\header.admin.component.ts" />
+    <None Remove="CoffeeUI\src\app\header\header.component.ts" />
     <None Remove="CoffeeUI\src\app\services\authentication-service.ts" />
     <None Remove="CoffeeUI\src\app\services\integration-service.ts" />
     <None Remove="CoffeeUI\src\app\user\user-http.service.ts" />
@@ -49,7 +50,8 @@
     <TypeScriptCompile Include="CoffeeUI\src\app\configuration\config.component.ts" />
     <TypeScriptCompile Include="CoffeeUI\src\app\global-error-handler.service.ts" />
     <TypeScriptCompile Include="CoffeeUI\src\app\global-error.component.ts" />
-    <TypeScriptCompile Include="CoffeeUI\src\app\helpers\jwt.interceptor.ts" />
+    <TypeScriptCompile Include="CoffeeUI\src\app\header\header.admin.component.ts" />
+    <TypeScriptCompile Include="CoffeeUI\src\app\header\header.component.ts" />
     <TypeScriptCompile Include="CoffeeUI\src\app\services\authentication-service.ts" />
     <TypeScriptCompile Include="CoffeeUI\src\app\services\integration-service.ts" />
     <TypeScriptCompile Include="CoffeeUI\src\app\user\user-http.service.ts" />

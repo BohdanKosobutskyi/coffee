@@ -1,0 +1,89 @@
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
+  <a class="navbar-brand" href="#">Loyality system</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+          aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="basicExampleNav">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">
+          Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Users</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Posts</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">
+          <mdb-icon icon="facebook"></mdb-icon> Facebook
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <mdb-icon icon="instagram"></mdb-icon> Instagram
+        </a>
+      </li>
+      <li *ngIf="!isLogin()" class="nav-item">
+        <button mdbBtn type="button" color="info" size="sm" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" mdbWavesEffect>
+          Log In
+          <mdb-icon icon="sign-in"></mdb-icon>
+        </button>
+      </li>
+      <li *ngIf="isLogin()" class="nav-item">
+        <button mdbBtn type="button" color="info" size="sm" (click)="logout()">
+          Log Out
+          <mdb-icon icon="sign-in"></mdb-icon>
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<form [formGroup]="cardFormLogin">
+  <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+       aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input [(ngModel)]="loginData.email" type="email" id="materialFormCardEmailLoginEx" formControlName="materialFormCardEmailLoginEx" class="form-control validate"
+                   mdbInputDirective>
+            <label data-error="wrong" data-success="right" for="materialFormCardEmailLoginEx">Your email</label>
+          </div>
+
+          <div class="md-form mb-4">
+            <i class="fa fa-lock prefix grey-text"></i>
+            <input [(ngModel)]="loginData.password" type="password" id="materialFormCardPasswordLoginEx" formControlName="materialFormCardPasswordLoginEx" class="form-control validate"
+                   mdbInputDirective>
+            <label data-error="wrong" data-success="right" for="materialFormCardPasswordLoginEx">Your password</label>
+          </div>
+
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button (click)="login()" mdbBtn color="default" class="waves-light" mdbWavesEffect>Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

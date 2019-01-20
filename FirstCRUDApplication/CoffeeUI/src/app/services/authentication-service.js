@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 import { IntegrationService } from './integration-service';
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { Router } from '@angular/router';
-var AuthenticationService = (function () {
+var AuthenticationService = /** @class */ (function () {
     function AuthenticationService(integrationService, errorHandler, router) {
         this.integrationService = integrationService;
         this.errorHandler = errorHandler;
@@ -30,14 +30,23 @@ var AuthenticationService = (function () {
     };
     AuthenticationService.prototype.logout = function () {
         localStorage.removeItem('currentUser');
+        this.router.navigate(['/home']);
     };
+    AuthenticationService.prototype.isLogin = function () {
+        if (localStorage.getItem('currentUser') !== null) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    AuthenticationService = __decorate([
+        Injectable(),
+        __metadata("design:paramtypes", [IntegrationService,
+            GlobalErrorHandlerService,
+            Router])
+    ], AuthenticationService);
     return AuthenticationService;
 }());
-AuthenticationService = __decorate([
-    Injectable(),
-    __metadata("design:paramtypes", [IntegrationService,
-        GlobalErrorHandlerService,
-        Router])
-], AuthenticationService);
 export { AuthenticationService };
 //# sourceMappingURL=authentication-service.js.map

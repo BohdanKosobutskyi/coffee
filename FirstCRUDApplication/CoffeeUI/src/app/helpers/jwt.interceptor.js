@@ -5,25 +5,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Injectable } from '@angular/core';
-var JwtInterceptor = (function () {
+var JwtInterceptor = /** @class */ (function () {
     function JwtInterceptor() {
     }
     JwtInterceptor.prototype.intercept = function (request, next) {
         // add authorization header with jwt token if available
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser && currentUser.token) {
+        if (currentUser && currentUser.access_token) {
             request = request.clone({
                 setHeaders: {
-                    Authorization: "Bearer " + currentUser.token
+                    Authorization: "Bearer " + currentUser.access_token
                 }
             });
         }
         return next.handle(request);
     };
+    JwtInterceptor = __decorate([
+        Injectable()
+    ], JwtInterceptor);
     return JwtInterceptor;
 }());
-JwtInterceptor = __decorate([
-    Injectable()
-], JwtInterceptor);
 export { JwtInterceptor };
 //# sourceMappingURL=jwt.interceptor.js.map

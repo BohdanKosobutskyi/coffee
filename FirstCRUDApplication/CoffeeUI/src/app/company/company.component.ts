@@ -31,7 +31,12 @@ export class CompanyComponent {
     public errorHandler: GlobalErrorHandlerService,
     private config: AppConfig,
     private elem: ElementRef,
-    private authenticationService: AuthenticationService) {
+    private authenticationService: AuthenticationService,
+    private router: Router) {
+
+    if (this.authenticationService.isLogin()) {
+      this.router.navigate(['/admin/home']);
+    }
       this.cardForm = fb.group({
         materialFormCardNameEx: ['', Validators.required],
         materialFormCardEmailEx: ['', [Validators.email, Validators.required]],

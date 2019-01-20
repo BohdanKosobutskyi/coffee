@@ -9,19 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
-var HomeComponent = (function () {
+var HomeComponent = /** @class */ (function () {
     function HomeComponent(http) {
         this.http = http;
         this.title = 'app';
     }
+    HomeComponent = __decorate([
+        Component({
+            selector: 'home-app',
+            templateUrl: './home.component.html'
+        }),
+        __metadata("design:paramtypes", [Http])
+    ], HomeComponent);
     return HomeComponent;
 }());
-HomeComponent = __decorate([
-    Component({
-        selector: 'home-app',
-        templateUrl: './home.component.html'
-    }),
-    __metadata("design:paramtypes", [Http])
-], HomeComponent);
 export { HomeComponent };
 //# sourceMappingURL=home.component.js.map

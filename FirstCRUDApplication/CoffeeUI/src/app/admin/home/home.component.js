@@ -5,16 +5,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Component } from '@angular/core';
-var HomeAdminComponent = (function () {
+var HomeAdminComponent = /** @class */ (function () {
     function HomeAdminComponent() {
     }
+    HomeAdminComponent = __decorate([
+        Component({
+            selector: 'home-admin',
+            templateUrl: './home.component.html'
+        })
+    ], HomeAdminComponent);
     return HomeAdminComponent;
 }());
-HomeAdminComponent = __decorate([
-    Component({
-        selector: 'home-admin',
-        templateUrl: './home.component.html'
-    })
-], HomeAdminComponent);
 export { HomeAdminComponent };
 //# sourceMappingURL=home.component.js.map

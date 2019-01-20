@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication-service';
 import { IntegrationService } from '../services/integration-service';
-var LoginComponent = (function () {
+var LoginComponent = /** @class */ (function () {
     function LoginComponent(formBuilder, router, authenticationService) {
         this.formBuilder = formBuilder;
         this.router = router;
@@ -35,21 +35,21 @@ var LoginComponent = (function () {
         this.loading = false;
         this.router.navigate(['/admin/home']);
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], LoginComponent.prototype, "loginData", void 0);
+    LoginComponent = __decorate([
+        Component({
+            selector: 'login',
+            templateUrl: './login.component.html',
+            providers: [AuthenticationService, IntegrationService]
+        }),
+        __metadata("design:paramtypes", [FormBuilder,
+            Router,
+            AuthenticationService])
+    ], LoginComponent);
     return LoginComponent;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", Object)
-], LoginComponent.prototype, "loginData", void 0);
-LoginComponent = __decorate([
-    Component({
-        selector: 'login',
-        templateUrl: './login.component.html',
-        providers: [AuthenticationService, IntegrationService]
-    }),
-    __metadata("design:paramtypes", [FormBuilder,
-        Router,
-        AuthenticationService])
-], LoginComponent);
 export { LoginComponent };
 //# sourceMappingURL=login.component.js.map

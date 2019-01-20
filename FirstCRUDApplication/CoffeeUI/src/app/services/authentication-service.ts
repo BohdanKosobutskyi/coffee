@@ -23,5 +23,15 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem('currentUser');
+    this.router.navigate(['/home']);
+  }
+
+  isLogin(): boolean {
+    if (localStorage.getItem('currentUser') !== null) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }

@@ -11,6 +11,9 @@ import { GlobalErrorComponent } from './global-error.component';
 import { UserListComponent } from './user/user-list.component';
 import { CompanyListComponent } from './company/company-list.component';
 import { HomeAdminComponent } from './admin/home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { HeaderAdminComponent } from './header/header.admin.component';
+
 
 // MDB Angular Free
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
@@ -27,15 +30,15 @@ const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: CompanyComponent },
   { path: 'error', component: GlobalErrorComponent },
-  { path: 'superadmin/users', component: UserListComponent },
-  { path: 'superadmin/companies', component: CompanyListComponent },
+  { path: 'superadmin/emulator/users', component: UserListComponent },
+  { path: 'superadmin/emulator/companies', component: CompanyListComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admin/home', component: HomeAdminComponent }
 ];
 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, HomeAdminComponent, CompanyComponent, GlobalErrorComponent, UserListComponent, CompanyListComponent],
+  declarations: [HeaderAdminComponent, HeaderComponent, AppComponent, LoginComponent, HomeComponent, HomeAdminComponent, CompanyComponent, GlobalErrorComponent, UserListComponent, CompanyListComponent],
   imports: [BrowserModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),

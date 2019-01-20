@@ -1,4 +1,4 @@
-var UserListView = (function () {
+var UserListView = /** @class */ (function () {
     function UserListView() {
     }
     return UserListView;
