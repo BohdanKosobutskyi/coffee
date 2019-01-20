@@ -13,8 +13,9 @@ import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { AppConfig } from './../configuration/config.component';
 import { IntegrationService } from './../services/integration-service';
 import { AuthenticationService } from '../services/authentication-service';
+import { Router } from '@angular/router';
 var CompanyComponent = /** @class */ (function () {
-    function CompanyComponent(integrationService, fb, errorHandler, config, elem, authenticationService) {
+    function CompanyComponent(integrationService, fb, errorHandler, config, elem, authenticationService, router) {
         var _this = this;
         this.integrationService = integrationService;
         this.fb = fb;
@@ -22,10 +23,14 @@ var CompanyComponent = /** @class */ (function () {
         this.config = config;
         this.elem = elem;
         this.authenticationService = authenticationService;
+        this.router = router;
         this.loginFormModalEmail = new FormControl('', Validators.email);
         this.loginFormModalPassword = new FormControl('', Validators.required);
         this.companyData = { email: '', title: '', password: '', phone: '' };
         this.loginData = { email: '', password: '' };
+        if (this.authenticationService.isLogin()) {
+            this.router.navigate(['/admin/home']);
+        }
         this.cardForm = fb.group({
             materialFormCardNameEx: ['', Validators.required],
             materialFormCardEmailEx: ['', [Validators.email, Validators.required]],
@@ -72,7 +77,8 @@ var CompanyComponent = /** @class */ (function () {
             GlobalErrorHandlerService,
             AppConfig,
             ElementRef,
-            AuthenticationService])
+            AuthenticationService,
+            Router])
     ], CompanyComponent);
     return CompanyComponent;
 }());

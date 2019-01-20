@@ -26,7 +26,9 @@ namespace Coffee.Repositories
             return _context.Set<TEntity>().AsNoTracking().Where(predicate).ToList();
         }
 
-        public TEntity FindById(int id)
+
+
+        public TEntity FindById(long id)
         {
             return _context.Set<TEntity>().Find(id);
         }

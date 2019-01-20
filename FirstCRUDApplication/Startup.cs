@@ -96,6 +96,8 @@ namespace FirstCRUDApplication
                 });
             });
 
+            
+            services.AddTransient<IClaimSelector, ClaimSelector>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<MobileSecurityService>();
             services.AddTransient<WebSecurityService>();

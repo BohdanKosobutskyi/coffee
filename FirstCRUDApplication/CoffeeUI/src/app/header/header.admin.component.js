@@ -43,8 +43,8 @@ var HeaderAdminComponent = /** @class */ (function () {
     HeaderAdminComponent = __decorate([
         Component({
             selector: 'header-admin',
-            templateUrl: './header.component.html',
-            styleUrls: ['./header.component.css'],
+            templateUrl: './header.admin.component.html',
+            styleUrls: ['./header.admin.component.css'],
             providers: [IntegrationService, AuthenticationService]
         }),
         __metadata("design:paramtypes", [IntegrationService,

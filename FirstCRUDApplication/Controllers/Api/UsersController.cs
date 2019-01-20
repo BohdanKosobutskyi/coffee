@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Coffee.Interface;
 using Coffee.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -15,17 +17,33 @@ namespace Coffee.Controllers.Api
     public class UsersController : Controller
     {
         private readonly IUserRepository _userRepository;
+        private readonly IClaimSelector _claimSelector;
+        private readonly ISellerRepository _sellerRepository;
 
-        public UsersController(IUserRepository userRepository)
+        public UsersController(IUserRepository userRepository, IClaimSelector claimSelector, ISellerRepository sellerRepository)
         {
             _userRepository = userRepository;
+            _claimSelector = claimSelector;
+            _sellerRepository = sellerRepository;
         }
 
         [HttpGet("api/web/users/all")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<UserViewModel>))]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public async Task Users()
         {
-            var response = _userRepository.Get().Select(x => new UserViewModel
+            var sellerId = _claimSelector.GetId(HttpContext);
+
+            var seller = _sellerRepository.Get(item => item.Id == sellerId).FirstOrDefault();
+
+            if (seller == null)
+            {
+                Response.StatusCode = 400;
+                await Response.WriteAsync("Invalid data for getting seller");
+                return;
+            }
+            
+            var response = _userRepository.GetByCompany(seller.Company.Id).Select(x => new UserViewModel
             {
                 user_id = x.Id,
                 password = x.Password,
