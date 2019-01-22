@@ -12,7 +12,7 @@ import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { IntegrationService } from './../services/integration-service';
 import { AuthenticationService } from '../services/authentication-service';
-var HeaderComponent = /** @class */ (function () {
+var HeaderComponent = (function () {
     function HeaderComponent(integrationService, fb, errorHandler, elem, authenticationService) {
         this.integrationService = integrationService;
         this.fb = fb;
@@ -36,24 +36,24 @@ var HeaderComponent = /** @class */ (function () {
     HeaderComponent.prototype.isLogin = function () {
         return this.authenticationService.isLogin();
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", Object)
-    ], HeaderComponent.prototype, "loginData", void 0);
-    HeaderComponent = __decorate([
-        Component({
-            selector: 'header',
-            templateUrl: './header.component.html',
-            styleUrls: ['./header.component.css'],
-            providers: [IntegrationService, AuthenticationService]
-        }),
-        __metadata("design:paramtypes", [IntegrationService,
-            FormBuilder,
-            GlobalErrorHandlerService,
-            ElementRef,
-            AuthenticationService])
-    ], HeaderComponent);
     return HeaderComponent;
 }());
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], HeaderComponent.prototype, "loginData", void 0);
+HeaderComponent = __decorate([
+    Component({
+        selector: 'header',
+        templateUrl: './header.component.html',
+        styleUrls: ['./header.component.css'],
+        providers: [IntegrationService, AuthenticationService]
+    }),
+    __metadata("design:paramtypes", [IntegrationService,
+        FormBuilder,
+        GlobalErrorHandlerService,
+        ElementRef,
+        AuthenticationService])
+], HeaderComponent);
 export { HeaderComponent };
 //# sourceMappingURL=header.component.js.map

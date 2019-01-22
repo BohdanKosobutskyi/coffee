@@ -6,6 +6,7 @@ using FirstCRUDApplication.DbEntities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Coffee.Repositories
 {
@@ -27,6 +28,22 @@ namespace Coffee.Repositories
                 .ToList();
 
             return users;
+        }
+
+        public override IEnumerable<User> Get(Func<User,bool> predicate)
+        {
+            return _context.Set<User>().AsNoTracking().Include(item => item.UserCompanies);
+        }
+
+        public void DeleteUserFromCompany(long userId)
+        {
+            var user = _context.Set<User>().Include(uc => uc.UserCompanies).FirstOrDefault(item => item.Id == userId);
+
+            var userCompany = user.UserCompanies.FirstOrDefault(item => item.UserId == userId);
+
+            user.UserCompanies.Remove(userCompany);
+
+            _context.SaveChanges();
         }
     }
 }

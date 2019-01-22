@@ -12,13 +12,15 @@ import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { IntegrationService } from './../services/integration-service';
 import { AuthenticationService } from '../services/authentication-service';
-var HeaderAdminComponent = /** @class */ (function () {
-    function HeaderAdminComponent(integrationService, fb, errorHandler, elem, authenticationService) {
+import { Router } from '@angular/router';
+var HeaderAdminComponent = (function () {
+    function HeaderAdminComponent(integrationService, fb, errorHandler, elem, authenticationService, router) {
         this.integrationService = integrationService;
         this.fb = fb;
         this.errorHandler = errorHandler;
         this.elem = elem;
         this.authenticationService = authenticationService;
+        this.router = router;
         this.loginFormModalEmail = new FormControl('', Validators.email);
         this.loginFormModalPassword = new FormControl('', Validators.required);
         this.loginData = { email: '', password: '' };
@@ -36,24 +38,34 @@ var HeaderAdminComponent = /** @class */ (function () {
     HeaderAdminComponent.prototype.isLogin = function () {
         return this.authenticationService.isLogin();
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", Object)
-    ], HeaderAdminComponent.prototype, "loginData", void 0);
-    HeaderAdminComponent = __decorate([
-        Component({
-            selector: 'header-admin',
-            templateUrl: './header.admin.component.html',
-            styleUrls: ['./header.admin.component.css'],
-            providers: [IntegrationService, AuthenticationService]
-        }),
-        __metadata("design:paramtypes", [IntegrationService,
-            FormBuilder,
-            GlobalErrorHandlerService,
-            ElementRef,
-            AuthenticationService])
-    ], HeaderAdminComponent);
+    HeaderAdminComponent.prototype.goToUsers = function () {
+        this.router.navigate(['/admin/users']);
+    };
+    HeaderAdminComponent.prototype.goToPosts = function () {
+        this.router.navigate(['/admin/posts']);
+    };
+    HeaderAdminComponent.prototype.goToHome = function () {
+        this.router.navigate(['/admin/home']);
+    };
     return HeaderAdminComponent;
 }());
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], HeaderAdminComponent.prototype, "loginData", void 0);
+HeaderAdminComponent = __decorate([
+    Component({
+        selector: 'header-admin',
+        templateUrl: './header.admin.component.html',
+        styleUrls: ['./header.admin.component.css'],
+        providers: [IntegrationService, AuthenticationService]
+    }),
+    __metadata("design:paramtypes", [IntegrationService,
+        FormBuilder,
+        GlobalErrorHandlerService,
+        ElementRef,
+        AuthenticationService,
+        Router])
+], HeaderAdminComponent);
 export { HeaderAdminComponent };
 //# sourceMappingURL=header.admin.component.js.map

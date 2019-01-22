@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { IntegrationService } from './../services/integration-service';
 import { AuthenticationService } from '../services/authentication-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'header-admin',
@@ -24,11 +25,12 @@ export class HeaderAdminComponent {
     public fb: FormBuilder,
     public errorHandler: GlobalErrorHandlerService,
     private elem: ElementRef,
-    private authenticationService: AuthenticationService) {
+    private authenticationService: AuthenticationService,
+    private router: Router) {
     this.cardFormLogin = fb.group({
       materialFormCardPasswordLoginEx: ['', Validators.required],
       materialFormCardEmailLoginEx: ['', Validators.required]
-    });
+      });
   }
 
   login() {
@@ -41,5 +43,17 @@ export class HeaderAdminComponent {
 
   isLogin(): boolean {
     return this.authenticationService.isLogin();
+  }
+
+  goToUsers() {
+      this.router.navigate(['/admin/users']);
+  }
+
+  goToPosts() {
+      this.router.navigate(['/admin/posts']);
+  }
+
+  goToHome() {
+      this.router.navigate(['/admin/home']);
   }
 }

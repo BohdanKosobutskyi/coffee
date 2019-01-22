@@ -14,7 +14,7 @@ import { AppConfig } from './../configuration/config.component';
 import { IntegrationService } from './../services/integration-service';
 import { AuthenticationService } from '../services/authentication-service';
 import { Router } from '@angular/router';
-var CompanyComponent = /** @class */ (function () {
+var CompanyComponent = (function () {
     function CompanyComponent(integrationService, fb, errorHandler, config, elem, authenticationService, router) {
         var _this = this;
         this.integrationService = integrationService;
@@ -57,30 +57,30 @@ var CompanyComponent = /** @class */ (function () {
     CompanyComponent.prototype.login = function () {
         this.authenticationService.login(this.loginData);
     };
-    __decorate([
-        Input(),
-        __metadata("design:type", Object)
-    ], CompanyComponent.prototype, "companyData", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", Object)
-    ], CompanyComponent.prototype, "loginData", void 0);
-    CompanyComponent = __decorate([
-        Component({
-            selector: 'app-company',
-            templateUrl: './company.component.html',
-            styleUrls: ['./company.component.css'],
-            providers: [AppConfig, IntegrationService, AuthenticationService]
-        }),
-        __metadata("design:paramtypes", [IntegrationService,
-            FormBuilder,
-            GlobalErrorHandlerService,
-            AppConfig,
-            ElementRef,
-            AuthenticationService,
-            Router])
-    ], CompanyComponent);
     return CompanyComponent;
 }());
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], CompanyComponent.prototype, "companyData", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], CompanyComponent.prototype, "loginData", void 0);
+CompanyComponent = __decorate([
+    Component({
+        selector: 'app-company',
+        templateUrl: './company.component.html',
+        styleUrls: ['./company.component.css'],
+        providers: [AppConfig, IntegrationService, AuthenticationService]
+    }),
+    __metadata("design:paramtypes", [IntegrationService,
+        FormBuilder,
+        GlobalErrorHandlerService,
+        AppConfig,
+        ElementRef,
+        AuthenticationService,
+        Router])
+], CompanyComponent);
 export { CompanyComponent };
 //# sourceMappingURL=company.component.js.map

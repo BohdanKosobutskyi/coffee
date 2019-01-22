@@ -1,1 +1,11 @@
 <header-admin></header-admin>
+
+<div style="width: 70%;">
+  <canvas baseChart
+          [chartType]="'horizontalBar'"
+          [datasets]="chartData"
+          [labels]="chartLabels"
+          [options]="chartOptions"
+          [legend]="true">
+  </canvas>
+</div>

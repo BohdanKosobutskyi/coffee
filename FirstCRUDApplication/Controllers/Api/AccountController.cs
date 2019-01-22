@@ -23,18 +23,17 @@ namespace Coffee.Controllers.Api
         private IUserRepository _userRepository;
         private ISellerRepository _sellerRepository;
         private IIdentityService _identityService;
-        
-        private readonly Func<Application, ISecurityService> _serviceSecurityAccessor;
+        private ISecurityService _securityService;
 
         public AccountController(IUserRepository userRepository, 
             ISellerRepository sellerRepository,
             IIdentityService identityService,
-            Func<Application, ISecurityService> serviceSecurityAccessor)
+            ISecurityService securityService)
         {
             _userRepository = userRepository;
             _sellerRepository = sellerRepository;
             _identityService = identityService;
-            _serviceSecurityAccessor = serviceSecurityAccessor;
+            _securityService = securityService;
         }
 
         [HttpGet("/api/mobile/token/{refresh_token}/refresh")]
@@ -54,7 +53,7 @@ namespace Coffee.Controllers.Api
 
             var response = new
             {
-                access_token = _serviceSecurityAccessor(Application.Mobile).GenerateToken(user),
+                access_token = _securityService.GenerateToken(user),
                 refresh_token = user.RefreshToken
             };
             
@@ -84,7 +83,7 @@ namespace Coffee.Controllers.Api
 
             var response = new TokenModelResponse
             {
-                access_token = _serviceSecurityAccessor(Application.Web).GenerateToken(seller),
+                access_token = _securityService.GenerateToken(seller),
                 refresh_token = seller.RefreshToken,
                 expire_time = DateTime.UtcNow.AddMinutes(AuthOptions.LIFETIME)
             };
@@ -116,7 +115,7 @@ namespace Coffee.Controllers.Api
 
             var response = new TokenModelResponse
             {
-                access_token = _serviceSecurityAccessor(Application.Mobile).GenerateToken(user),
+                access_token = _securityService.GenerateToken(user),
                 refresh_token = user.RefreshToken,
                 expire_time = DateTime.UtcNow.AddMinutes(AuthOptions.LIFETIME)
             };

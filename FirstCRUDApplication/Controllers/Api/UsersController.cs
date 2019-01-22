@@ -27,10 +27,10 @@ namespace Coffee.Controllers.Api
             _sellerRepository = sellerRepository;
         }
 
-        [HttpGet("api/web/users/all")]
+        [HttpGet("api/web/users/company")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<UserViewModel>))]
         [Authorize(AuthenticationSchemes = "Bearer")]
-        public async Task Users()
+        public async Task UsersByCompany()
         {
             var sellerId = _claimSelector.GetId(HttpContext);
 
@@ -56,6 +56,23 @@ namespace Coffee.Controllers.Api
             await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
         }
 
+        [HttpGet("api/web/users/all")]
+        [ProducesResponseType(200,Type = typeof(IEnumerable<UserViewModel>))]
+        public async Task Users()
+        {
+            var response = _userRepository.Get().Select(x => new UserViewModel
+            {
+                user_id = x.Id,
+                password = x.Password,
+                phone = x.Phone,
+                register_date = x.AddedDate,
+                is_confirmed = x.IsConfirm
+            });
+
+            Response.ContentType = "application/json";
+            await Response.WriteAsync(JsonConvert.SerializeObject(response,new JsonSerializerSettings { Formatting = Formatting.Indented }));
+        }
+
         [HttpPost("/api/web/user/delete")]
         public async Task Delete([FromBody] UserDeleteView user)
         {
@@ -71,6 +88,26 @@ namespace Coffee.Controllers.Api
             }
 
             _userRepository.Remove(userDb);
+
+            Response.StatusCode = 200;
+            return;
+        }
+
+        [HttpPost("/api/web/user/delete/company")]
+        public async Task DeleteFromCompany([FromBody] UserDeleteView user)
+        {
+            var userId = user.user_id;
+
+            var userDb = _userRepository.Get(item => item.Id == userId).FirstOrDefault();
+
+            if (userDb == null)
+            {
+                Response.StatusCode = 400;
+                await Response.WriteAsync("Company with this parameters not exist.");
+                return;
+            }
+
+            _userRepository.DeleteUserFromCompany(userId);
 
             Response.StatusCode = 200;
             return;

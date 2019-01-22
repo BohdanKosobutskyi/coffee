@@ -20,6 +20,6 @@ namespace Coffee.DbEntities
 
         public string Phone { get; set; }
 
-        public IEnumerable<UserCompany> UserCompany { get; set; }
+        public IEnumerable<UserCompany> UserCompanies { get; set; }
     }
 }

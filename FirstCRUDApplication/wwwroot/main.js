@@ -60,6 +60,8 @@ var map = {
 	"./dv.js": "./node_modules/moment/locale/dv.js",
 	"./el": "./node_modules/moment/locale/el.js",
 	"./el.js": "./node_modules/moment/locale/el.js",
+	"./en-SG": "./node_modules/moment/locale/en-SG.js",
+	"./en-SG.js": "./node_modules/moment/locale/en-SG.js",
 	"./en-au": "./node_modules/moment/locale/en-au.js",
 	"./en-au.js": "./node_modules/moment/locale/en-au.js",
 	"./en-ca": "./node_modules/moment/locale/en-ca.js",
@@ -98,6 +100,8 @@ var map = {
 	"./fr.js": "./node_modules/moment/locale/fr.js",
 	"./fy": "./node_modules/moment/locale/fy.js",
 	"./fy.js": "./node_modules/moment/locale/fy.js",
+	"./ga": "./node_modules/moment/locale/ga.js",
+	"./ga.js": "./node_modules/moment/locale/ga.js",
 	"./gd": "./node_modules/moment/locale/gd.js",
 	"./gd.js": "./node_modules/moment/locale/gd.js",
 	"./gl": "./node_modules/moment/locale/gl.js",
@@ -121,6 +125,8 @@ var map = {
 	"./is": "./node_modules/moment/locale/is.js",
 	"./is.js": "./node_modules/moment/locale/is.js",
 	"./it": "./node_modules/moment/locale/it.js",
+	"./it-ch": "./node_modules/moment/locale/it-ch.js",
+	"./it-ch.js": "./node_modules/moment/locale/it-ch.js",
 	"./it.js": "./node_modules/moment/locale/it.js",
 	"./ja": "./node_modules/moment/locale/ja.js",
 	"./ja.js": "./node_modules/moment/locale/ja.js",
@@ -136,6 +142,8 @@ var map = {
 	"./kn.js": "./node_modules/moment/locale/kn.js",
 	"./ko": "./node_modules/moment/locale/ko.js",
 	"./ko.js": "./node_modules/moment/locale/ko.js",
+	"./ku": "./node_modules/moment/locale/ku.js",
+	"./ku.js": "./node_modules/moment/locale/ku.js",
 	"./ky": "./node_modules/moment/locale/ky.js",
 	"./ky.js": "./node_modules/moment/locale/ky.js",
 	"./lb": "./node_modules/moment/locale/lb.js",
@@ -309,7 +317,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header-admin></header-admin>\r\n"
+module.exports = "<header-admin></header-admin>\r\n\r\n<div style=\"width: 70%;\">\r\n  <canvas baseChart\r\n          [chartType]=\"'horizontalBar'\"\r\n          [datasets]=\"chartData\"\r\n          [labels]=\"chartLabels\"\r\n          [options]=\"chartOptions\"\r\n          [legend]=\"true\">\r\n  </canvas>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -333,6 +341,14 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var HomeAdminComponent = /** @class */ (function () {
     function HomeAdminComponent() {
+        this.chartOptions = {
+            responsive: true
+        };
+        this.chartData = [
+            { data: [330, 600, 260, 700], label: 'New users' },
+            { data: [120, 455, 100, 340], label: 'New posts' }
+        ];
+        this.chartLabels = ['January', 'February', 'Mars', 'April'];
     }
     HomeAdminComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -341,6 +357,88 @@ var HomeAdminComponent = /** @class */ (function () {
         })
     ], HomeAdminComponent);
     return HomeAdminComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/admin/user/user-list.admin.component.html":
+/*!***********************************************************!*\
+  !*** ./src/app/admin/user/user-list.admin.component.html ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<header-admin></header-admin>\r\n\r\n<table mdbTable hover=\"true\">\r\n  <thead>\r\n    <tr>\r\n      <th *ngFor=\"let head of headElements\" scope=\"col\">{{head}} </th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr mdbTableCol *ngFor=\"let el of users\">\r\n      <th scope=\"row\">{{el.user_id}}</th>\r\n      <td>{{el.phone}}</td>\r\n      <td>{{el.password}}</td>\r\n      <td>{{el.register_date}}</td>\r\n      <td><mdb-checkbox [checked]=\"el.is_confirmed\" [disabled]=\"true\"></mdb-checkbox></td>\r\n      <td>\r\n        <button (click)=\"deleteUser(el.user_id)\" mdbBtn type=\"button\" class=\"action-button\" size=\"sm\" color=\"danger\" mdbWavesEffect>Delete</button>\r\n        <button mdbBtn type=\"button\" size=\"sm\" color=\"warning\" mdbWavesEffect>Block</button>\r\n      </td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n"
+
+/***/ }),
+
+/***/ "./src/app/admin/user/user-list.admin.component.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/admin/user/user-list.admin.component.ts ***!
+  \*********************************************************/
+/*! exports provided: UserListAdminComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserListAdminComponent", function() { return UserListAdminComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _configuration_config_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../configuration/config.component */ "./src/app/configuration/config.component.ts");
+/* harmony import */ var _services_integration_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/integration-service */ "./src/app/services/integration-service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var UserListAdminComponent = /** @class */ (function () {
+    function UserListAdminComponent(integrationService, errorHandler, config) {
+        var _this = this;
+        this.integrationService = integrationService;
+        this.errorHandler = errorHandler;
+        this.config = config;
+        this.users = [];
+        this.headElements = ['ID', 'Phone', 'Password', 'Register Date', 'Is Confirm', 'Actions'];
+        this.config.getConfigs().subscribe(function (data) {
+            _this.userGetAdminUrl = data['userListAdmin'];
+            _this.userDeleteFomCompanyUrl = data['userDeleteFromCompany'];
+            _this.integrationService.getAll(_this.userGetAdminUrl).subscribe(function (data) { _this.users = data; }, function (err) {
+                _this.errorHandler.handleError(err);
+            });
+        });
+    }
+    UserListAdminComponent.prototype.deleteUser = function (user_id) {
+        var _this = this;
+        var postBody = {
+            user_id: user_id
+        };
+        this.integrationService.sendData(postBody, this.userDeleteFomCompanyUrl).subscribe(function (result) {
+            _this.integrationService.getAll(_this.userGetAdminUrl).subscribe(function (data) { _this.users = data; }, function (err) {
+                _this.errorHandler.handleError(err);
+            });
+        }, function (err) {
+            _this.errorHandler.handleError(err);
+        });
+    };
+    UserListAdminComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'user-list-admin',
+            template: __webpack_require__(/*! ./user-list.admin.component.html */ "./src/app/admin/user/user-list.admin.component.html"),
+            providers: [_configuration_config_component__WEBPACK_IMPORTED_MODULE_2__["AppConfig"], _services_integration_service__WEBPACK_IMPORTED_MODULE_3__["IntegrationService"]]
+        }),
+        __metadata("design:paramtypes", [_services_integration_service__WEBPACK_IMPORTED_MODULE_3__["IntegrationService"], _global_error_handler_service__WEBPACK_IMPORTED_MODULE_1__["GlobalErrorHandlerService"], _configuration_config_component__WEBPACK_IMPORTED_MODULE_2__["AppConfig"]])
+    ], UserListAdminComponent);
+    return UserListAdminComponent;
 }());
 
 
@@ -432,15 +530,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _company_company_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./company/company.component */ "./src/app/company/company.component.ts");
 /* harmony import */ var _global_error_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./global-error.component */ "./src/app/global-error.component.ts");
 /* harmony import */ var _user_user_list_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./user/user-list.component */ "./src/app/user/user-list.component.ts");
-/* harmony import */ var _company_company_list_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./company/company-list.component */ "./src/app/company/company-list.component.ts");
-/* harmony import */ var _admin_home_home_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./admin/home/home.component */ "./src/app/admin/home/home.component.ts");
-/* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./header/header.component */ "./src/app/header/header.component.ts");
-/* harmony import */ var _header_header_admin_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./header/header.admin.component */ "./src/app/header/header.admin.component.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! angular-bootstrap-md */ "./node_modules/angular-bootstrap-md/esm5/angular-bootstrap-md.es5.js");
-/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _helpers_jwt_interceptor__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./helpers/jwt.interceptor */ "./src/app/helpers/jwt.interceptor.ts");
+/* harmony import */ var _admin_user_user_list_admin_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./admin/user/user-list.admin.component */ "./src/app/admin/user/user-list.admin.component.ts");
+/* harmony import */ var _company_company_list_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./company/company-list.component */ "./src/app/company/company-list.component.ts");
+/* harmony import */ var _admin_home_home_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./admin/home/home.component */ "./src/app/admin/home/home.component.ts");
+/* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./header/header.component */ "./src/app/header/header.component.ts");
+/* harmony import */ var _header_header_admin_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./header/header.admin.component */ "./src/app/header/header.admin.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! angular-bootstrap-md */ "./node_modules/angular-bootstrap-md/esm5/angular-bootstrap-md.es5.js");
+/* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./global-error-handler.service */ "./src/app/global-error-handler.service.ts");
+/* harmony import */ var _configuration_config_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./configuration/config.component */ "./src/app/configuration/config.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _helpers_jwt_interceptor__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./helpers/jwt.interceptor */ "./src/app/helpers/jwt.interceptor.ts");
+/* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ng2-charts */ "./node_modules/ng2-charts/index.js");
+/* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(ng2_charts__WEBPACK_IMPORTED_MODULE_21__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -461,7 +563,10 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 // MDB Angular Free
+
+
 
 
 
@@ -473,35 +578,37 @@ var appRoutes = [
     { path: 'home', component: _company_company_component__WEBPACK_IMPORTED_MODULE_7__["CompanyComponent"] },
     { path: 'error', component: _global_error_component__WEBPACK_IMPORTED_MODULE_8__["GlobalErrorComponent"] },
     { path: 'superadmin/emulator/users', component: _user_user_list_component__WEBPACK_IMPORTED_MODULE_9__["UserListComponent"] },
-    { path: 'superadmin/emulator/companies', component: _company_company_list_component__WEBPACK_IMPORTED_MODULE_10__["CompanyListComponent"] },
-    { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_17__["LoginComponent"] },
-    { path: 'admin/home', component: _admin_home_home_component__WEBPACK_IMPORTED_MODULE_11__["HomeAdminComponent"] }
+    { path: 'superadmin/emulator/companies', component: _company_company_list_component__WEBPACK_IMPORTED_MODULE_11__["CompanyListComponent"] },
+    { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_19__["LoginComponent"] },
+    { path: 'admin/home', component: _admin_home_home_component__WEBPACK_IMPORTED_MODULE_12__["HomeAdminComponent"] },
+    { path: 'admin/users', component: _admin_user_user_list_admin_component__WEBPACK_IMPORTED_MODULE_10__["UserListAdminComponent"] }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_header_header_admin_component__WEBPACK_IMPORTED_MODULE_13__["HeaderAdminComponent"], _header_header_component__WEBPACK_IMPORTED_MODULE_12__["HeaderComponent"], _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_17__["LoginComponent"], _home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"], _admin_home_home_component__WEBPACK_IMPORTED_MODULE_11__["HomeAdminComponent"], _company_company_component__WEBPACK_IMPORTED_MODULE_7__["CompanyComponent"], _global_error_component__WEBPACK_IMPORTED_MODULE_8__["GlobalErrorComponent"], _user_user_list_component__WEBPACK_IMPORTED_MODULE_9__["UserListComponent"], _company_company_list_component__WEBPACK_IMPORTED_MODULE_10__["CompanyListComponent"]],
+            declarations: [_admin_user_user_list_admin_component__WEBPACK_IMPORTED_MODULE_10__["UserListAdminComponent"], _header_header_admin_component__WEBPACK_IMPORTED_MODULE_14__["HeaderAdminComponent"], _header_header_component__WEBPACK_IMPORTED_MODULE_13__["HeaderComponent"], _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_19__["LoginComponent"], _home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"], _admin_home_home_component__WEBPACK_IMPORTED_MODULE_12__["HomeAdminComponent"], _company_company_component__WEBPACK_IMPORTED_MODULE_7__["CompanyComponent"], _global_error_component__WEBPACK_IMPORTED_MODULE_8__["GlobalErrorComponent"], _user_user_list_component__WEBPACK_IMPORTED_MODULE_9__["UserListComponent"], _company_company_list_component__WEBPACK_IMPORTED_MODULE_11__["CompanyListComponent"]],
             imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+                ng2_charts__WEBPACK_IMPORTED_MODULE_21__["ChartsModule"],
                 _angular_http__WEBPACK_IMPORTED_MODULE_2__["HttpModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forRoot(appRoutes),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_14__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_15__["FormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_14__["ReactiveFormsModule"],
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_15__["CheckboxModule"],
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_15__["IconsModule"],
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_15__["MDBBootstrapModule"].forRoot(),
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_15__["ButtonsModule"],
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_15__["ChartsModule"],
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_15__["InputsModule"].forRoot(),
-                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_15__["WavesModule"].forRoot()],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_15__["ReactiveFormsModule"],
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_16__["CheckboxModule"],
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_16__["IconsModule"],
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_16__["MDBBootstrapModule"].forRoot(),
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_16__["ButtonsModule"],
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_16__["InputsModule"].forRoot(),
+                angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_16__["WavesModule"].forRoot()],
             providers: [
-                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_16__["GlobalErrorHandlerService"],
-                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_16__["GlobalErrorHandlerService"] },
+                _configuration_config_component__WEBPACK_IMPORTED_MODULE_18__["AppConfig"],
+                _global_error_handler_service__WEBPACK_IMPORTED_MODULE_17__["GlobalErrorHandlerService"],
+                { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ErrorHandler"], useClass: _global_error_handler_service__WEBPACK_IMPORTED_MODULE_17__["GlobalErrorHandlerService"] },
                 {
                     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HTTP_INTERCEPTORS"],
-                    useClass: _helpers_jwt_interceptor__WEBPACK_IMPORTED_MODULE_18__["JwtInterceptor"],
+                    useClass: _helpers_jwt_interceptor__WEBPACK_IMPORTED_MODULE_20__["JwtInterceptor"],
                     multi: true
                 },
             ],
@@ -921,7 +1028,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"mb-1 navbar navbar-expand-lg navbar-dark info-color\">\r\n  <a class=\"navbar-brand\" href=\"#\">Loyality system</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent-4\"\r\n          aria-controls=\"navbarSupportedContent-4\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"basicExampleNav\">\r\n\r\n    <!-- Links -->\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"#\">\r\n          Home\r\n          <span class=\"sr-only\">(current)</span>\r\n        </a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" href=\"#\">Users</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" href=\"#\">Posts</a>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent-4\">\r\n    <ul class=\"navbar-nav ml-auto\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"#\">\r\n          <mdb-icon icon=\"facebook\"></mdb-icon> Facebook\r\n          <span class=\"sr-only\">(current)</span>\r\n        </a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" href=\"#\">\r\n          <mdb-icon icon=\"instagram\"></mdb-icon> Instagram\r\n        </a>\r\n      </li>\r\n      <li *ngIf=\"!isLogin()\" class=\"nav-item\">\r\n        <button mdbBtn type=\"button\" color=\"info\" size=\"sm\" data-toggle=\"modal\" data-target=\"#basicExample\" (click)=\"frame.show()\" mdbWavesEffect>\r\n          Log In\r\n          <mdb-icon icon=\"sign-in\"></mdb-icon>\r\n        </button>\r\n      </li>\r\n      <li *ngIf=\"isLogin()\" class=\"nav-item\">\r\n        <button mdbBtn type=\"button\" color=\"info\" size=\"sm\" (click)=\"logout()\">\r\n          Log Out\r\n          <mdb-icon icon=\"sign-in\"></mdb-icon>\r\n        </button>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</nav>\r\n\r\n<form [formGroup]=\"cardFormLogin\">\r\n  <div mdbModal #frame=\"mdbModal\" class=\"modal fade left\" id=\"frameModalTop\" tabindex=\"-1\" role=\"dialog\"\r\n       aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header text-center\">\r\n          <h4 class=\"modal-title w-100 font-weight-bold\">Sign in</h4>\r\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"frame.hide()\">\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body mx-3\">\r\n          <div class=\"md-form mb-5\">\r\n            <i class=\"fa fa-envelope prefix grey-text\"></i>\r\n            <input [(ngModel)]=\"loginData.email\" type=\"email\" id=\"materialFormCardEmailLoginEx\" formControlName=\"materialFormCardEmailLoginEx\" class=\"form-control validate\"\r\n                   mdbInputDirective>\r\n            <label data-error=\"wrong\" data-success=\"right\" for=\"materialFormCardEmailLoginEx\">Your email</label>\r\n          </div>\r\n\r\n          <div class=\"md-form mb-4\">\r\n            <i class=\"fa fa-lock prefix grey-text\"></i>\r\n            <input [(ngModel)]=\"loginData.password\" type=\"password\" id=\"materialFormCardPasswordLoginEx\" formControlName=\"materialFormCardPasswordLoginEx\" class=\"form-control validate\"\r\n                   mdbInputDirective>\r\n            <label data-error=\"wrong\" data-success=\"right\" for=\"materialFormCardPasswordLoginEx\">Your password</label>\r\n          </div>\r\n\r\n        </div>\r\n        <div class=\"modal-footer d-flex justify-content-center\">\r\n          <button (click)=\"login()\" mdbBtn color=\"default\" class=\"waves-light\" mdbWavesEffect>Login</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</form>\r\n"
+module.exports = "<nav class=\"mb-1 navbar navbar-expand-lg navbar-dark info-color\">\r\n  <a class=\"navbar-brand\" href=\"#\">Admin page     </a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent-4\"\r\n          aria-controls=\"navbarSupportedContent-4\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"basicExampleNav\">\r\n\r\n    <!-- Links -->\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" (click)=\"goToHome()\">Home\r\n        </a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" (click)=\"goToUsers()\">Users\r\n        </a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" (click)=\"goToPosts()\">Posts\r\n        </a>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent-4\">\r\n    <ul class=\"navbar-nav ml-auto\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"#\">\r\n          <mdb-icon icon=\"facebook\"></mdb-icon> Facebook\r\n          <span class=\"sr-only\">(current)</span>\r\n        </a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" href=\"#\">\r\n          <mdb-icon icon=\"instagram\"></mdb-icon> Instagram\r\n        </a>\r\n      </li>\r\n      <li *ngIf=\"!isLogin()\" class=\"nav-item\">\r\n        <button mdbBtn type=\"button\" color=\"info\" size=\"sm\" data-toggle=\"modal\" data-target=\"#basicExample\" (click)=\"frame.show()\" mdbWavesEffect>\r\n          Log In\r\n          <mdb-icon icon=\"sign-in\"></mdb-icon>\r\n        </button>\r\n      </li>\r\n      <li *ngIf=\"isLogin()\" class=\"nav-item\">\r\n        <button mdbBtn type=\"button\" color=\"info\" size=\"sm\" (click)=\"logout()\">\r\n          Log Out\r\n          <mdb-icon icon=\"sign-in\"></mdb-icon>\r\n        </button>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</nav>\r\n\r\n<form [formGroup]=\"cardFormLogin\">\r\n  <div mdbModal #frame=\"mdbModal\" class=\"modal fade left\" id=\"frameModalTop\" tabindex=\"-1\" role=\"dialog\"\r\n       aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header text-center\">\r\n          <h4 class=\"modal-title w-100 font-weight-bold\">Sign in</h4>\r\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"frame.hide()\">\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body mx-3\">\r\n          <div class=\"md-form mb-5\">\r\n            <i class=\"fa fa-envelope prefix grey-text\"></i>\r\n            <input [(ngModel)]=\"loginData.email\" type=\"email\" id=\"materialFormCardEmailLoginEx\" formControlName=\"materialFormCardEmailLoginEx\" class=\"form-control validate\"\r\n                   mdbInputDirective>\r\n            <label data-error=\"wrong\" data-success=\"right\" for=\"materialFormCardEmailLoginEx\">Your email</label>\r\n          </div>\r\n\r\n          <div class=\"md-form mb-4\">\r\n            <i class=\"fa fa-lock prefix grey-text\"></i>\r\n            <input [(ngModel)]=\"loginData.password\" type=\"password\" id=\"materialFormCardPasswordLoginEx\" formControlName=\"materialFormCardPasswordLoginEx\" class=\"form-control validate\"\r\n                   mdbInputDirective>\r\n            <label data-error=\"wrong\" data-success=\"right\" for=\"materialFormCardPasswordLoginEx\">Your password</label>\r\n          </div>\r\n\r\n        </div>\r\n        <div class=\"modal-footer d-flex justify-content-center\">\r\n          <button (click)=\"login()\" mdbBtn color=\"default\" class=\"waves-light\" mdbWavesEffect>Login</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</form>\r\n"
 
 /***/ }),
 
@@ -940,6 +1047,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../global-error-handler.service */ "./src/app/global-error-handler.service.ts");
 /* harmony import */ var _services_integration_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../services/integration-service */ "./src/app/services/integration-service.ts");
 /* harmony import */ var _services_authentication_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/authentication-service */ "./src/app/services/authentication-service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -954,13 +1062,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var HeaderAdminComponent = /** @class */ (function () {
-    function HeaderAdminComponent(integrationService, fb, errorHandler, elem, authenticationService) {
+    function HeaderAdminComponent(integrationService, fb, errorHandler, elem, authenticationService, router) {
         this.integrationService = integrationService;
         this.fb = fb;
         this.errorHandler = errorHandler;
         this.elem = elem;
         this.authenticationService = authenticationService;
+        this.router = router;
         this.loginFormModalEmail = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].email);
         this.loginFormModalPassword = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required);
         this.loginData = { email: '', password: '' };
@@ -978,6 +1088,15 @@ var HeaderAdminComponent = /** @class */ (function () {
     HeaderAdminComponent.prototype.isLogin = function () {
         return this.authenticationService.isLogin();
     };
+    HeaderAdminComponent.prototype.goToUsers = function () {
+        this.router.navigate(['/admin/users']);
+    };
+    HeaderAdminComponent.prototype.goToPosts = function () {
+        this.router.navigate(['/admin/posts']);
+    };
+    HeaderAdminComponent.prototype.goToHome = function () {
+        this.router.navigate(['/admin/home']);
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
@@ -993,7 +1112,8 @@ var HeaderAdminComponent = /** @class */ (function () {
             _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"],
             _global_error_handler_service__WEBPACK_IMPORTED_MODULE_2__["GlobalErrorHandlerService"],
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"],
-            _services_authentication_service__WEBPACK_IMPORTED_MODULE_4__["AuthenticationService"]])
+            _services_authentication_service__WEBPACK_IMPORTED_MODULE_4__["AuthenticationService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
     ], HeaderAdminComponent);
     return HeaderAdminComponent;
 }());
@@ -1020,7 +1140,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"mb-1 navbar navbar-expand-lg navbar-dark info-color\">\r\n  <a class=\"navbar-brand\" href=\"#\">Loyality system</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent-4\"\r\n          aria-controls=\"navbarSupportedContent-4\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent-4\">\r\n    <ul class=\"navbar-nav ml-auto\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"#\">\r\n          <mdb-icon icon=\"facebook\"></mdb-icon> Facebook\r\n          <span class=\"sr-only\">(current)</span>\r\n        </a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" href=\"#\">\r\n          <mdb-icon icon=\"instagram\"></mdb-icon> Instagram\r\n        </a>\r\n      </li>\r\n      <li *ngIf=\"!isLogin()\" class=\"nav-item\">\r\n        <button mdbBtn type=\"button\" color=\"info\" size=\"sm\" data-toggle=\"modal\" data-target=\"#basicExample\" (click)=\"frame.show()\" mdbWavesEffect>\r\n          Log In\r\n          <mdb-icon icon=\"sign-in\"></mdb-icon>\r\n        </button>\r\n      </li>\r\n      <li *ngIf=\"isLogin()\" class=\"nav-item\">\r\n        <button mdbBtn type=\"button\" color=\"info\" size=\"sm\" (click)=\"logout()\">\r\n          Log Out\r\n          <mdb-icon icon=\"sign-in\"></mdb-icon>\r\n        </button>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</nav>\r\n\r\n<form [formGroup]=\"cardFormLogin\">\r\n  <div mdbModal #frame=\"mdbModal\" class=\"modal fade left\" id=\"frameModalTop\" tabindex=\"-1\" role=\"dialog\"\r\n       aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header text-center\">\r\n          <h4 class=\"modal-title w-100 font-weight-bold\">Sign in</h4>\r\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"frame.hide()\">\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body mx-3\">\r\n          <div class=\"md-form mb-5\">\r\n            <i class=\"fa fa-envelope prefix grey-text\"></i>\r\n            <input [(ngModel)]=\"loginData.email\" type=\"email\" id=\"materialFormCardEmailLoginEx\" formControlName=\"materialFormCardEmailLoginEx\" class=\"form-control validate\"\r\n                   mdbInputDirective>\r\n            <label data-error=\"wrong\" data-success=\"right\" for=\"materialFormCardEmailLoginEx\">Your email</label>\r\n          </div>\r\n\r\n          <div class=\"md-form mb-4\">\r\n            <i class=\"fa fa-lock prefix grey-text\"></i>\r\n            <input [(ngModel)]=\"loginData.password\" type=\"password\" id=\"materialFormCardPasswordLoginEx\" formControlName=\"materialFormCardPasswordLoginEx\" class=\"form-control validate\"\r\n                   mdbInputDirective>\r\n            <label data-error=\"wrong\" data-success=\"right\" for=\"materialFormCardPasswordLoginEx\">Your password</label>\r\n          </div>\r\n\r\n        </div>\r\n        <div class=\"modal-footer d-flex justify-content-center\">\r\n          <button (click)=\"login()\" mdbBtn color=\"default\" class=\"waves-light\" mdbWavesEffect>Login</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</form>\r\n"
+module.exports = "<nav class=\"mb-1 navbar navbar-expand-lg navbar-dark info-color\">\r\n  <a class=\"navbar-brand\" href=\"#\">Loyalty system</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent-4\"\r\n          aria-controls=\"navbarSupportedContent-4\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent-4\">\r\n    <ul class=\"navbar-nav ml-auto\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"#\">\r\n          <mdb-icon icon=\"facebook\"></mdb-icon> Facebook\r\n          <span class=\"sr-only\">(current)</span>\r\n        </a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" href=\"#\">\r\n          <mdb-icon icon=\"instagram\"></mdb-icon> Instagram\r\n        </a>\r\n      </li>\r\n      <li *ngIf=\"!isLogin()\" class=\"nav-item\">\r\n        <button mdbBtn type=\"button\" color=\"info\" size=\"sm\" data-toggle=\"modal\" data-target=\"#basicExample\" (click)=\"frame.show()\" mdbWavesEffect>\r\n          Log In\r\n          <mdb-icon icon=\"sign-in\"></mdb-icon>\r\n        </button>\r\n      </li>\r\n      <li *ngIf=\"isLogin()\" class=\"nav-item\">\r\n        <button mdbBtn type=\"button\" color=\"info\" size=\"sm\" (click)=\"logout()\">\r\n          Log Out\r\n          <mdb-icon icon=\"sign-in\"></mdb-icon>\r\n        </button>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</nav>\r\n\r\n<form [formGroup]=\"cardFormLogin\">\r\n  <div mdbModal #frame=\"mdbModal\" class=\"modal fade left\" id=\"frameModalTop\" tabindex=\"-1\" role=\"dialog\"\r\n       aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header text-center\">\r\n          <h4 class=\"modal-title w-100 font-weight-bold\">Sign in</h4>\r\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"frame.hide()\">\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body mx-3\">\r\n          <div class=\"md-form mb-5\">\r\n            <i class=\"fa fa-envelope prefix grey-text\"></i>\r\n            <input [(ngModel)]=\"loginData.email\" type=\"email\" id=\"materialFormCardEmailLoginEx\" formControlName=\"materialFormCardEmailLoginEx\" class=\"form-control validate\"\r\n                   mdbInputDirective>\r\n            <label data-error=\"wrong\" data-success=\"right\" for=\"materialFormCardEmailLoginEx\">Your email</label>\r\n          </div>\r\n\r\n          <div class=\"md-form mb-4\">\r\n            <i class=\"fa fa-lock prefix grey-text\"></i>\r\n            <input [(ngModel)]=\"loginData.password\" type=\"password\" id=\"materialFormCardPasswordLoginEx\" formControlName=\"materialFormCardPasswordLoginEx\" class=\"form-control validate\"\r\n                   mdbInputDirective>\r\n            <label data-error=\"wrong\" data-success=\"right\" for=\"materialFormCardPasswordLoginEx\">Your password</label>\r\n          </div>\r\n\r\n        </div>\r\n        <div class=\"modal-footer d-flex justify-content-center\">\r\n          <button (click)=\"login()\" mdbBtn color=\"default\" class=\"waves-light\" mdbWavesEffect>Login</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</form>\r\n"
 
 /***/ }),
 
@@ -1295,6 +1415,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _integration_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./integration-service */ "./src/app/services/integration-service.ts");
 /* harmony import */ var _global_error_handler_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../global-error-handler.service */ "./src/app/global-error-handler.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _configuration_config_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../configuration/config.component */ "./src/app/configuration/config.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1308,15 +1429,21 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var AuthenticationService = /** @class */ (function () {
-    function AuthenticationService(integrationService, errorHandler, router) {
+    function AuthenticationService(integrationService, errorHandler, router, config) {
+        var _this = this;
         this.integrationService = integrationService;
         this.errorHandler = errorHandler;
         this.router = router;
+        this.config = config;
+        this.config.getConfigs().subscribe(function (data) {
+            _this.webTokenUrl = data['webToken'];
+        });
     }
     AuthenticationService.prototype.login = function (companyData) {
         var _this = this;
-        this.integrationService.sendData(companyData, "http://localhost:58114/api/web/token").subscribe(function (result) {
+        this.integrationService.sendData(companyData, this.webTokenUrl).subscribe(function (result) {
             if (result) {
                 localStorage.setItem('currentUser', JSON.stringify(result.body));
                 _this.router.navigate(['/admin/home']);
@@ -1341,7 +1468,8 @@ var AuthenticationService = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_integration_service__WEBPACK_IMPORTED_MODULE_1__["IntegrationService"],
             _global_error_handler_service__WEBPACK_IMPORTED_MODULE_2__["GlobalErrorHandlerService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+            _configuration_config_component__WEBPACK_IMPORTED_MODULE_4__["AppConfig"]])
     ], AuthenticationService);
     return AuthenticationService;
 }());
@@ -1526,7 +1654,7 @@ platform.bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_1__["AppModule
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Projects\coffeecore\FirstCRUDApplication\CoffeeUI\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! J:\Projects\coffeecore\FirstCRUDApplication\CoffeeUI\src\main.ts */"./src/main.ts");
 
 
 /***/ })

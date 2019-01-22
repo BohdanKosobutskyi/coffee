@@ -15,7 +15,7 @@ namespace Coffee.DbEntities
 
         public bool IsConfirm { get; set; }
 
-        public IEnumerable<UserCompany> UserCompany { get; set; }
+        public List<UserCompany> UserCompanies { get; set; }
         
     }
 }

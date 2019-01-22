@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="CoffeeUI\src\app\admin\home\home.component.ts" />
+    <None Remove="CoffeeUI\src\app\admin\user\user-list.admin.component.ts" />
     <None Remove="CoffeeUI\src\app\company\company-list-view.ts" />
     <None Remove="CoffeeUI\src\app\company\company-list.component.ts" />
     <None Remove="CoffeeUI\src\app\company\company.component.ts" />
@@ -42,6 +43,7 @@
   <ItemGroup>
     <TypeScriptCompile Include=".gitignore" />
     <TypeScriptCompile Include="CoffeeUI\src\app\admin\home\home.component.ts" />
+    <TypeScriptCompile Include="CoffeeUI\src\app\admin\user\user-list.admin.component.ts" />
     <TypeScriptCompile Include="CoffeeUI\src\app\company\company-list-view.ts" />
     <TypeScriptCompile Include="CoffeeUI\src\app\company\company-list.component.ts" />
     <TypeScriptCompile Include="CoffeeUI\src\app\company\company.component.ts" />

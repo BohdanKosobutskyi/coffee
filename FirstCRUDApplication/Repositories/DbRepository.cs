@@ -16,18 +16,16 @@ namespace Coffee.Repositories
             _context = context;
         }
         
-        public IEnumerable<TEntity> Get()
+        public virtual IEnumerable<TEntity> Get()
         {
             return _context.Set<TEntity>().AsNoTracking().ToList();
         }
 
-        public IEnumerable<TEntity> Get(Func<TEntity, bool> predicate)
+        public virtual IEnumerable<TEntity> Get(Func<TEntity, bool> predicate)
         {
             return _context.Set<TEntity>().AsNoTracking().Where(predicate).ToList();
         }
-
-
-
+        
         public TEntity FindById(long id)
         {
             return _context.Set<TEntity>().Find(id);

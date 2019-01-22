@@ -7,5 +7,7 @@ namespace Coffee.Repositories.Interfaces
     public interface IUserRepository : IDbRepository<User>
     {
         IEnumerable<User> GetByCompany(long companyId);
+
+        void DeleteUserFromCompany(long userId);
     }
 }

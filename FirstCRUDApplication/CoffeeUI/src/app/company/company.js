@@ -1,4 +1,4 @@
-var Company = /** @class */ (function () {
+var Company = (function () {
     function Company() {
     }
     return Company;

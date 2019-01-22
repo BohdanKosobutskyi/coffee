@@ -9,18 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-var AppConfig = /** @class */ (function () {
+var AppConfig = (function () {
     function AppConfig(http) {
         this.http = http;
     }
     AppConfig.prototype.getConfigs = function () {
         return this.http.get('assets/appsettingsUI.json');
     };
-    AppConfig = __decorate([
-        Injectable(),
-        __metadata("design:paramtypes", [HttpClient])
-    ], AppConfig);
     return AppConfig;
 }());
+AppConfig = __decorate([
+    Injectable(),
+    __metadata("design:paramtypes", [HttpClient])
+], AppConfig);
 export { AppConfig };
 //# sourceMappingURL=config.component.js.map

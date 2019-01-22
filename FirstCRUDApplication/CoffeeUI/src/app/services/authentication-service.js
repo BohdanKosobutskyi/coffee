@@ -11,15 +11,21 @@ import { Injectable } from '@angular/core';
 import { IntegrationService } from './integration-service';
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { Router } from '@angular/router';
-var AuthenticationService = /** @class */ (function () {
-    function AuthenticationService(integrationService, errorHandler, router) {
+import { AppConfig } from './../configuration/config.component';
+var AuthenticationService = (function () {
+    function AuthenticationService(integrationService, errorHandler, router, config) {
+        var _this = this;
         this.integrationService = integrationService;
         this.errorHandler = errorHandler;
         this.router = router;
+        this.config = config;
+        this.config.getConfigs().subscribe(function (data) {
+            _this.webTokenUrl = data['webToken'];
+        });
     }
     AuthenticationService.prototype.login = function (companyData) {
         var _this = this;
-        this.integrationService.sendData(companyData, "http://localhost:58114/api/web/token").subscribe(function (result) {
+        this.integrationService.sendData(companyData, this.webTokenUrl).subscribe(function (result) {
             if (result) {
                 localStorage.setItem('currentUser', JSON.stringify(result.body));
                 _this.router.navigate(['/admin/home']);
@@ -40,13 +46,14 @@ var AuthenticationService = /** @class */ (function () {
             return false;
         }
     };
-    AuthenticationService = __decorate([
-        Injectable(),
-        __metadata("design:paramtypes", [IntegrationService,
-            GlobalErrorHandlerService,
-            Router])
-    ], AuthenticationService);
     return AuthenticationService;
 }());
+AuthenticationService = __decorate([
+    Injectable(),
+    __metadata("design:paramtypes", [IntegrationService,
+        GlobalErrorHandlerService,
+        Router,
+        AppConfig])
+], AuthenticationService);
 export { AuthenticationService };
 //# sourceMappingURL=authentication-service.js.map

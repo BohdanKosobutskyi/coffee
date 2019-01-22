@@ -12,7 +12,7 @@ import { IntegrationService } from './../services/integration-service';
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { AppConfig } from './../configuration/config.component';
 import { Router } from "@angular/router";
-var CompanyListComponent = /** @class */ (function () {
+var CompanyListComponent = (function () {
     function CompanyListComponent(router, integrationService, errorHandler, config) {
         var _this = this;
         this.router = router;
@@ -59,16 +59,16 @@ var CompanyListComponent = /** @class */ (function () {
             _this.errorHandler.handleError(err);
         });
     };
-    CompanyListComponent = __decorate([
-        Component({
-            selector: 'company-list',
-            templateUrl: './company-list.component.html',
-            styleUrls: ['./company-list.component.css'],
-            providers: [IntegrationService, AppConfig]
-        }),
-        __metadata("design:paramtypes", [Router, IntegrationService, GlobalErrorHandlerService, AppConfig])
-    ], CompanyListComponent);
     return CompanyListComponent;
 }());
+CompanyListComponent = __decorate([
+    Component({
+        selector: 'company-list',
+        templateUrl: './company-list.component.html',
+        styleUrls: ['./company-list.component.css'],
+        providers: [IntegrationService, AppConfig]
+    }),
+    __metadata("design:paramtypes", [Router, IntegrationService, GlobalErrorHandlerService, AppConfig])
+], CompanyListComponent);
 export { CompanyListComponent };
 //# sourceMappingURL=company-list.component.js.map

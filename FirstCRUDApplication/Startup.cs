@@ -99,20 +99,7 @@ namespace FirstCRUDApplication
             
             services.AddTransient<IClaimSelector, ClaimSelector>();
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<MobileSecurityService>();
-            services.AddTransient<WebSecurityService>();
-            services.AddTransient<Func<Application, ISecurityService>>(serviceProvider => key =>
-            {
-                switch (key)
-                {
-                    case Application.Mobile:
-                        return serviceProvider.GetService<MobileSecurityService>();
-                    case Application.Web:
-                        return serviceProvider.GetService<WebSecurityService>();
-                    default:
-                        throw new KeyNotFoundException();
-                }
-            });
+            services.AddTransient<ISecurityService, SecurityService>();
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<IImageHandler, ImageHandler>();
             services.AddTransient<IImageWriter, ImageWriter>();

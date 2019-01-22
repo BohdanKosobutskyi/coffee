@@ -1,5 +1,5 @@
 import { browser, by, element } from 'protractor';
-var AppPage = /** @class */ (function () {
+var AppPage = (function () {
     function AppPage() {
     }
     AppPage.prototype.navigateTo = function () {

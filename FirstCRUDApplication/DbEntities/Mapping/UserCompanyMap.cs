@@ -14,12 +14,12 @@ namespace Coffee.DbEntities.Mapping
 
             entityBuilder
                 .HasOne(sc => sc.User)
-                .WithMany(s => s.UserCompany)
+                .WithMany(s => s.UserCompanies)
                 .HasForeignKey(sc => sc.UserId);
 
             entityBuilder
                     .HasOne(sc => sc.Company)
-                    .WithMany(c => c.UserCompany)
+                    .WithMany(c => c.UserCompanies)
                     .HasForeignKey(sc => sc.CompanyId);
         }
         

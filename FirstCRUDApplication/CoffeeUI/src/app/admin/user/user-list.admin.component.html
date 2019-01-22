@@ -1,0 +1,22 @@
+<header-admin></header-admin>
+
+<table mdbTable hover="true">
+  <thead>
+    <tr>
+      <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let el of users">
+      <th scope="row">{{el.user_id}}</th>
+      <td>{{el.phone}}</td>
+      <td>{{el.password}}</td>
+      <td>{{el.register_date}}</td>
+      <td><mdb-checkbox [checked]="el.is_confirmed" [disabled]="true"></mdb-checkbox></td>
+      <td>
+        <button (click)="deleteUser(el.user_id)" mdbBtn type="button" class="action-button" size="sm" color="danger" mdbWavesEffect>Delete</button>
+        <button mdbBtn type="button" size="sm" color="warning" mdbWavesEffect>Block</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

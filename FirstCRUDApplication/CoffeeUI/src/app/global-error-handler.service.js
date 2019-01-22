@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Injectable, Injector } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-var GlobalErrorHandlerService = /** @class */ (function () {
+var GlobalErrorHandlerService = (function () {
     function GlobalErrorHandlerService(injector) {
         this.injector = injector;
     }
@@ -34,11 +34,11 @@ var GlobalErrorHandlerService = /** @class */ (function () {
             }
         });
     };
-    GlobalErrorHandlerService = __decorate([
-        Injectable(),
-        __metadata("design:paramtypes", [Injector])
-    ], GlobalErrorHandlerService);
     return GlobalErrorHandlerService;
 }());
+GlobalErrorHandlerService = __decorate([
+    Injectable(),
+    __metadata("design:paramtypes", [Injector])
+], GlobalErrorHandlerService);
 export { GlobalErrorHandlerService };
 //# sourceMappingURL=global-error-handler.service.js.map
