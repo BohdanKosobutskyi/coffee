@@ -9,5 +9,6 @@ namespace Coffee.Services.Interfaces
     public interface IAuthService
     {
         TokenModelResponse RefreshToken(string RefreshToken);
+        TokenModelResponse TokenWeb(string email,string password);
     }
 }

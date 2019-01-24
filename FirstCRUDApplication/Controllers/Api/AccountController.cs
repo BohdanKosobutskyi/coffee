@@ -45,6 +45,7 @@ namespace Coffee.Controllers.Api
             var response = _authService.RefreshToken(refresh_token);
 
             Response.ContentType = "application/json";
+
             await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
         }
 
@@ -52,28 +53,10 @@ namespace Coffee.Controllers.Api
         [ProducesResponseType(200, Type = typeof(TokenModelResponse))]
         public async Task TokenWeb([FromBody] LoginWebModel model)
         {
-            var email = model.email;
-            var password = model.password;
-
-            var seller = _sellerRepository.Get(x => x.Email == email && x.Password == password).FirstOrDefault();
-
-            var identity = _identityService.GetIdentity(seller);
-            if (identity == null)
-            {
-                throw new InvalidCredentialsException("Invalid email or password.");
-            }
-
-            seller.RefreshToken = Guid.NewGuid().ToString().Replace("-", "");
-            _sellerRepository.Update(seller);
-
-            var response = new TokenModelResponse
-            {
-                access_token = _securityService.GenerateToken(seller),
-                refresh_token = seller.RefreshToken,
-                expire_time = DateTime.UtcNow.AddMinutes(AuthOptions.LIFETIME)
-            };
+            var response = _authService.TokenWeb(model.email, model.password);
 
             Response.ContentType = "application/json";
+
             await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
         }
 
