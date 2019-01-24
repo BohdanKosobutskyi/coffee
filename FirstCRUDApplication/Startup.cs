@@ -47,11 +47,11 @@ namespace FirstCRUDApplication
                                                                     .AllowAnyHeader()));
             services.AddMvc();
 
-            //services.AddMvc(options =>
-            //{
-            //    options.Filters.Add(typeof(CustomExceptionFilterAttribute));
-            //});
-            
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(CustomExceptionFilterAttribute));
+            });
+
             services.AddDbContext<CoffeeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -98,6 +98,7 @@ namespace FirstCRUDApplication
 
             
             services.AddTransient<IClaimSelector, ClaimSelector>();
+            services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ISecurityService, SecurityService>();
             services.AddTransient<IIdentityService, IdentityService>();

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Coffee.Filters.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using System;
@@ -24,14 +25,29 @@ namespace Coffee.Filters
             string exceptionStack = context.Exception.StackTrace;
             string exceptionMessage = context.Exception.Message;
 
-            _logger.LogError(new EventId(0), actionName, exceptionStack, exceptionMessage);
+            _logger.LogError(new EventId(0),actionName,exceptionStack,exceptionMessage);
 
+            switch (context.Exception.GetType().Name)
+            {
+                case nameof(InvalidRefreshTokenException):
+                    CreateExceptionExceptionType(context, 400);
+                    return;
+                case nameof(InvalidCredentialsException):
+                    CreateExceptionExceptionType(context,400);
+                    return;
+            }
+
+            CreateExceptionExceptionType(context,500);
+        }
+
+        private void CreateExceptionExceptionType(ExceptionContext context, int statusCode)
+        {
             context.Result = new ContentResult
             {
-                Content = $"В методе {actionName} возникло исключение: \n {exceptionMessage} \n {exceptionStack}"
+                Content = context.Exception.Message
             };
             context.ExceptionHandled = true;
-            context.HttpContext.Response.StatusCode = 500;
+            context.HttpContext.Response.StatusCode = statusCode;
         }
     }
 }

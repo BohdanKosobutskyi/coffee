@@ -32,7 +32,7 @@ namespace Coffee.Repositories
 
         public override IEnumerable<User> Get(Func<User,bool> predicate)
         {
-            return _context.Set<User>().AsNoTracking().Include(item => item.UserCompanies);
+            return _context.Set<User>().AsNoTracking().Include(item => item.UserCompanies).Where(predicate);
         }
 
         public void DeleteUserFromCompany(long userId)

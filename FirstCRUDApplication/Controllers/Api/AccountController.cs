@@ -13,6 +13,7 @@ using Coffee.Contracts;
 using Coffee.Contracts.Authorization;
 using Coffee.DbEntities;
 using Coffee.Code;
+using Coffee.Filters.Exceptions;
 
 namespace Coffee.Controllers.Api
 {   
@@ -24,39 +25,25 @@ namespace Coffee.Controllers.Api
         private ISellerRepository _sellerRepository;
         private IIdentityService _identityService;
         private ISecurityService _securityService;
+        private IAuthService _authService;
 
         public AccountController(IUserRepository userRepository, 
             ISellerRepository sellerRepository,
             IIdentityService identityService,
-            ISecurityService securityService)
+            ISecurityService securityService, IAuthService authService)
         {
             _userRepository = userRepository;
             _sellerRepository = sellerRepository;
             _identityService = identityService;
             _securityService = securityService;
+            _authService = authService;
         }
 
         [HttpGet("/api/mobile/token/{refresh_token}/refresh")]
         public async Task RefreshToken(string refresh_token)
         {
-            var user = _userRepository.Get(x => x.RefreshToken == refresh_token && x.IsConfirm).FirstOrDefault();
+            var response = _authService.RefreshToken(refresh_token);
 
-            if (user == null)
-            {
-                Response.StatusCode = 400;
-                await Response.WriteAsync("Invalid refresh token.");
-                return;
-            }
- 
-            user.RefreshToken = Guid.NewGuid().ToString().Replace("-", "");
-            _userRepository.Update(user);
-
-            var response = new
-            {
-                access_token = _securityService.GenerateToken(user),
-                refresh_token = user.RefreshToken
-            };
-            
             Response.ContentType = "application/json";
             await Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
         }
@@ -73,9 +60,7 @@ namespace Coffee.Controllers.Api
             var identity = _identityService.GetIdentity(seller);
             if (identity == null)
             {
-                Response.StatusCode = 400;
-                await Response.WriteAsync("Invalid email or password.");
-                return;
+                throw new InvalidCredentialsException("Invalid email or password.");
             }
 
             seller.RefreshToken = Guid.NewGuid().ToString().Replace("-", "");
@@ -105,9 +90,7 @@ namespace Coffee.Controllers.Api
             var identity = _identityService.GetIdentity(user);
             if (identity == null)
             {
-                Response.StatusCode = 400;
-                await Response.WriteAsync("Invalid phone or password.");
-                return;
+                throw new InvalidCredentialsException("Invalid phone or password.");
             }
 
             user.RefreshToken = Guid.NewGuid().ToString().Replace("-", "");
@@ -133,9 +116,7 @@ namespace Coffee.Controllers.Api
 
             if(user != null)
             {
-                Response.StatusCode = 400;
-                await Response.WriteAsync("User with this phone already exist.");
-                return;
+                throw new InvalidCredentialsException("User with this phone already exist.");
             }
 
             user = _userRepository.Get(item => item.Phone == phone && item.IsConfirm == false).FirstOrDefault();
@@ -169,9 +150,7 @@ namespace Coffee.Controllers.Api
 
             if (user == null)
             {
-                Response.StatusCode = 400;
-                await Response.WriteAsync("User with this phone already confirm or incorect confirm parameters.");
-                return;
+                throw new InvalidCredentialsException("User with this phone already confirm or incorect confirm parameters.");
             }
 
             user.IsConfirm = true;
