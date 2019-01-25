@@ -7,6 +7,7 @@ using Coffee.Contracts;
 using Coffee.Filters.Exceptions;
 using Coffee.Repositories.Interfaces;
 using Coffee.Security;
+using Coffee.DbEntities;
 
 namespace Coffee.Services
 {
@@ -47,7 +48,7 @@ namespace Coffee.Services
                 expire_time = DateTime.UtcNow.AddMinutes(AuthOptions.LIFETIME)
             };
         }
-
+        
         public TokenModelResponse TokenWeb(string email, string password)
         {
             var seller = _sellerRepository.Get(x => x.Email == email && x.Password == password).FirstOrDefault();
@@ -67,6 +68,83 @@ namespace Coffee.Services
                 refresh_token = seller.RefreshToken,
                 expire_time = DateTime.UtcNow.AddMinutes(AuthOptions.LIFETIME)
             };
+        }
+        public TokenModelResponse TokenMobile(string phone,string password)
+        {
+            var user = _userRepository.Get(x => x.Phone == phone && x.Password == password && x.IsConfirm).FirstOrDefault();
+
+            var identity = _identityService.GetIdentity(user);
+            if (identity == null)
+            {
+                throw new InvalidCredentialsException("Invalid phone or password.");
+            }
+
+            user.RefreshToken = Guid.NewGuid().ToString().Replace("-","");
+            _userRepository.Update(user);
+
+            return new TokenModelResponse
+            {
+                access_token = _securityService.GenerateToken(user),
+                refresh_token = user.RefreshToken,
+                expire_time = DateTime.UtcNow.AddMinutes(AuthOptions.LIFETIME)
+            };
+        }
+
+        public void Registration(string phone)
+        {
+            var user = _userRepository.Get(item => item.Phone == phone && item.IsConfirm).FirstOrDefault();
+
+            if (user != null)
+            {
+                throw new InvalidCredentialsException("User with this phone already exist.");
+            }
+
+            user = _userRepository.Get(item => item.Phone == phone && item.IsConfirm == false).FirstOrDefault();
+
+            if (user != null)
+            {
+                _userRepository.Remove(user);
+            }
+
+            user = new User
+            {
+                Phone = phone,
+                Password = "test",
+                RefreshToken = Guid.NewGuid().ToString().Replace("-","")
+            };
+
+            // TO DO add sending sms
+
+            _userRepository.Create(user);
+        }
+
+        public void ConfirmRegister(string phone)
+        {
+            var user = _userRepository.Get(item => item.Phone == phone && item.IsConfirm == false).FirstOrDefault();
+
+            if (user == null)
+            {
+                throw new InvalidCredentialsException("User with this phone already confirm or incorect confirm parameters.");
+            }
+
+            user.IsConfirm = true;
+
+            _userRepository.Update(user);
+        }
+
+        public void Password(string phone)
+        {
+            User user = _userRepository.Get(item => item.Phone == phone && item.IsConfirm).FirstOrDefault();
+
+            if (user == null)
+            {
+                throw new InvalidCredentialsException("User with this phone not exist.");
+            }
+
+            // TO DO add sending new password by sms
+
+            user.Password = "testNew";
+            _userRepository.Update(user);
         }
     }
 }

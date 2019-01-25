@@ -10,5 +10,9 @@ namespace Coffee.Services.Interfaces
     {
         TokenModelResponse RefreshToken(string RefreshToken);
         TokenModelResponse TokenWeb(string email,string password);
+        TokenModelResponse TokenMobile(string phone, string password);
+        void Registration(string phone);
+        void ConfirmRegister(string phone);
+        void Password(string phone);
     }
 }
