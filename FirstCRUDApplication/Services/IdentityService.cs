@@ -1,5 +1,5 @@
 ﻿using Coffee.Services.Interfaces;
-using FirstCRUDApplication.DbEntities;
+using Coffee.DbEntities;
 using System.Collections.Generic;
 using System.Security.Claims;
 

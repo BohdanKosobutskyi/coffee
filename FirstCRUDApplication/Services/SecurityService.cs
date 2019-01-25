@@ -1,6 +1,6 @@
 ﻿using Coffee.Security;
 using Coffee.Services.Interfaces;
-using FirstCRUDApplication.DbEntities;
+using Coffee.DbEntities;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;

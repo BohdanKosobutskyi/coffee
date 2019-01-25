@@ -1,4 +1,4 @@
-﻿namespace FirstCRUDApplication.Code
+﻿namespace Coffee.Code
 {
     public enum ModalSize
     {

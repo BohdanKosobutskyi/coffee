@@ -1,6 +1,6 @@
 ﻿using Coffee.DbEntities;
 using Coffee.Repositories.Interfaces;
-using FirstCRUDApplication.DbEntities;
+using Coffee.DbEntities;
 
 namespace Coffee.Repositories
 {

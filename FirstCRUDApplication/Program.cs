@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace FirstCRUDApplication
+namespace Coffee
 {
     public class Program
     {

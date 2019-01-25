@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FirstCRUDApplication.DbEntities
+namespace Coffee.DbEntities
 {
     public class BaseEntity
     {

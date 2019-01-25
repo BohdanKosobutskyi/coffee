@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace FirstCRUDApplication.Migrations
+namespace Coffee.Migrations
 {
     public partial class InitialCreate : Migration
     {

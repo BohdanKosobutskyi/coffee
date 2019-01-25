@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using FirstCRUDApplication.Models;
+using Coffee.Models;
 using System.IO;
 using Microsoft.AspNetCore.Hosting.Internal;
 
-namespace FirstCRUDApplication.Controllers
+namespace Coffee.Controllers
 {
     public class HomeController : Controller
     {

@@ -4,7 +4,7 @@ using Coffee.DbEntities.Mapping;
 using Coffee.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FirstCRUDApplication.DbEntities
+namespace Coffee.DbEntities
 {
     public class CoffeeContext : DbContext
     {

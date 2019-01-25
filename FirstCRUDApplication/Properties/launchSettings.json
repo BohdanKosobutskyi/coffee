@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "FirstCRUDApplication": {
+    "Coffee": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

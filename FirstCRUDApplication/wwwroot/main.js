@@ -1654,7 +1654,7 @@ platform.bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_1__["AppModule
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! J:\Projects\coffeecore\FirstCRUDApplication\CoffeeUI\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! J:\Projects\coffeecore\Coffee\CoffeeUI\src\main.ts */"./src/main.ts");
 
 
 /***/ })

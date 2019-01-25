@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace FirstCRUDApplication.Migrations
+namespace Coffee.Migrations
 {
     public partial class ExtendUserModel : Migration
     {

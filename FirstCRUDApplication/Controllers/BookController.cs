@@ -1,12 +1,12 @@
-﻿using FirstCRUDApplication.DbEntities;
-using FirstCRUDApplication.Models;
+﻿using Coffee.DbEntities;
+using Coffee.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FirstCRUDApplication.Controllers
+namespace Coffee.Controllers
 {
     public class BookController : Controller
     {

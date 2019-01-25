@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using FirstCRUDApplication.DbEntities;
+using Coffee.DbEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -28,7 +28,7 @@ using System;
 using System.Collections.Generic;
 using Coffee.Code;
 
-namespace FirstCRUDApplication
+namespace Coffee
 {
     public class Startup
     {

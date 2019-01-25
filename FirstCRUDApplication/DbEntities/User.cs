@@ -1,6 +1,6 @@
 ﻿using Coffee.DbEntities;
 using Coffee.DbEntities.Mapping;
-using FirstCRUDApplication.DbEntities;
+using Coffee.DbEntities;
 using System.Collections.Generic;
 
 namespace Coffee.DbEntities

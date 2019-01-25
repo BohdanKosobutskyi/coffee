@@ -1,4 +1,4 @@
-﻿using FirstCRUDApplication.DbEntities;
+﻿using Coffee.DbEntities;
 
 namespace Coffee.DbEntities
 {

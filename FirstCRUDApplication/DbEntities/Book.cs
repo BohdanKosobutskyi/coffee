@@ -1,4 +1,4 @@
-﻿namespace FirstCRUDApplication.DbEntities
+﻿namespace Coffee.DbEntities
 {
     public class Book:BaseEntity
     {

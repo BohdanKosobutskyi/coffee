@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FirstCRUDApplication.DbEntities
+namespace Coffee.DbEntities
 {
     public class BookMap 
     {

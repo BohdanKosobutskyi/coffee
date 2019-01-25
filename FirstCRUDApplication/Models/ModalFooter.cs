@@ -1,4 +1,4 @@
-﻿namespace FirstCRUDApplication.Models
+﻿namespace Coffee.Models
 {
     public class ModalFooter
     {

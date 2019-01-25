@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FirstCRUDApplication.Models
+namespace Coffee.Models
 {
     public class BookViewModel
     {

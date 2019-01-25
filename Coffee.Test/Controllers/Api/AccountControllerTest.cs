@@ -3,7 +3,7 @@ using Coffee.DbEntities;
 using Coffee.Filters.Exceptions;
 using Coffee.Repositories.Interfaces;
 using Coffee.Services.Interfaces;
-using FirstCRUDApplication.DbEntities;
+using Coffee.DbEntities;
 using Moq;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
-﻿using FirstCRUDApplication.Code;
+﻿using Coffee.Code;
 
-namespace FirstCRUDApplication.Models
+namespace Coffee.Models
 {
     public class BootstrapModel
     {
