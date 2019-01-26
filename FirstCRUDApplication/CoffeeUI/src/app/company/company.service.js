@@ -11,7 +11,7 @@ import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-var CompanyService = (function () {
+var CompanyService = /** @class */ (function () {
     function CompanyService(http) {
         this.http = http;
     }
@@ -31,11 +31,11 @@ var CompanyService = (function () {
             return throwError(error);
         }));
     };
+    CompanyService = __decorate([
+        Injectable(),
+        __metadata("design:paramtypes", [HttpClient])
+    ], CompanyService);
     return CompanyService;
 }());
-CompanyService = __decorate([
-    Injectable(),
-    __metadata("design:paramtypes", [HttpClient])
-], CompanyService);
 export { CompanyService };
 //# sourceMappingURL=company.service.js.map

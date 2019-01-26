@@ -2,7 +2,6 @@
 using Coffee.DbEntities.Mapping;
 using Coffee.Models;
 using Coffee.Repositories.Interfaces;
-using Coffee.DbEntities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,12 +29,7 @@ namespace Coffee.Repositories
             return users;
         }
 
-        public override IEnumerable<User> Get(Func<User,bool> predicate)
-        {
-            return _context.Set<User>().AsNoTracking().Include(item => item.UserCompanies).Where(predicate);
-        }
-
-        public void DeleteUserFromCompany(long userId)
+        public void RemoveUserFromCompany(long userId)
         {
             var user = _context.Set<User>().Include(uc => uc.UserCompanies).FirstOrDefault(item => item.Id == userId);
 
@@ -44,6 +38,22 @@ namespace Coffee.Repositories
             user.UserCompanies.Remove(userCompany);
 
             _context.SaveChanges();
+        }
+
+        public IEnumerable<User> GetConfirmUsers(Func<User, bool> predicate)
+        {
+            return _context.Set<User>().AsNoTracking()
+                .Include(item => item.UserCompanies)
+                .Where(predicate)
+                .Where(item => item.IsConfirm);
+        }
+
+        public IEnumerable<User> GetNotConfirmUsers(Func<User, bool> predicate)
+        {
+            return _context.Set<User>().AsNoTracking()
+                .Include(item => item.UserCompanies)
+                .Where(predicate)
+                .Where(item => item.IsConfirm == false);
         }
     }
 }

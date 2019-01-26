@@ -31,11 +31,11 @@ namespace Coffee.Services
 
         public TokenModelResponse RefreshToken(string RefreshToken)
         {
-            var user = _userRepository.Get(x => x.RefreshToken == RefreshToken && x.IsConfirm).FirstOrDefault();
+            var user = _userRepository.GetConfirmUsers(x => x.RefreshToken == RefreshToken).FirstOrDefault();
 
             if (user == null)
             {
-                throw new InvalidRefreshTokenException();
+                throw new InvalidRefreshTokenException("Invalid refresh token.");
             }
 
             user.RefreshToken = Guid.NewGuid().ToString().Replace("-","");
@@ -71,7 +71,7 @@ namespace Coffee.Services
         }
         public TokenModelResponse TokenMobile(string phone,string password)
         {
-            var user = _userRepository.Get(x => x.Phone == phone && x.Password == password && x.IsConfirm).FirstOrDefault();
+            var user = _userRepository.GetConfirmUsers(x => x.Phone == phone && x.Password == password).FirstOrDefault();
 
             var identity = _identityService.GetIdentity(user);
             if (identity == null)
@@ -92,14 +92,14 @@ namespace Coffee.Services
 
         public void Registration(string phone)
         {
-            var user = _userRepository.Get(item => item.Phone == phone && item.IsConfirm).FirstOrDefault();
+            var user = _userRepository.GetConfirmUsers(item => item.Phone == phone).FirstOrDefault();
 
             if (user != null)
             {
                 throw new InvalidCredentialsException("User with this phone already exist.");
             }
 
-            user = _userRepository.Get(item => item.Phone == phone && item.IsConfirm == false).FirstOrDefault();
+            user = _userRepository.GetNotConfirmUsers(item => item.Phone == phone).FirstOrDefault();
 
             if (user != null)
             {
@@ -120,7 +120,7 @@ namespace Coffee.Services
 
         public void ConfirmRegister(string phone)
         {
-            var user = _userRepository.Get(item => item.Phone == phone && item.IsConfirm == false).FirstOrDefault();
+            var user = _userRepository.GetNotConfirmUsers(item => item.Phone == phone).FirstOrDefault();
 
             if (user == null)
             {
@@ -134,7 +134,7 @@ namespace Coffee.Services
 
         public void Password(string phone)
         {
-            User user = _userRepository.Get(item => item.Phone == phone && item.IsConfirm).FirstOrDefault();
+            User user = _userRepository.GetConfirmUsers(item => item.Phone == phone).FirstOrDefault();
 
             if (user == null)
             {

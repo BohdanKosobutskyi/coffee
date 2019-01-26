@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { GlobalErrorHandlerService } from '../../global-error-handler.service';
 import { AppConfig } from '../../configuration/config.component';
 import { IntegrationService } from '../../services/integration-service';
-var UserListAdminComponent = (function () {
+var UserListAdminComponent = /** @class */ (function () {
     function UserListAdminComponent(integrationService, errorHandler, config) {
         var _this = this;
         this.integrationService = integrationService;
@@ -40,15 +40,15 @@ var UserListAdminComponent = (function () {
             _this.errorHandler.handleError(err);
         });
     };
+    UserListAdminComponent = __decorate([
+        Component({
+            selector: 'user-list-admin',
+            templateUrl: './user-list.admin.component.html',
+            providers: [AppConfig, IntegrationService]
+        }),
+        __metadata("design:paramtypes", [IntegrationService, GlobalErrorHandlerService, AppConfig])
+    ], UserListAdminComponent);
     return UserListAdminComponent;
 }());
-UserListAdminComponent = __decorate([
-    Component({
-        selector: 'user-list-admin',
-        templateUrl: './user-list.admin.component.html',
-        providers: [AppConfig, IntegrationService]
-    }),
-    __metadata("design:paramtypes", [IntegrationService, GlobalErrorHandlerService, AppConfig])
-], UserListAdminComponent);
 export { UserListAdminComponent };
 //# sourceMappingURL=user-list.admin.component.js.map

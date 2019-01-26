@@ -12,7 +12,7 @@ import { IntegrationService } from './integration-service';
 import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { Router } from '@angular/router';
 import { AppConfig } from './../configuration/config.component';
-var AuthenticationService = (function () {
+var AuthenticationService = /** @class */ (function () {
     function AuthenticationService(integrationService, errorHandler, router, config) {
         var _this = this;
         this.integrationService = integrationService;
@@ -46,14 +46,14 @@ var AuthenticationService = (function () {
             return false;
         }
     };
+    AuthenticationService = __decorate([
+        Injectable(),
+        __metadata("design:paramtypes", [IntegrationService,
+            GlobalErrorHandlerService,
+            Router,
+            AppConfig])
+    ], AuthenticationService);
     return AuthenticationService;
 }());
-AuthenticationService = __decorate([
-    Injectable(),
-    __metadata("design:paramtypes", [IntegrationService,
-        GlobalErrorHandlerService,
-        Router,
-        AppConfig])
-], AuthenticationService);
 export { AuthenticationService };
 //# sourceMappingURL=authentication-service.js.map

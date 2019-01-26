@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-var IntegrationService = (function () {
+var IntegrationService = /** @class */ (function () {
     function IntegrationService(http) {
         this.http = http;
     }
@@ -29,11 +29,11 @@ var IntegrationService = (function () {
             return throwError(error);
         }));
     };
+    IntegrationService = __decorate([
+        Injectable(),
+        __metadata("design:paramtypes", [HttpClient])
+    ], IntegrationService);
     return IntegrationService;
 }());
-IntegrationService = __decorate([
-    Injectable(),
-    __metadata("design:paramtypes", [HttpClient])
-], IntegrationService);
 export { IntegrationService };
 //# sourceMappingURL=integration-service.js.map

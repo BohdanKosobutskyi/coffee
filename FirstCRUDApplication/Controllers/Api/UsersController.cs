@@ -107,7 +107,7 @@ namespace Coffee.Controllers.Api
                 return;
             }
 
-            _userRepository.DeleteUserFromCompany(userId);
+            _userRepository.RemoveUserFromCompany(userId);
 
             Response.StatusCode = 200;
             return;

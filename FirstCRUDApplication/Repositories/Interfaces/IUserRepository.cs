@@ -1,5 +1,6 @@
 ﻿using Coffee.DbEntities;
 using Coffee.Models;
+using System;
 using System.Collections.Generic;
 
 namespace Coffee.Repositories.Interfaces
@@ -8,6 +9,10 @@ namespace Coffee.Repositories.Interfaces
     {
         IEnumerable<User> GetByCompany(long companyId);
 
-        void DeleteUserFromCompany(long userId);
+        void RemoveUserFromCompany(long userId);
+
+        IEnumerable<User> GetConfirmUsers(Func<User, bool> predicate);
+
+        IEnumerable<User> GetNotConfirmUsers(Func<User, bool> predicate);
     }
 }

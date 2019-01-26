@@ -5,7 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Injectable } from '@angular/core';
-var JwtInterceptor = (function () {
+var JwtInterceptor = /** @class */ (function () {
     function JwtInterceptor() {
     }
     JwtInterceptor.prototype.intercept = function (request, next) {
@@ -20,10 +20,10 @@ var JwtInterceptor = (function () {
         }
         return next.handle(request);
     };
+    JwtInterceptor = __decorate([
+        Injectable()
+    ], JwtInterceptor);
     return JwtInterceptor;
 }());
-JwtInterceptor = __decorate([
-    Injectable()
-], JwtInterceptor);
 export { JwtInterceptor };
 //# sourceMappingURL=jwt.interceptor.js.map

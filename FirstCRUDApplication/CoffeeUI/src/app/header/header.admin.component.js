@@ -13,7 +13,7 @@ import { GlobalErrorHandlerService } from '../global-error-handler.service';
 import { IntegrationService } from './../services/integration-service';
 import { AuthenticationService } from '../services/authentication-service';
 import { Router } from '@angular/router';
-var HeaderAdminComponent = (function () {
+var HeaderAdminComponent = /** @class */ (function () {
     function HeaderAdminComponent(integrationService, fb, errorHandler, elem, authenticationService, router) {
         this.integrationService = integrationService;
         this.fb = fb;
@@ -47,25 +47,25 @@ var HeaderAdminComponent = (function () {
     HeaderAdminComponent.prototype.goToHome = function () {
         this.router.navigate(['/admin/home']);
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], HeaderAdminComponent.prototype, "loginData", void 0);
+    HeaderAdminComponent = __decorate([
+        Component({
+            selector: 'header-admin',
+            templateUrl: './header.admin.component.html',
+            styleUrls: ['./header.admin.component.css'],
+            providers: [IntegrationService, AuthenticationService]
+        }),
+        __metadata("design:paramtypes", [IntegrationService,
+            FormBuilder,
+            GlobalErrorHandlerService,
+            ElementRef,
+            AuthenticationService,
+            Router])
+    ], HeaderAdminComponent);
     return HeaderAdminComponent;
 }());
-__decorate([
-    Input(),
-    __metadata("design:type", Object)
-], HeaderAdminComponent.prototype, "loginData", void 0);
-HeaderAdminComponent = __decorate([
-    Component({
-        selector: 'header-admin',
-        templateUrl: './header.admin.component.html',
-        styleUrls: ['./header.admin.component.css'],
-        providers: [IntegrationService, AuthenticationService]
-    }),
-    __metadata("design:paramtypes", [IntegrationService,
-        FormBuilder,
-        GlobalErrorHandlerService,
-        ElementRef,
-        AuthenticationService,
-        Router])
-], HeaderAdminComponent);
 export { HeaderAdminComponent };
 //# sourceMappingURL=header.admin.component.js.map

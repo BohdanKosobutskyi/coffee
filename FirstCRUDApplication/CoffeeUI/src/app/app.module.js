@@ -38,39 +38,39 @@ var appRoutes = [
     { path: 'admin/home', component: HomeAdminComponent },
     { path: 'admin/users', component: UserListAdminComponent }
 ];
-var AppModule = (function () {
+var AppModule = /** @class */ (function () {
     function AppModule() {
     }
+    AppModule = __decorate([
+        NgModule({
+            declarations: [UserListAdminComponent, HeaderAdminComponent, HeaderComponent, AppComponent, LoginComponent, HomeComponent, HomeAdminComponent, CompanyComponent, GlobalErrorComponent, UserListComponent, CompanyListComponent],
+            imports: [BrowserModule,
+                ChartsModule,
+                HttpModule,
+                RouterModule.forRoot(appRoutes),
+                FormsModule,
+                HttpClientModule,
+                ReactiveFormsModule,
+                CheckboxModule,
+                IconsModule,
+                MDBBootstrapModule.forRoot(),
+                ButtonsModule,
+                InputsModule.forRoot(),
+                WavesModule.forRoot()],
+            providers: [
+                AppConfig,
+                GlobalErrorHandlerService,
+                { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
+                {
+                    provide: HTTP_INTERCEPTORS,
+                    useClass: JwtInterceptor,
+                    multi: true
+                },
+            ],
+            bootstrap: [AppComponent]
+        })
+    ], AppModule);
     return AppModule;
 }());
-AppModule = __decorate([
-    NgModule({
-        declarations: [UserListAdminComponent, HeaderAdminComponent, HeaderComponent, AppComponent, LoginComponent, HomeComponent, HomeAdminComponent, CompanyComponent, GlobalErrorComponent, UserListComponent, CompanyListComponent],
-        imports: [BrowserModule,
-            ChartsModule,
-            HttpModule,
-            RouterModule.forRoot(appRoutes),
-            FormsModule,
-            HttpClientModule,
-            ReactiveFormsModule,
-            CheckboxModule,
-            IconsModule,
-            MDBBootstrapModule.forRoot(),
-            ButtonsModule,
-            InputsModule.forRoot(),
-            WavesModule.forRoot()],
-        providers: [
-            AppConfig,
-            GlobalErrorHandlerService,
-            { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
-            {
-                provide: HTTP_INTERCEPTORS,
-                useClass: JwtInterceptor,
-                multi: true
-            },
-        ],
-        bootstrap: [AppComponent]
-    })
-], AppModule);
 export { AppModule };
 //# sourceMappingURL=app.module.js.map

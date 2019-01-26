@@ -1,6 +1,5 @@
 ﻿using Coffee.DbEntities;
 using Coffee.Repositories.Interfaces;
-using Coffee.DbEntities;
 
 namespace Coffee.Repositories
 {

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Coffee.DbEntities;
 using Coffee.Repositories.Interfaces;
-using Coffee.DbEntities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
